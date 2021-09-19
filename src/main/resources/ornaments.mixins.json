@@ -1,0 +1,13 @@
+{
+    "required": true,
+    "minVersion": "0.7",
+    "package": "ornaments.mixins",
+    "compatibilityLevel": "JAVA_8",
+    "client": [
+        "PlayerEntityRendererMixin",
+        "ClientPlayNetworkHandlerMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}
