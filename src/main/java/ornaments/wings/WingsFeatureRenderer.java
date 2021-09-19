@@ -1,4 +1,4 @@
-package ornaments.wings.renderers;
+package ornaments.wings;
 
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
@@ -19,6 +19,7 @@ import ornaments.wings.models.DiscordsWingsModel;
 import ornaments.wings.models.FeatheredWingModel;
 import ornaments.wings.models.LeatherWingModel;
 import ornaments.wings.models.LightWingsModel;
+import ornaments.wings.models.TechWingsModel;
 import ornaments.wings.models.WingEntityModel;
 import ornaments.wings.models.ZanzasWingsModel;
 
@@ -54,6 +55,9 @@ public class WingsFeatureRenderer<T extends LivingEntity, M extends EntityModel<
         } else if (client.player.getWingType().equals("Zanzas")) {
           wingModel = new ZanzasWingsModel<>();
           wingType = "zanzas";
+        } else if (client.player.getWingType().equals("Tech")) {
+          wingModel = new TechWingsModel<>();
+          wingType = "tech";
         } else
           return;
 

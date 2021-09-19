@@ -10,6 +10,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.command.v1.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource;
+import net.minecraft.text.TranslatableText;
 import ornaments.OFcape.Get;
 import ornaments.Client.client;
 import ornaments.Client.config;
@@ -20,9 +21,10 @@ public class Commands {
 
   public static void init() {
     ClientCommandManager.DISPATCHER.register(ClientCommandManager.literal("Ornaments")
-        .then(ClientCommandManager.literal("SetPlayerName")
-          .then(ClientCommandManager.argument("PlayerName", StringArgumentType.word())
-            .executes(Commands::SetPlayerName)))
+        .then(ClientCommandManager.literal("Help").executes(Commands::showhelp))
+        .then(ClientCommandManager.literal("Credit").executes(Commands::showcredit))
+        .then(ClientCommandManager.literal("SetPlayerName").then(
+            ClientCommandManager.argument("PlayerName", StringArgumentType.word()).executes(Commands::SetPlayerName)))
         .then(ClientCommandManager.literal("Cape")
             .then(ClientCommandManager.literal("FromOptifine")
                 .then(ClientCommandManager.argument("PlayerName", StringArgumentType.word())
@@ -57,6 +59,11 @@ public class Commands {
                         .then(ClientCommandManager.argument("Blue", StringArgumentType.word())
                             .executes(Commands::set_wings)))))
             .then(ClientCommandManager.literal("Zanzas")
+                .then(ClientCommandManager.argument("Red", StringArgumentType.word())
+                    .then(ClientCommandManager.argument("Green", StringArgumentType.word())
+                        .then(ClientCommandManager.argument("Blue", StringArgumentType.word())
+                            .executes(Commands::set_wings)))))
+            .then(ClientCommandManager.literal("Tech")
                 .then(ClientCommandManager.argument("Red", StringArgumentType.word())
                     .then(ClientCommandManager.argument("Green", StringArgumentType.word())
                         .then(ClientCommandManager.argument("Blue", StringArgumentType.word())
@@ -124,9 +131,28 @@ public class Commands {
       return 1;
     return 0;
   }
+
   private static int SetPlayerName(CommandContext<FabricClientCommandSource> context) {
-    config.playername=StringArgumentType.getString(context, "PlayerName");
+    config.playername = StringArgumentType.getString(context, "PlayerName");
     config.saveConfig();
+    return 0;
+  }
+
+  private static int showhelp(CommandContext<FabricClientCommandSource> context) {
+    context.getSource().getPlayer().sendMessage(new TranslatableText("empty"), false);
+    context.getSource().getPlayer().sendMessage(new TranslatableText("help.title"), false);
+    for (int i = 1; i <= 10; i++) {
+      context.getSource().getPlayer().sendMessage(new TranslatableText("help.text" + String.valueOf(i)), false);
+    }
+    return 0;
+  }
+
+  private static int showcredit(CommandContext<FabricClientCommandSource> context) {
+    context.getSource().getPlayer().sendMessage(new TranslatableText("empty"), false);
+    context.getSource().getPlayer().sendMessage(new TranslatableText("credit.title"), false);
+    for (int i = 1; i <= 6; i++) {
+      context.getSource().getPlayer().sendMessage(new TranslatableText("credit.text" + String.valueOf(i)), false);
+    }
     return 0;
   }
 }

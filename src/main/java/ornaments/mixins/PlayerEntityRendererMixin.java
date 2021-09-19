@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import ornaments.OFcape.CapeRender;
 import ornaments.OFcape.ElytraRender;
-import ornaments.wings.renderers.WingsFeatureRenderer;
+import ornaments.wings.WingsFeatureRenderer;
 
 @Mixin(PlayerEntityRenderer.class)
 public abstract class PlayerEntityRendererMixin

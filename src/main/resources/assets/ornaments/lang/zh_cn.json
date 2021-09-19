@@ -1,0 +1,23 @@
+{
+    "help.title": "§kxxxx§3---饰品mod帮助---§f§kxxxx",
+    "help.text1": "§6Credit: §f显示版权信息",
+    "help.text2": "§6Help: §f显示本帮助",
+    "help.text3": "§6Cape:",
+    "help.text4": "§6  FromOptifine §b<PlayerName>: §f加载指定玩家的Optifine披风",
+    "help.text5": "§6  Hide: §f隐藏披风",
+    "help.text6": "§6Wings:",
+    "help.text7": "§6  SetVisibleWithElytra §b(true/false): §f是否在穿戴鞘翅的时候显示翅膀",
+    "help.text8": "§6  Hide: 隐藏翅膀",
+    "help.text9": "§6  §b<Type> §c<R> §a<G> §9<B>: §f显示指定颜色的指定类型的翅膀，颜色值应在0-1之间",
+    "help.text10": "§6PlayerName §b<PlayerName>: §f设置渲染的目标玩家，通常第一次使用本mod的时候运行此指令",
+
+    "credit.title": "§kxxxx§3---版权信息---§f§kxxxx",
+    "credit.text1": "§fMod作者：§b冰§c火§f使者IAFEnvoy",
+    "credit.text2": "§fB站同名",
+    "credit.text3": "源码地址：",
+    "credit.text4": "https://github.com/IAFEnvoy/Ornaments",
+    "credit.text5": "开源许可证：Mozilla",
+    "credit.text6": "部分翅膀模型来自mod：Icarus",
+
+    "empty": ""
+}
