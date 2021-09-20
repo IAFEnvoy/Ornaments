@@ -8,7 +8,7 @@
     "help.text6": "§6Wings:",
     "help.text7": "§6  SetVisibleWithElytra §b(true/false): §f是否在穿戴鞘翅的时候显示翅膀",
     "help.text8": "§6  Hide: 隐藏翅膀",
-    "help.text9": "§6  §b<Type> §c<R> §a<G> §9<B>: §f显示指定颜色的指定类型的翅膀，颜色值应在0-1之间",
+    "help.text9": "§6  §b<Type> §c<R1> §a<G1> §9<B1> §c<R2> §a<G2> §9<B2>: §f显示指定颜色的指定类型的翅膀，颜色值应在0-1之间，两个RGB对应两层",
     "help.text10": "§6PlayerName §b<PlayerName>: §f设置渲染的目标玩家，通常第一次使用本mod的时候运行此指令",
 
     "credit.title": "§kxxxx§3---版权信息---§f§kxxxx",

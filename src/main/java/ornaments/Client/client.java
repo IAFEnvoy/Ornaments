@@ -25,10 +25,10 @@ public class client implements ClientModInitializer {
 		Commands.init();
 		config.init();
 		config.readConfig();
-		player.setColor(config.getR(), config.getG(), config.getB());
+		player.setColor(config.getR1(), config.getG1(), config.getB1(),config.getR2(), config.getG2(), config.getB2());
 		player.setWings(config.getWingType());
 		player.setCape(config.getCape());
-    config.saveConfig();
+    	config.saveConfig();
 	}
 	public static void log(Level level, String message) {
 		LOGGER.log(level, "[" + MOD_NAME + "] " + message);

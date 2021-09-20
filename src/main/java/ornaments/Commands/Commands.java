@@ -39,35 +39,53 @@ public class Commands {
                 .then(ClientCommandManager.literal("true").executes(Commands::set_visible))
                 .then(ClientCommandManager.literal("false").executes(Commands::set_visible)))
             .then(ClientCommandManager.literal("Feathered")
-                .then(ClientCommandManager.argument("Red", StringArgumentType.word())
-                    .then(ClientCommandManager.argument("Green", StringArgumentType.word())
-                        .then(ClientCommandManager.argument("Blue", StringArgumentType.word())
-                            .executes(Commands::set_wings)))))
+                .then(ClientCommandManager.argument("R1", StringArgumentType.word())
+                    .then(ClientCommandManager.argument("G1", StringArgumentType.word())
+                        .then(ClientCommandManager.argument("B1", StringArgumentType.word())
+                          .then(ClientCommandManager.argument("R2", StringArgumentType.word())
+                            .then(ClientCommandManager.argument("G2", StringArgumentType.word())
+                                .then(ClientCommandManager.argument("B2", StringArgumentType.word())
+                                  .executes(Commands::set_wings))))))))
             .then(ClientCommandManager.literal("Dragon")
-                .then(ClientCommandManager.argument("Red", StringArgumentType.word())
-                    .then(ClientCommandManager.argument("Green", StringArgumentType.word())
-                        .then(ClientCommandManager.argument("Blue", StringArgumentType.word())
-                            .executes(Commands::set_wings)))))
+            .then(ClientCommandManager.argument("R1", StringArgumentType.word())
+            .then(ClientCommandManager.argument("G1", StringArgumentType.word())
+                .then(ClientCommandManager.argument("B1", StringArgumentType.word())
+                  .then(ClientCommandManager.argument("R2", StringArgumentType.word())
+                    .then(ClientCommandManager.argument("G2", StringArgumentType.word())
+                        .then(ClientCommandManager.argument("B2", StringArgumentType.word())
+                          .executes(Commands::set_wings))))))))
             .then(ClientCommandManager.literal("Light")
-                .then(ClientCommandManager.argument("Red", StringArgumentType.word())
-                    .then(ClientCommandManager.argument("Green", StringArgumentType.word())
-                        .then(ClientCommandManager.argument("Blue", StringArgumentType.word())
-                            .executes(Commands::set_wings)))))
+            .then(ClientCommandManager.argument("R1", StringArgumentType.word())
+            .then(ClientCommandManager.argument("G1", StringArgumentType.word())
+                .then(ClientCommandManager.argument("B1", StringArgumentType.word())
+                  .then(ClientCommandManager.argument("R2", StringArgumentType.word())
+                    .then(ClientCommandManager.argument("G2", StringArgumentType.word())
+                        .then(ClientCommandManager.argument("B2", StringArgumentType.word())
+                          .executes(Commands::set_wings))))))))
             .then(ClientCommandManager.literal("Discords")
-                .then(ClientCommandManager.argument("Red", StringArgumentType.word())
-                    .then(ClientCommandManager.argument("Green", StringArgumentType.word())
-                        .then(ClientCommandManager.argument("Blue", StringArgumentType.word())
-                            .executes(Commands::set_wings)))))
+            .then(ClientCommandManager.argument("R1", StringArgumentType.word())
+            .then(ClientCommandManager.argument("G1", StringArgumentType.word())
+                .then(ClientCommandManager.argument("B1", StringArgumentType.word())
+                  .then(ClientCommandManager.argument("R2", StringArgumentType.word())
+                    .then(ClientCommandManager.argument("G2", StringArgumentType.word())
+                        .then(ClientCommandManager.argument("B2", StringArgumentType.word())
+                          .executes(Commands::set_wings))))))))
             .then(ClientCommandManager.literal("Zanzas")
-                .then(ClientCommandManager.argument("Red", StringArgumentType.word())
-                    .then(ClientCommandManager.argument("Green", StringArgumentType.word())
-                        .then(ClientCommandManager.argument("Blue", StringArgumentType.word())
-                            .executes(Commands::set_wings)))))
+            .then(ClientCommandManager.argument("R1", StringArgumentType.word())
+            .then(ClientCommandManager.argument("G1", StringArgumentType.word())
+                .then(ClientCommandManager.argument("B1", StringArgumentType.word())
+                  .then(ClientCommandManager.argument("R2", StringArgumentType.word())
+                    .then(ClientCommandManager.argument("G2", StringArgumentType.word())
+                        .then(ClientCommandManager.argument("B2", StringArgumentType.word())
+                          .executes(Commands::set_wings))))))))
             .then(ClientCommandManager.literal("Tech")
-                .then(ClientCommandManager.argument("Red", StringArgumentType.word())
-                    .then(ClientCommandManager.argument("Green", StringArgumentType.word())
-                        .then(ClientCommandManager.argument("Blue", StringArgumentType.word())
-                            .executes(Commands::set_wings)))))
+            .then(ClientCommandManager.argument("R1", StringArgumentType.word())
+            .then(ClientCommandManager.argument("G1", StringArgumentType.word())
+                .then(ClientCommandManager.argument("B1", StringArgumentType.word())
+                  .then(ClientCommandManager.argument("R2", StringArgumentType.word())
+                    .then(ClientCommandManager.argument("G2", StringArgumentType.word())
+                        .then(ClientCommandManager.argument("B2", StringArgumentType.word())
+                          .executes(Commands::set_wings))))))))
             .then(ClientCommandManager.literal("Hide").executes(Commands::hide_wings))));
   }
 
@@ -102,17 +120,20 @@ public class Commands {
   }
 
   private static int set_wings(CommandContext<FabricClientCommandSource> context) {
-    float r = 0.0F, g = 0.0F, b = 0.0F;
+    float r1 = 0.0F, g1 = 0.0F, b1 = 0.0F,r2 = 0.0F, g2 = 0.0F, b2 = 0.0F;
     try {
-      r = Float.parseFloat(StringArgumentType.getString(context, "Red"));
-      g = Float.parseFloat(StringArgumentType.getString(context, "Green"));
-      b = Float.parseFloat(StringArgumentType.getString(context, "Blue"));
+      r1 = Float.parseFloat(StringArgumentType.getString(context, "R1"));
+      g1 = Float.parseFloat(StringArgumentType.getString(context, "G1"));
+      b1 = Float.parseFloat(StringArgumentType.getString(context, "B1"));
+      r2 = Float.parseFloat(StringArgumentType.getString(context, "R2"));
+      g2 = Float.parseFloat(StringArgumentType.getString(context, "G2"));
+      b2 = Float.parseFloat(StringArgumentType.getString(context, "B2"));
     } catch (Exception e) {
       e.printStackTrace();
       return 1;
     }
     client.player.setWings(context.getInput().split(" ")[2]);
-    client.player.setColor(r, g, b);
+    client.player.setColor(r1,g1,b1,r2,g2,b2);
     return 0;
   }
 

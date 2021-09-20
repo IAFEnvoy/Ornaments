@@ -19,13 +19,16 @@ public class PlayerInfo {
         return this.cape;
     }
 
-    public void setColor(float r, float g, float b) {
-        this.r1 = this.r2 = r;
-        this.g1 = this.g2 = g;
-        this.b1 = this.b2 = b;
-        config.setR(r);
-        config.setG(g);
-        config.setB(b);
+    public void setColor(float r1, float g1, float b1,float r2, float g2, float b2) {
+        this.r1 =r1; this.r2 = r2;
+        this.g1 =g1; this.g2 = g2;
+        this.b1 =b1; this.b2 = b2;
+        config.setR1(r1);
+        config.setG1(g1);
+        config.setB1(b1);
+        config.setR2(r2);
+        config.setG2(g2);
+        config.setB2(b2);
         config.saveConfig();
     }
 
