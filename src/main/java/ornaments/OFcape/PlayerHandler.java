@@ -6,7 +6,7 @@ import net.minecraft.client.texture.NativeImage;
 import net.minecraft.client.texture.NativeImageBackedTexture;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
-import ornaments.Client.config;
+import ornaments.Data.GlobalData;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,7 +19,7 @@ public class PlayerHandler {
   }
 
   public static void onPlayerJoin(PlayerEntity player) {
-    if(player.getName().asString().equals(config.playername)) return;
+    if(GlobalData.hasPlayer(player.getName().asString())) return;
     if (((AbstractClientPlayerEntity) player).getCapeTexture() == null) {
       Thread thread = new Thread() {
         public void run() {

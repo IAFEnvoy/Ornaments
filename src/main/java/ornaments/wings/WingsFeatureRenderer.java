@@ -13,7 +13,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import ornaments.Client.client;
-import ornaments.Client.config;
+import ornaments.Data.GlobalData;
 import ornaments.OFcape.CapeRender;
 import ornaments.wings.models.DiscordsWingsModel;
 import ornaments.wings.models.FeatheredWingModel;
@@ -33,29 +33,29 @@ public class WingsFeatureRenderer<T extends LivingEntity, M extends EntityModel<
   @Override
   public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle,
       float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
-    if (config.getHide() && !CapeRender.showcape)
-      return;
     if (entity instanceof PlayerEntity) {
-      if (!config.playername.equals(((PlayerEntity)entity).getName().asString()))
+      if (GlobalData.getKey(((PlayerEntity)entity).getName().asString(), "hide").equals(String.valueOf("true")) && !CapeRender.showcape)
         return;
-      if (client.player.getWingType() != "") {
+      if (!GlobalData.getKey(((PlayerEntity)entity).getName().asString(), "name").equals(((PlayerEntity)entity).getName().asString()))
+        return;
+      if (GlobalData.getKey(((PlayerEntity)entity).getName().asString(), "wing") != "") {
         String wingType = "";
-        if (client.player.getWingType().equals("Feathered")) {
+        if (GlobalData.getKey(((PlayerEntity)entity).getName().asString(), "wing").equals("Feathered")) {
           wingModel = new FeatheredWingModel<>();
           wingType = "feathered";
-        } else if (client.player.getWingType().equals("Dragon")) {
+        } else if (GlobalData.getKey(((PlayerEntity)entity).getName().asString(), "wing").equals("Dragon")) {
           wingModel = new LeatherWingModel<>();
           wingType = "dragon";
-        } else if (client.player.getWingType().equals("Light")) {
+        } else if (GlobalData.getKey(((PlayerEntity)entity).getName().asString(), "wing").equals("Light")) {
           wingModel = new LightWingsModel<>();
           wingType = "light";
-        } else if (client.player.getWingType().equals("Discords")) {
+        } else if (GlobalData.getKey(((PlayerEntity)entity).getName().asString(), "wing").equals("Discords")) {
           wingModel = new DiscordsWingsModel<>();
           wingType = "discords";
-        } else if (client.player.getWingType().equals("Zanzas")) {
+        } else if (GlobalData.getKey(((PlayerEntity)entity).getName().asString(), "wing").equals("Zanzas")) {
           wingModel = new ZanzasWingsModel<>();
           wingType = "zanzas";
-        } else if (client.player.getWingType().equals("Tech")) {
+        } else if (GlobalData.getKey(((PlayerEntity)entity).getName().asString(), "wing").equals("Tech")) {
           wingModel = new TechWingsModel<>();
           wingType = "tech";
         } else
@@ -68,10 +68,14 @@ public class WingsFeatureRenderer<T extends LivingEntity, M extends EntityModel<
         matrices.translate(0.0D, 0.0D, 0.125D);
         this.getContextModel().copyStateTo(this.wingModel);
         this.wingModel.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
-        this.renderWings(matrices, vertexConsumers, layer2, light, client.player.getColor("r2"),
-            client.player.getColor("g2"), client.player.getColor("b2"));
-        this.renderWings(matrices, vertexConsumers, layer1, light, client.player.getColor("r1"),
-            client.player.getColor("g1"), client.player.getColor("b1"));
+        this.renderWings(matrices, vertexConsumers, layer2, light, 
+          Float.parseFloat(GlobalData.getKey(((PlayerEntity)entity).getName().asString(), "r2")),
+          Float.parseFloat(GlobalData.getKey(((PlayerEntity)entity).getName().asString(), "g2")), 
+          Float.parseFloat(GlobalData.getKey(((PlayerEntity)entity).getName().asString(), "b2")));
+        this.renderWings(matrices, vertexConsumers, layer1, light, 
+          Float.parseFloat(GlobalData.getKey(((PlayerEntity)entity).getName().asString(), "r1")),
+          Float.parseFloat(GlobalData.getKey(((PlayerEntity)entity).getName().asString(), "g1")), 
+          Float.parseFloat(GlobalData.getKey(((PlayerEntity)entity).getName().asString(), "b1")));
         matrices.pop();
       }
     }
