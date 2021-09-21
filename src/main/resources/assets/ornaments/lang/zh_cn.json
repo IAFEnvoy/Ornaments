@@ -20,7 +20,12 @@
     "credit.text6": "部分翅膀模型来自mod：Icarus",
 
     "empty": "",
-    "command.succeed.changeplayer": "成功切换玩家！",
+    "command.succeed.changeplayer": "成功切换玩家为\u0000！",
+    "command.succeed.succeedsetcape": "成功为\u0000设置\u1111的披风！",
+    "command.succeed.succeedhidecape": "成功隐藏\u0000的披风",
+    "command.succeed.succeedsetwing": "成功为\u0000设置类型为\u1111的翅膀",
+    "command.succeed.succeedhidewing": "成功隐藏\u0000的翅膀",
+    "command.succeed.succeedsetvisible": "成功设置\u0000的SetVisibleWithElytra属性为\u1111",
     "command.error.nullplayer": "错误：未选择玩家",
     "command.error.capeonlymine": "错误：暂只支持设置自己的披风"
 }

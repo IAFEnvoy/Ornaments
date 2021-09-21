@@ -13,6 +13,7 @@ import net.fabricmc.fabric.api.client.command.v1.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource;
 import net.minecraft.text.TranslatableText;
 import ornaments.Data.GlobalData;
+import ornaments.Data.SpliceableText;
 import ornaments.OFcape.Get;
 
 @Environment(EnvType.CLIENT)
@@ -102,6 +103,7 @@ public class Commands {
     }
     Get.GetCape(context.getSource().getPlayer(), StringArgumentType.getString(context, "PlayerName"));
     GlobalData.setKey(playernow, "cape", StringArgumentType.getString(context, "PlayerName"));
+    context.getSource().getPlayer().sendMessage(SpliceableText.makeText("command.succeed.succeedsetcape", playernow,StringArgumentType.getString(context, "PlayerName")), false);
     return 0;
   }
 
@@ -129,6 +131,7 @@ public class Commands {
     }
     Get.HideCape(context.getSource().getPlayer());
     GlobalData.setKey(playernow, "cape", "");
+    context.getSource().getPlayer().sendMessage(SpliceableText.makeText("command.succeed.succeedhidecape", playernow), false);
     return 0;
   }
 
@@ -156,6 +159,7 @@ public class Commands {
     GlobalData.setKey(playernow, "r2", String.valueOf(r2));
     GlobalData.setKey(playernow, "g2", String.valueOf(g2));
     GlobalData.setKey(playernow, "b2", String.valueOf(b2));
+    context.getSource().getPlayer().sendMessage(SpliceableText.makeText("command.succeed.succeedsetwing", playernow,context.getInput().split(" ")[2]), false);
     return 0;
   }
 
@@ -165,6 +169,7 @@ public class Commands {
       return 0;
     }
     GlobalData.setKey(playernow, "wing", "");
+    context.getSource().getPlayer().sendMessage(SpliceableText.makeText("command.succeed.succeedhidewing", playernow), false);
     return 0;
   }
 
@@ -174,10 +179,14 @@ public class Commands {
       return 0;
     }
     String arg = context.getInput().split(" ")[3];
-    if (arg.equals("true"))
+    if (arg.equals("true")){
       GlobalData.setKey(playernow,"hide",String.valueOf(true));
-    else if (arg.equals("false"))
+      context.getSource().getPlayer().sendMessage(SpliceableText.makeText("command.succeed.setvisible", playernow,"true"), false);
+    }
+    else if (arg.equals("false")){
       GlobalData.setKey(playernow,"hide",String.valueOf(false));
+      context.getSource().getPlayer().sendMessage(SpliceableText.makeText("command.succeed.setvisible", playernow,"false"), false);
+    }
     else
       return 1;
     return 0;
@@ -185,7 +194,7 @@ public class Commands {
 
   private static int SetPlayerName(CommandContext<FabricClientCommandSource> context) {
     playernow=StringArgumentType.getString(context, "PlayerName");
-    context.getSource().getPlayer().sendMessage(new TranslatableText("command.succeed.changeplayer"), false);
+    context.getSource().getPlayer().sendMessage(SpliceableText.makeText("command.succeed.changeplayer", playernow), false);
     return 0;
   }
 

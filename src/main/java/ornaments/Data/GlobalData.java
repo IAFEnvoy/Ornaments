@@ -8,6 +8,10 @@ public class GlobalData {
   private static int index;
 
   public static void setKey(String playername, String key, String data) {
+    if (players.size() == 0)
+      players.add(new PlayerInfo(playername));
+    if (index < 0 || index >= players.size())
+      index = 0;
     if (!players.get(index).getPlayerName().equals(playername)) {
       boolean flag = false;
       for (index = 0; index < players.size(); index++) {

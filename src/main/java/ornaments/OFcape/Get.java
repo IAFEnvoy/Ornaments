@@ -86,13 +86,13 @@ public class Get {
             int imageHeight = 32;
             int imageSrcWidth = image.getWidth();
             int srcHeight = image.getHeight();
-            System.out.println(String.valueOf(imageSrcWidth) + " " + String.valueOf(srcHeight));
+            // System.out.println(String.valueOf(imageSrcWidth) + " " + String.valueOf(srcHeight));
 
             for (int imageSrcHeight = image.getHeight(); imageWidth < imageSrcWidth
                     || imageHeight < imageSrcHeight; imageHeight *= 2) {
                 imageWidth *= 2;
             }
-            System.out.println(String.valueOf(imageWidth) + " " + String.valueOf(imageHeight));
+            // System.out.println(String.valueOf(imageWidth) + " " + String.valueOf(imageHeight));
 
             NativeImage imgNew = new NativeImage(imageWidth, imageHeight, true);
             for (int x = 0; x < imageSrcWidth; x++) {
@@ -103,7 +103,7 @@ public class Get {
             image.close();
             return imgNew;
         }
-        System.out.println(String.valueOf(image.getWidth()) + " " + String.valueOf(image.getHeight()));
+        // System.out.println(String.valueOf(image.getWidth()) + " " + String.valueOf(image.getHeight()));
         return image;
     }
 }
