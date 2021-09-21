@@ -11,9 +11,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import ornaments.Items.BackItems.BackItemFeatureRenderer;
+import ornaments.Items.MagicArray.MagicsFeatureRenderer;
+import ornaments.Items.wings.WingsFeatureRenderer;
 import ornaments.OFcape.CapeRender;
 import ornaments.OFcape.ElytraRender;
-import ornaments.wings.WingsFeatureRenderer;
 
 @Mixin(PlayerEntityRenderer.class)
 public abstract class PlayerEntityRendererMixin
@@ -28,6 +30,8 @@ public abstract class PlayerEntityRendererMixin
     this.addFeature(new CapeRender(this));
     this.addFeature(new ElytraRender<>(this));
     this.addFeature(new WingsFeatureRenderer<>(this));
+    // this.addFeature(new MagicsFeatureRenderer<>(this));
+    // this.addFeature(new BackItemFeatureRenderer<>(this));
     this.features.removeIf(renderer -> renderer instanceof ElytraFeatureRenderer);
   }
 }

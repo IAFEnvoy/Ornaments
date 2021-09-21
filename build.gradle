@@ -25,6 +25,9 @@ dependencies {
             
     //Fabric api
     modImplementation "net.fabricmc.fabric-api:fabric-api:0.31.0+1.16"
+
+    //malilib
+    modImplementation "fi.dy.masa.malilib:malilib:fabric-1.16.4-0.10.0-dev.21+arne.5"
 }
 processResources {
 	inputs.property "version", project.version
@@ -78,5 +81,8 @@ publishing {
 		// Notice: This block does NOT have the same function as the block in the top level.
 		// The repositories here will be used for publishing your artifact, not for
 		// retrieving dependencies.
+    maven {
+        url 'https://masa.dy.fi/maven'
+    }
 	}
 }

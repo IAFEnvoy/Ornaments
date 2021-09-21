@@ -1,4 +1,4 @@
-package ornaments.wings.models;
+package ornaments.Items.wings.models;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.model.ModelPart;

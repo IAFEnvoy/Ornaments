@@ -27,5 +27,15 @@
     "command.succeed.succeedhidewing": "成功隐藏\u0000的翅膀",
     "command.succeed.succeedsetvisible": "成功设置\u0000的SetVisibleWithElytra属性为\u1111",
     "command.error.nullplayer": "错误：未选择玩家",
-    "command.error.capeonlymine": "错误：暂只支持设置自己的披风"
+    "command.error.capeonlymine": "错误：暂只支持设置自己的披风",
+
+    "config.ornaments.title": "饰品mod设置",
+    "config.ornaments.general": "通用",
+    "config.ornaments.details": "更多",
+    "config.ornaments.open_menu_key": "打开菜单热键",
+    "config.ornaments.playername": "当前设置的玩家名",
+    "config.ornaments.capeuser": "使用的Optifine披风",
+    "config.ornaments.wingtype": "翅膀类型",
+    "config.ornaments.wingcolorl1": "第一层翅膀颜色",
+    "config.ornaments.wingcolorl2": "第二层翅膀颜色"
 }

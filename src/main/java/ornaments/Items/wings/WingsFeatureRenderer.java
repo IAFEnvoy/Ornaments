@@ -1,4 +1,4 @@
-package ornaments.wings;
+package ornaments.Items.wings;
 
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
@@ -14,14 +14,14 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import ornaments.Client.client;
 import ornaments.Data.GlobalData;
+import ornaments.Items.wings.models.DiscordsWingsModel;
+import ornaments.Items.wings.models.FeatheredWingModel;
+import ornaments.Items.wings.models.LeatherWingModel;
+import ornaments.Items.wings.models.LightWingsModel;
+import ornaments.Items.wings.models.TechWingsModel;
+import ornaments.Items.wings.models.WingEntityModel;
+import ornaments.Items.wings.models.ZanzasWingsModel;
 import ornaments.OFcape.CapeRender;
-import ornaments.wings.models.DiscordsWingsModel;
-import ornaments.wings.models.FeatheredWingModel;
-import ornaments.wings.models.LeatherWingModel;
-import ornaments.wings.models.LightWingsModel;
-import ornaments.wings.models.TechWingsModel;
-import ornaments.wings.models.WingEntityModel;
-import ornaments.wings.models.ZanzasWingsModel;
 
 public class WingsFeatureRenderer<T extends LivingEntity, M extends EntityModel<T>> extends FeatureRenderer<T, M> {
   private WingEntityModel<T> wingModel = new WingEntityModel<>();
@@ -69,13 +69,13 @@ public class WingsFeatureRenderer<T extends LivingEntity, M extends EntityModel<
         this.getContextModel().copyStateTo(this.wingModel);
         this.wingModel.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
         this.renderWings(matrices, vertexConsumers, layer2, light, 
-          Float.parseFloat(GlobalData.getKey(((PlayerEntity)entity).getName().asString(), "r2")),
-          Float.parseFloat(GlobalData.getKey(((PlayerEntity)entity).getName().asString(), "g2")), 
-          Float.parseFloat(GlobalData.getKey(((PlayerEntity)entity).getName().asString(), "b2")));
+          Float.parseFloat(GlobalData.getKey(((PlayerEntity)entity).getName().asString(), "wr2")),
+          Float.parseFloat(GlobalData.getKey(((PlayerEntity)entity).getName().asString(), "wg2")), 
+          Float.parseFloat(GlobalData.getKey(((PlayerEntity)entity).getName().asString(), "wb2")));
         this.renderWings(matrices, vertexConsumers, layer1, light, 
-          Float.parseFloat(GlobalData.getKey(((PlayerEntity)entity).getName().asString(), "r1")),
-          Float.parseFloat(GlobalData.getKey(((PlayerEntity)entity).getName().asString(), "g1")), 
-          Float.parseFloat(GlobalData.getKey(((PlayerEntity)entity).getName().asString(), "b1")));
+          Float.parseFloat(GlobalData.getKey(((PlayerEntity)entity).getName().asString(), "wr1")),
+          Float.parseFloat(GlobalData.getKey(((PlayerEntity)entity).getName().asString(), "wg1")), 
+          Float.parseFloat(GlobalData.getKey(((PlayerEntity)entity).getName().asString(), "wb1")));
         matrices.pop();
       }
     }

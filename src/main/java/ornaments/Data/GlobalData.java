@@ -29,20 +29,22 @@ public class GlobalData {
       players.get(index).setCape(data);
     if (key.equals("wing"))
       players.get(index).setWings(data);
-    if (key.equals("r1"))
+    if (key.equals("wr1"))
       players.get(index).setColor(key, Float.parseFloat(data));
-    if (key.equals("g1"))
+    if (key.equals("wg1"))
       players.get(index).setColor(key, Float.parseFloat(data));
-    if (key.equals("b1"))
+    if (key.equals("wb1"))
       players.get(index).setColor(key, Float.parseFloat(data));
-    if (key.equals("r2"))
+    if (key.equals("wr2"))
       players.get(index).setColor(key, Float.parseFloat(data));
-    if (key.equals("g2"))
+    if (key.equals("wg2"))
       players.get(index).setColor(key, Float.parseFloat(data));
-    if (key.equals("b2"))
+    if (key.equals("wb2"))
       players.get(index).setColor(key, Float.parseFloat(data));
     if (key.equals("hide"))
       players.get(index).setHide(Boolean.parseBoolean(data));
+    if (key.equals("backitem"))
+      players.get(index).setBackItem(data);
   }
 
   public static String getKey(String playername, String key) {
@@ -70,20 +72,22 @@ public class GlobalData {
       return players.get(index).getCape();
     if (key.equals("wing"))
       return players.get(index).getWingType();
-    if (key.equals("r1"))
+    if (key.equals("wr1"))
       return String.valueOf(players.get(index).getColor("r1"));
-    if (key.equals("g1"))
+    if (key.equals("wg1"))
       return String.valueOf(players.get(index).getColor("g1"));
-    if (key.equals("b1"))
+    if (key.equals("wb1"))
       return String.valueOf(players.get(index).getColor("b1"));
-    if (key.equals("r2"))
+    if (key.equals("wr2"))
       return String.valueOf(players.get(index).getColor("r2"));
-    if (key.equals("g2"))
+    if (key.equals("wg2"))
       return String.valueOf(players.get(index).getColor("g2"));
-    if (key.equals("b2"))
+    if (key.equals("wb2"))
       return String.valueOf(players.get(index).getColor("b2"));
     if (key.equals("hide"))
       return String.valueOf(players.get(index).getHide());
+    if (key.equals("backitem"))
+      return String.valueOf(players.get(index).getBackItem());
     return null;
   }
 

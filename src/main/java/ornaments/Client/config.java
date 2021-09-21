@@ -42,10 +42,15 @@ public class config {
             PlayerInfo player = new PlayerInfo(br.readLine());// Player name
             player.setCape(br.readLine());
             player.setWings(br.readLine());
-            player.setColor(Float.parseFloat(br.readLine()), Float.parseFloat(br.readLine()),
+            player.setColorWing(Float.parseFloat(br.readLine()), Float.parseFloat(br.readLine()),
+                Float.parseFloat(br.readLine()), Float.parseFloat(br.readLine()), Float.parseFloat(br.readLine()),
+                Float.parseFloat(br.readLine()));
+            player.setMagicType(br.readLine());
+            player.setColorMagic(Float.parseFloat(br.readLine()), Float.parseFloat(br.readLine()),
                 Float.parseFloat(br.readLine()), Float.parseFloat(br.readLine()), Float.parseFloat(br.readLine()),
                 Float.parseFloat(br.readLine()));
             player.setHide(Boolean.parseBoolean(br.readLine()));
+            player.setBackItem(br.readLine());
             GlobalData.players.add(player);
           }
         } catch (NumberFormatException ee) {
@@ -79,13 +84,21 @@ public class config {
         sBuffer.append(GlobalData.players.get(i).getPlayerName() + "\n");
         sBuffer.append(GlobalData.players.get(i).getCape() + "\n");
         sBuffer.append(GlobalData.players.get(i).getWingType() + "\n");
-        sBuffer.append(GlobalData.players.get(i).getColor("r1") + "\n");
-        sBuffer.append(GlobalData.players.get(i).getColor("g1") + "\n");
-        sBuffer.append(GlobalData.players.get(i).getColor("b1") + "\n");
-        sBuffer.append(GlobalData.players.get(i).getColor("r2") + "\n");
-        sBuffer.append(GlobalData.players.get(i).getColor("g2") + "\n");
-        sBuffer.append(GlobalData.players.get(i).getColor("b2") + "\n");
+        sBuffer.append(GlobalData.players.get(i).getColor("wr1") + "\n");
+        sBuffer.append(GlobalData.players.get(i).getColor("wg1") + "\n");
+        sBuffer.append(GlobalData.players.get(i).getColor("wb1") + "\n");
+        sBuffer.append(GlobalData.players.get(i).getColor("wr2") + "\n");
+        sBuffer.append(GlobalData.players.get(i).getColor("wg2") + "\n");
+        sBuffer.append(GlobalData.players.get(i).getColor("wb2") + "\n");
+        sBuffer.append(GlobalData.players.get(i).getMagicType() + "\n");
+        sBuffer.append(GlobalData.players.get(i).getColor("mr1") + "\n");
+        sBuffer.append(GlobalData.players.get(i).getColor("mg1") + "\n");
+        sBuffer.append(GlobalData.players.get(i).getColor("mb1") + "\n");
+        sBuffer.append(GlobalData.players.get(i).getColor("mr2") + "\n");
+        sBuffer.append(GlobalData.players.get(i).getColor("mg2") + "\n");
+        sBuffer.append(GlobalData.players.get(i).getColor("mb2") + "\n");
         sBuffer.append(GlobalData.players.get(i).getHide() + "\n");
+        sBuffer.append(GlobalData.players.get(i).getBackItem() + "\n");
       }
       bw.write(sBuffer.toString());
       bw.close();

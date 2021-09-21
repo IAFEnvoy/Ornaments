@@ -1,4 +1,4 @@
-package ornaments.wings.models;
+package ornaments.Items.wings.models;
 
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.entity.LivingEntity;
