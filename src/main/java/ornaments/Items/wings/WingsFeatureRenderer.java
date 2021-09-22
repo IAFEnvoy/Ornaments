@@ -15,7 +15,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import ornaments.Client.client;
 import ornaments.Config.Configs;
-import ornaments.Data.GlobalData;
 import ornaments.Items.wings.models.FeatheredWingModel;
 import ornaments.Items.wings.models.LeatherWingModel;
 import ornaments.Items.wings.models.LightWingsModel;
@@ -36,51 +35,46 @@ public class WingsFeatureRenderer<T extends LivingEntity, M extends EntityModel<
   public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle,
       float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
     if (entity instanceof PlayerEntity) {
-      if (GlobalData.getKey(((PlayerEntity) entity).getName().asString(), "hide").equals(String.valueOf("true"))
-          && !CapeRender.showcape)
+      if (!Configs.General.SHOW_WITH_ELYTRA.getBooleanValue() && !CapeRender.showcape)
         return;
-      if (!GlobalData.getKey(((PlayerEntity) entity).getName().asString(), "name")
-          .equals(((PlayerEntity) entity).getName().asString()))
+      String wingType = Configs.Details.wingType.getStringValue();
+      if (wingType.equals("feathered")) {
+        lwingModel = new FeatheredWingModel<>(true);
+        rwingModel = new FeatheredWingModel<>(false);
+      } else if (wingType.equals("dragon")) {
+        lwingModel = new LeatherWingModel<>(true);
+        rwingModel = new LeatherWingModel<>(false);
+      } else if (wingType.equals("light")) {
+        lwingModel = new LightWingsModel<>(true);
+        rwingModel = new LightWingsModel<>(false);
+      } else if (wingType.equals("zanzas")) {
+        lwingModel = new ZanzasWingsModel<>(true);
+        rwingModel = new ZanzasWingsModel<>(false);
+      } else if (wingType.equals("tech")) {
+        lwingModel = new TechWingsModel<>(true);
+        rwingModel = new TechWingsModel<>(false);
+      } else
         return;
-      if (GlobalData.getKey(((PlayerEntity) entity).getName().asString(), "wing") != "") {
-        String wingType = Configs.Details.wingType.getStringValue();
-        if (wingType.equals("feathered")) {
-          lwingModel = new FeatheredWingModel<>(true);
-          rwingModel = new FeatheredWingModel<>(false);
-        } else if (wingType.equals("dragon")) {
-          lwingModel = new LeatherWingModel<>(true);
-          rwingModel = new LeatherWingModel<>(false);
-        } else if (wingType.equals("light")) {
-          lwingModel = new LightWingsModel<>(true);
-          rwingModel = new LightWingsModel<>(false);
-        } else if (wingType.equals("zanzas")) {
-          lwingModel = new ZanzasWingsModel<>(true);
-          rwingModel = new ZanzasWingsModel<>(false);
-        } else if (wingType.equals("tech")) {
-          lwingModel = new TechWingsModel<>(true);
-          rwingModel = new TechWingsModel<>(false);
-        } else
-          return;
 
-        Identifier layer1 = new Identifier(client.MOD_ID, "textures/entity/" + wingType + "_wings.png");
-        Identifier layer2 = new Identifier(client.MOD_ID, "textures/entity/" + wingType + "_wings_2.png");
+      Identifier layer1 = new Identifier(client.MOD_ID, "textures/entity/" + wingType + "_wings.png");
+      Identifier layer2 = new Identifier(client.MOD_ID, "textures/entity/" + wingType + "_wings_2.png");
 
-        matrices.push();
-        matrices.translate(0.0D, 0.0D, 0.125D);
-        this.getContextModel().copyStateTo(this.lwingModel);
-        this.lwingModel.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
-        this.renderWings(matrices, vertexConsumers, layer2, light, Configs.Details.lwingcolorl2.getColor(), true);
-        this.renderWings(matrices, vertexConsumers, layer1, light, Configs.Details.lwingcolorl2.getColor(), true);
-        matrices.pop();
+      matrices.push();
+      matrices.translate(0.0D, 0.0D, 0.125D);
+      this.getContextModel().copyStateTo(this.lwingModel);
+      this.lwingModel.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
+      this.renderWings(matrices, vertexConsumers, layer2, light, Configs.Details.lwingcolorl2.getColor(), true);
+      this.renderWings(matrices, vertexConsumers, layer1, light, Configs.Details.lwingcolorl1.getColor(), true);
+      matrices.pop();
 
-        matrices.push();
-        matrices.translate(0.0D, 0.0D, 0.125D);
-        this.getContextModel().copyStateTo(this.rwingModel);
-        this.rwingModel.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
-        this.renderWings(matrices, vertexConsumers, layer2, light, Configs.Details.lwingcolorl2.getColor(), false);
-        this.renderWings(matrices, vertexConsumers, layer1, light, Configs.Details.lwingcolorl2.getColor(), false);
-        matrices.pop();
-      }
+      matrices.push();
+      matrices.translate(0.0D, 0.0D, 0.125D);
+      this.getContextModel().copyStateTo(this.rwingModel);
+      this.rwingModel.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
+      this.renderWings(matrices, vertexConsumers, layer2, light, Configs.Details.rwingcolorl2.getColor(), false);
+      this.renderWings(matrices, vertexConsumers, layer1, light, Configs.Details.rwingcolorl1.getColor(), false);
+      matrices.pop();
+
     }
   }
 

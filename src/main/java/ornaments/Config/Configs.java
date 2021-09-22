@@ -7,6 +7,7 @@ import com.google.gson.JsonObject;
 
 import fi.dy.masa.malilib.config.ConfigUtils;
 import fi.dy.masa.malilib.config.IConfigHandler;
+import fi.dy.masa.malilib.config.options.ConfigBoolean;
 import fi.dy.masa.malilib.config.options.ConfigColor;
 import fi.dy.masa.malilib.config.options.ConfigHotkey;
 import fi.dy.masa.malilib.config.options.ConfigString;
@@ -20,8 +21,10 @@ public class Configs implements IConfigHandler {
 
   public static class General {
     public static final ConfigHotkey MENU_OPEN_KEY = new ConfigHotkey(new TranslatableText("config.ornaments.open_menu_key").getString(), "F7", KeybindSettings.DEFAULT, "111");
+    public static final ConfigBoolean SHOW_WITH_ELYTRA = new ConfigBoolean(new TranslatableText("config.ornaments.show_with_elytra").getString(), false, "111");
     public static void Init() {
       Category.GENERAL.add(MENU_OPEN_KEY);
+      Category.GENERAL.add(SHOW_WITH_ELYTRA);
     }
   }
   public static class Details{

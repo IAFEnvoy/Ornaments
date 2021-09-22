@@ -2,6 +2,7 @@ package ornaments.OFcape;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
@@ -14,6 +15,7 @@ import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3f;
+import ornaments.Config.Configs;
 
 @Environment(EnvType.CLIENT)
 public class CapeRender
@@ -24,8 +26,13 @@ public class CapeRender
         super(featureRendererContext);
     }
     public static boolean showcape=true;
+    public static String capethisplayer="";
 
     public void render(final MatrixStack matrixStack, final VertexConsumerProvider vertexConsumerProvider, final int i, final AbstractClientPlayerEntity abstractClientPlayerEntity, final float f, final float g, final float h, final float j, final float k, final float l) {
+      if(!capethisplayer.equals(Configs.Details.CapeUser.getStringValue())){
+        capethisplayer=Configs.Details.CapeUser.getStringValue();
+        Get.GetCape(MinecraftClient.getInstance().player, capethisplayer);
+      }
         if (abstractClientPlayerEntity.canRenderCapeTexture() && !abstractClientPlayerEntity.isInvisible() && abstractClientPlayerEntity.isPartVisible(PlayerModelPart.CAPE) && Get.fromPlayer(abstractClientPlayerEntity) != null) {
             if (showcape) {
                 matrixStack.push();
