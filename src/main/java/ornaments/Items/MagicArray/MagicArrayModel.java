@@ -5,7 +5,6 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.entity.model.AnimalModel;
 import net.minecraft.entity.LivingEntity;
-import ornaments.Commands.Commands;
 
 public class MagicArrayModel<T extends LivingEntity> extends AnimalModel<T> {
   public final ModelPart magic;

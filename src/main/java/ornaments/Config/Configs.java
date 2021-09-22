@@ -20,20 +20,39 @@ public class Configs implements IConfigHandler {
   private static final File CONFIG_DIR = new File("./config");
 
   public static class General {
-    public static final ConfigHotkey MENU_OPEN_KEY = new ConfigHotkey(new TranslatableText("config.ornaments.open_menu_key").getString(), "F7", KeybindSettings.DEFAULT, "111");
-    public static final ConfigBoolean SHOW_WITH_ELYTRA = new ConfigBoolean(new TranslatableText("config.ornaments.show_with_elytra").getString(), false, "111");
+    public static final ConfigHotkey MENU_OPEN_KEY = new ConfigHotkey(
+        new TranslatableText("config.ornaments.open_menu_key").getString(), "F7", KeybindSettings.DEFAULT,
+        new TranslatableText("config.ornaments.open_menu_key.help").getString());
+    public static final ConfigBoolean SHOW_WITH_ELYTRA = new ConfigBoolean(
+        new TranslatableText("config.ornaments.show_with_elytra").getString(), false,
+        new TranslatableText("config.ornaments.show_with_elytra.help").getString());
+
     public static void Init() {
       Category.GENERAL.add(MENU_OPEN_KEY);
       Category.GENERAL.add(SHOW_WITH_ELYTRA);
     }
   }
-  public static class Details{
-    public static final ConfigString CapeUser = new ConfigString(new TranslatableText("config.ornaments.capeuser").getString(), "", "222");
-    public static final ConfigString wingType = new ConfigString(new TranslatableText("config.ornaments.wingtype").getString(), "", "222");
-    public static final ConfigColor lwingcolorl1 = new ConfigColor(new TranslatableText("config.ornaments.lwingcolorl1").getString(), "0x30FFFFFF", "111");
-    public static final ConfigColor lwingcolorl2 = new ConfigColor(new TranslatableText("config.ornaments.lwingcolorl2").getString(), "0x30FFFFFF", "111");
-    public static final ConfigColor rwingcolorl1 = new ConfigColor(new TranslatableText("config.ornaments.rwingcolorl1").getString(), "0x30FFFFFF", "111");
-    public static final ConfigColor rwingcolorl2 = new ConfigColor(new TranslatableText("config.ornaments.rwingcolorl2").getString(), "0x30FFFFFF", "111");
+
+  public static class Details {
+    public static final ConfigString CapeUser = new ConfigString(
+        new TranslatableText("config.ornaments.capeuser").getString(), "",
+        new TranslatableText("config.ornaments.capeuser.help").getString());
+    public static final ConfigString wingType = new ConfigString(
+        new TranslatableText("config.ornaments.wingtype").getString(), "",
+        new TranslatableText("config.ornaments.wingtype.help").getString());
+    public static final ConfigColor lwingcolorl1 = new ConfigColor(
+        new TranslatableText("config.ornaments.lwingcolorl1").getString(), "0xF0FFFFFF",
+        new TranslatableText("config.ornaments.lwingcolorl1.help").getString());
+    public static final ConfigColor lwingcolorl2 = new ConfigColor(
+        new TranslatableText("config.ornaments.lwingcolorl2").getString(), "0xF0FFFFFF",
+        new TranslatableText("config.ornaments.lwingcolorl2.help").getString());
+    public static final ConfigColor rwingcolorl1 = new ConfigColor(
+        new TranslatableText("config.ornaments.rwingcolorl1").getString(), "0xF0FFFFFF",
+        new TranslatableText("config.ornaments.rwingcolorl1.help").getString());
+    public static final ConfigColor rwingcolorl2 = new ConfigColor(
+        new TranslatableText("config.ornaments.rwingcolorl2").getString(), "0xF0FFFFFF",
+        new TranslatableText("config.ornaments.rwingcolorl2.help").getString());
+
     // public static final ConfigOptionList OPTION_LIST;
     public static void Init() {
       Category.DETAILS.add(CapeUser);

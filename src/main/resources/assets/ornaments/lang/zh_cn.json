@@ -32,12 +32,24 @@
     "config.ornaments.title": "饰品mod设置",
     "config.ornaments.general": "通用",
     "config.ornaments.details": "细节",
-    "config.ornaments.open_menu_key": "打开菜单热键",
+    "config.ornaments.open_menu_key": "打开菜单",
     "config.ornaments.show_with_elytra": "翅膀和鞘翅一起显示",
     "config.ornaments.capeuser": "使用的Optifine披风",
     "config.ornaments.wingtype": "翅膀类型",
     "config.ornaments.lwingcolorl1": "左翅膀第一层翅膀颜色",
     "config.ornaments.lwingcolorl2": "左翅膀第二层翅膀颜色",
     "config.ornaments.rwingcolorl1": "右翅膀第一层翅膀颜色",
-    "config.ornaments.rwingcolorl2": "右翅膀第二层翅膀颜色"
+    "config.ornaments.rwingcolorl2": "右翅膀第二层翅膀颜色",
+
+    "config.ornaments.title.help": "饰品mod设置",
+    "config.ornaments.general.help": "通用",
+    "config.ornaments.details.help": "细节",
+    "config.ornaments.open_menu_key.help": "打开菜单快捷键",
+    "config.ornaments.show_with_elytra.help": "在穿戴鞘翅的时候是否显示翅膀(穿模警告)",
+    "config.ornaments.capeuser.help": "请输入玩家名",
+    "config.ornaments.wingtype.help": "类型有: feathered  dragon  light  tech  zanzas",
+    "config.ornaments.lwingcolorl1.help": "分别为#A0RRGGBB,十六进制",
+    "config.ornaments.lwingcolorl2.help": "分别为#A0RRGGBB,十六进制",
+    "config.ornaments.rwingcolorl1.help": "分别为#A0RRGGBB,十六进制",
+    "config.ornaments.rwingcolorl2.help": "分别为#A0RRGGBB,十六进制"
 }
