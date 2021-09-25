@@ -21,7 +21,7 @@ public class client implements ClientModInitializer {
 
   @Override
   public void onInitializeClient() {
-    log(Level.INFO, "Registering commands...");
+    log(Level.INFO, "Registering...");
     Commands.init();
     config.init();
     config.readConfig();

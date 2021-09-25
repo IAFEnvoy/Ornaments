@@ -8,7 +8,9 @@ import java.util.List;
 
 public enum Category {
     GENERAL("config.ornaments.general"),
-    DETAILS("config.ornaments.details");
+    Cape("config.ornaments.cape"),
+    Wings("config.ornaments.wings"),
+    BackTools("config.ornaments.backtools");
 
     private final String key;
     private final List<IConfigBase> configs;

@@ -10,12 +10,10 @@ public class BackItemModel<T extends LivingEntity> extends AnimalModel<T> {
   public State state = State.IDLE;
 
   public BackItemModel() {
-    textureWidth = 16;
+    textureWidth = 32;
     textureHeight = 16;
 
     item = new ModelPart(this);
-    // magic.setPivot(Commands.x, Commands.y, Commands.z);
-    // setRotationAngle(magic, Commands.xr, Commands.yr, Commands.zr);
     item.setPivot(0.0F, 0.0F, 0.0F);
     setRotationAngle(item, 0.0F, 0.0F, 0.0F);
     item.setTextureOffset(0, 0).addCuboid(0.0F, 0.0F, 0.0F, 1F, 16.0F, 16.0F);
@@ -41,9 +39,9 @@ public class BackItemModel<T extends LivingEntity> extends AnimalModel<T> {
   public void setAngles(T entity, float limbAngle, float limbDistance, float animationProgress, float headYaw,
       float headPitch) {
     this.item.pivotX = -8F;
-    this.item.pivotY =0F;
-    this.item.pivotZ = 4F;
-    this.item.pitch = 0F;
+    this.item.pivotY = -1F;
+    this.item.pivotZ = 1F;
+    this.item.pitch = 3.14F;
     this.item.roll = 0F;
     this.item.yaw = 1.57F;
   }
@@ -52,4 +50,3 @@ public class BackItemModel<T extends LivingEntity> extends AnimalModel<T> {
     IDLE, CROUCHING, FLYING
   }
 }
-

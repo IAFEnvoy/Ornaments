@@ -10,6 +10,7 @@ import fi.dy.masa.malilib.config.IConfigHandler;
 import fi.dy.masa.malilib.config.options.ConfigBoolean;
 import fi.dy.masa.malilib.config.options.ConfigColor;
 import fi.dy.masa.malilib.config.options.ConfigHotkey;
+import fi.dy.masa.malilib.config.options.ConfigInteger;
 import fi.dy.masa.malilib.config.options.ConfigString;
 import fi.dy.masa.malilib.hotkeys.KeybindSettings;
 import fi.dy.masa.malilib.util.JsonUtils;
@@ -23,20 +24,33 @@ public class Configs implements IConfigHandler {
     public static final ConfigHotkey MENU_OPEN_KEY = new ConfigHotkey(
         new TranslatableText("config.ornaments.open_menu_key").getString(), "F7", KeybindSettings.DEFAULT,
         new TranslatableText("config.ornaments.open_menu_key.help").getString());
-    public static final ConfigBoolean SHOW_WITH_ELYTRA = new ConfigBoolean(
-        new TranslatableText("config.ornaments.show_with_elytra").getString(), false,
-        new TranslatableText("config.ornaments.show_with_elytra.help").getString());
+    public static final ConfigString User = new ConfigString(new TranslatableText("config.ornaments.user").getString(),
+        "", new TranslatableText("config.ornaments.user.help").getString());
 
     public static void Init() {
       Category.GENERAL.add(MENU_OPEN_KEY);
-      Category.GENERAL.add(SHOW_WITH_ELYTRA);
+      Category.GENERAL.add(User);
     }
   }
 
-  public static class Details {
+  public static class Cape {
+    public static final ConfigBoolean SHOW_CAPE = new ConfigBoolean(
+        new TranslatableText("config.ornaments.show_cape").getString(), false,
+        new TranslatableText("config.ornaments.show_cape.help").getString());
     public static final ConfigString CapeUser = new ConfigString(
         new TranslatableText("config.ornaments.capeuser").getString(), "",
         new TranslatableText("config.ornaments.capeuser.help").getString());
+
+    public static void Init() {
+      Category.Cape.add(SHOW_CAPE);
+      Category.Cape.add(CapeUser);
+    }
+  }
+
+  public static class Wings {
+    public static final ConfigBoolean SHOW_WING = new ConfigBoolean(
+        new TranslatableText("config.ornaments.show_wing").getString(), false,
+        new TranslatableText("config.ornaments.show_wing.help").getString());
     public static final ConfigString wingType = new ConfigString(
         new TranslatableText("config.ornaments.wingtype").getString(), "",
         new TranslatableText("config.ornaments.wingtype.help").getString());
@@ -52,21 +66,35 @@ public class Configs implements IConfigHandler {
     public static final ConfigColor rwingcolorl2 = new ConfigColor(
         new TranslatableText("config.ornaments.rwingcolorl2").getString(), "0xF0FFFFFF",
         new TranslatableText("config.ornaments.rwingcolorl2.help").getString());
+    public static final ConfigBoolean SHOW_WITH_ELYTRA = new ConfigBoolean(
+        new TranslatableText("config.ornaments.show_with_elytra").getString(), false,
+        new TranslatableText("config.ornaments.show_with_elytra.help").getString());
 
-    // public static final ConfigOptionList OPTION_LIST;
     public static void Init() {
-      Category.DETAILS.add(CapeUser);
-      Category.DETAILS.add(wingType);
-      Category.DETAILS.add(lwingcolorl1);
-      Category.DETAILS.add(lwingcolorl2);
-      Category.DETAILS.add(rwingcolorl1);
-      Category.DETAILS.add(rwingcolorl2);
+      Category.Wings.add(SHOW_WING);
+      Category.Wings.add(wingType);
+      Category.Wings.add(lwingcolorl1);
+      Category.Wings.add(lwingcolorl2);
+      Category.Wings.add(rwingcolorl1);
+      Category.Wings.add(rwingcolorl2);
+      Category.Wings.add(SHOW_WITH_ELYTRA);
+    }
+  }
+
+  public static class BackTools {
+    public static final ConfigInteger rotateAngle = new ConfigInteger(
+        new TranslatableText("config.ornaments.rotateangle").getString(), 0, 0, 360, true,
+        new TranslatableText("config.ornaments.rotateangle.help").getString());
+
+    public static void Init() {
+      Category.BackTools.add(rotateAngle);
     }
   }
 
   public static void Init() {
     General.Init();
-    Details.Init();
+    Cape.Init();
+    Wings.Init();
   }
 
   @Override
