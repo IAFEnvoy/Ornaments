@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.entity.model.AnimalModel;
 import net.minecraft.entity.LivingEntity;
+import ornaments.Config.Configs;
 
 public class BackItemModel<T extends LivingEntity> extends AnimalModel<T> {
   public final ModelPart item;
@@ -41,7 +42,7 @@ public class BackItemModel<T extends LivingEntity> extends AnimalModel<T> {
     this.item.pivotX = -8F;
     this.item.pivotY = -1F;
     this.item.pivotZ = 1F;
-    this.item.pitch = 3.14F;
+    this.item.pitch = (float) (Configs.BackTools.rotateAngle.getDoubleValue()/180.0F*3.1415926F);
     this.item.roll = 0F;
     this.item.yaw = 1.57F;
   }

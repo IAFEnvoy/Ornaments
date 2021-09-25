@@ -9,6 +9,7 @@ import fi.dy.masa.malilib.config.ConfigUtils;
 import fi.dy.masa.malilib.config.IConfigHandler;
 import fi.dy.masa.malilib.config.options.ConfigBoolean;
 import fi.dy.masa.malilib.config.options.ConfigColor;
+import fi.dy.masa.malilib.config.options.ConfigDouble;
 import fi.dy.masa.malilib.config.options.ConfigHotkey;
 import fi.dy.masa.malilib.config.options.ConfigInteger;
 import fi.dy.masa.malilib.config.options.ConfigString;
@@ -72,17 +73,17 @@ public class Configs implements IConfigHandler {
 
     public static void Init() {
       Category.Wings.add(SHOW_WING);
+      Category.Wings.add(SHOW_WITH_ELYTRA);
       Category.Wings.add(wingType);
       Category.Wings.add(lwingcolorl1);
       Category.Wings.add(lwingcolorl2);
       Category.Wings.add(rwingcolorl1);
       Category.Wings.add(rwingcolorl2);
-      Category.Wings.add(SHOW_WITH_ELYTRA);
     }
   }
 
   public static class BackTools {
-    public static final ConfigInteger rotateAngle = new ConfigInteger(
+    public static final ConfigDouble rotateAngle = new ConfigDouble(
         new TranslatableText("config.ornaments.rotateangle").getString(), 0, 0, 360, true,
         new TranslatableText("config.ornaments.rotateangle.help").getString());
 
@@ -95,6 +96,7 @@ public class Configs implements IConfigHandler {
     General.Init();
     Cape.Init();
     Wings.Init();
+    BackTools.Init();
   }
 
   @Override
