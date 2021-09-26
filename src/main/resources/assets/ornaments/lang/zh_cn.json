@@ -45,6 +45,7 @@
     "config.ornaments.rwingcolorl2": "右翅膀第二层翅膀颜色",
     "config.ornaments.show_cape": "显示披风",
     "config.ornaments.show_wing": "显示翅膀",
+    "config.ornaments.show_back_tool": "显示背置工具",
     "config.ornaments.rotateangle": "旋转角度",
 
     "config.ornaments.title.help": "饰品mod设置",

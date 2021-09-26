@@ -16,7 +16,7 @@ public class BackItemModel<T extends LivingEntity> extends AnimalModel<T> {
     textureHeight = 16;
 
     offsetx = 0;
-    offsety = 8;
+    offsety = 6;
 
     item = new ModelPart(this);
     item.setPivot(0.0F, 0.0F, 0.0F);
@@ -54,6 +54,5 @@ public class BackItemModel<T extends LivingEntity> extends AnimalModel<T> {
     float r = (float) (8 * MathHelper.SQUARE_ROOT_OF_TWO);
     this.item.pivotX = offsetx + r * MathHelper.sin(angle);
     this.item.pivotY = offsety + r * MathHelper.cos(angle);
-
   }
 }

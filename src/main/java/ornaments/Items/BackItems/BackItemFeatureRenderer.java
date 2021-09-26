@@ -13,6 +13,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import ornaments.Client.client;
+import ornaments.Config.Configs;
 
 public class BackItemFeatureRenderer<T extends LivingEntity, M extends EntityModel<T>> extends FeatureRenderer<T, M> {
   private BackItemModel<T> backItemModel = new BackItemModel<>();
@@ -25,14 +26,17 @@ public class BackItemFeatureRenderer<T extends LivingEntity, M extends EntityMod
   public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle,
       float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
     if (entity instanceof PlayerEntity) {
-      Identifier layer = new Identifier(client.MOD_ID, "textures/backitem/diamond_sword.png");
+      if (Configs.BackTools.show_back_tool.getBooleanValue()
+          && ((PlayerEntity) entity).getName().asString().equals(Configs.General.User.getStringValue())) {
+        Identifier layer = new Identifier(client.MOD_ID, "textures/backitem/diamond_sword.png");
 
-      matrices.push();
-      matrices.translate(0.0D, 0.0D, 0.125D);
-      this.getContextModel().copyStateTo(this.backItemModel);
-      this.backItemModel.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
-      this.renderItems(matrices, vertexConsumers, layer, light, 0.5F, 0.5F, 0.5F);
-      matrices.pop();
+        matrices.push();
+        matrices.translate(0.0D, 0.0D, 0.125D);
+        this.getContextModel().copyStateTo(this.backItemModel);
+        this.backItemModel.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
+        this.renderItems(matrices, vertexConsumers, layer, light, 0.5F, 0.5F, 0.5F);
+        matrices.pop();
+      }
     }
   }
 

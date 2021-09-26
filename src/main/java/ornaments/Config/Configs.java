@@ -11,7 +11,6 @@ import fi.dy.masa.malilib.config.options.ConfigBoolean;
 import fi.dy.masa.malilib.config.options.ConfigColor;
 import fi.dy.masa.malilib.config.options.ConfigDouble;
 import fi.dy.masa.malilib.config.options.ConfigHotkey;
-import fi.dy.masa.malilib.config.options.ConfigInteger;
 import fi.dy.masa.malilib.config.options.ConfigString;
 import fi.dy.masa.malilib.hotkeys.KeybindSettings;
 import fi.dy.masa.malilib.util.JsonUtils;
@@ -52,6 +51,9 @@ public class Configs implements IConfigHandler {
     public static final ConfigBoolean SHOW_WING = new ConfigBoolean(
         new TranslatableText("config.ornaments.show_wing").getString(), false,
         new TranslatableText("config.ornaments.show_wing.help").getString());
+        public static final ConfigBoolean SHOW_WITH_ELYTRA = new ConfigBoolean(
+            new TranslatableText("config.ornaments.show_with_elytra").getString(), false,
+            new TranslatableText("config.ornaments.show_with_elytra.help").getString());
     public static final ConfigString wingType = new ConfigString(
         new TranslatableText("config.ornaments.wingtype").getString(), "",
         new TranslatableText("config.ornaments.wingtype.help").getString());
@@ -67,9 +69,6 @@ public class Configs implements IConfigHandler {
     public static final ConfigColor rwingcolorl2 = new ConfigColor(
         new TranslatableText("config.ornaments.rwingcolorl2").getString(), "0xF0FFFFFF",
         new TranslatableText("config.ornaments.rwingcolorl2.help").getString());
-    public static final ConfigBoolean SHOW_WITH_ELYTRA = new ConfigBoolean(
-        new TranslatableText("config.ornaments.show_with_elytra").getString(), false,
-        new TranslatableText("config.ornaments.show_with_elytra.help").getString());
 
     public static void Init() {
       Category.Wings.add(SHOW_WING);
@@ -83,11 +82,15 @@ public class Configs implements IConfigHandler {
   }
 
   public static class BackTools {
+    public static final ConfigBoolean show_back_tool = new ConfigBoolean(
+        new TranslatableText("config.ornaments.show_back_tool").getString(), false,
+        new TranslatableText("config.ornaments.show_back_tool.help").getString());
     public static final ConfigDouble rotateAngle = new ConfigDouble(
         new TranslatableText("config.ornaments.rotateangle").getString(), 0, 0, 360, true,
         new TranslatableText("config.ornaments.rotateangle.help").getString());
 
     public static void Init() {
+      Category.BackTools.add(show_back_tool);
       Category.BackTools.add(rotateAngle);
     }
   }

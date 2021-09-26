@@ -14,7 +14,7 @@ public class TechWingsModel<T extends LivingEntity> extends WingEntityModel<T> {
     rightwing = new ModelPart(this);
 
     if (left) {
-      leftwing.setPivot(-16F, 14F, 0F);
+      leftwing.setPivot(-16F, 14F, 1F);
       setRotationAngle(leftwing, 0F, 1.57F, -0.75F);
       leftwing.setTextureOffset(0, 0).addCuboid(0.0F, 0.0F, 0.0F, 1.0F, 16.0F, 32.0F, 0.0F, false);
       leftWing.addChild(leftwing);
