@@ -5,6 +5,7 @@ import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.entity.model.AnimalModel;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.MathHelper;
+import ornaments.Commands.Commands;
 import ornaments.Config.Configs;
 
 public class BackItemModel<T extends LivingEntity> extends AnimalModel<T> {
@@ -54,5 +55,18 @@ public class BackItemModel<T extends LivingEntity> extends AnimalModel<T> {
     float r = (float) (8 * MathHelper.SQUARE_ROOT_OF_TWO);
     this.item.pivotX = offsetx + r * MathHelper.sin(angle);
     this.item.pivotY = offsety + r * MathHelper.cos(angle);
+
+    if(entity.isSneaking()){
+      this.item.roll = Commands.x;
+      this.item.yaw = Commands.y;
+    }
+    if(entity.isSleeping()){
+      this.item.roll = Commands.x;
+      this.item.yaw = Commands.y;
+    }
+    if(entity.isFallFlying()){
+      this.item.roll = Commands.x;
+      this.item.yaw = Commands.y;
+    }
   }
 }
