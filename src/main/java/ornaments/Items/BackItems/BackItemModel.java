@@ -57,16 +57,12 @@ public class BackItemModel<T extends LivingEntity> extends AnimalModel<T> {
     this.item.pivotY = offsety + r * MathHelper.cos(angle);
 
     if(entity.isSneaking()){
-      this.item.roll = Commands.x;
-      this.item.yaw = Commands.y;
-    }
-    if(entity.isSleeping()){
-      this.item.roll = Commands.x;
-      this.item.yaw = Commands.y;
-    }
-    if(entity.isFallFlying()){
-      this.item.roll = Commands.x;
-      this.item.yaw = Commands.y;
+      this.item.pivotX = Commands.x;
+      this.item.pivotY = Commands.y;
+      this.item.pivotZ = Commands.z;
+      this.item.pitch = Commands.xr;
+      this.item.roll = Commands.yr;
+      this.item.yaw = Commands.zr;
     }
   }
 }

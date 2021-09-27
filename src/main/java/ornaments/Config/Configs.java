@@ -85,12 +85,16 @@ public class Configs implements IConfigHandler {
     public static final ConfigBoolean show_back_tool = new ConfigBoolean(
         new TranslatableText("config.ornaments.show_back_tool").getString(), false,
         new TranslatableText("config.ornaments.show_back_tool.help").getString());
+        public static final ConfigString backToolType = new ConfigString(
+            new TranslatableText("config.ornaments.backtooltype").getString(), "",
+            new TranslatableText("config.ornaments.backtooltype.help").getString());
     public static final ConfigDouble rotateAngle = new ConfigDouble(
         new TranslatableText("config.ornaments.rotateangle").getString(), 0, 0, 360, true,
         new TranslatableText("config.ornaments.rotateangle.help").getString());
 
     public static void Init() {
       Category.BackTools.add(show_back_tool);
+      Category.BackTools.add(backToolType);
       Category.BackTools.add(rotateAngle);
     }
   }

@@ -28,7 +28,8 @@ public class BackItemFeatureRenderer<T extends LivingEntity, M extends EntityMod
     if (entity instanceof PlayerEntity) {
       if (Configs.BackTools.show_back_tool.getBooleanValue()
           && ((PlayerEntity) entity).getName().asString().equals(Configs.General.User.getStringValue())) {
-        Identifier layer = new Identifier(client.MOD_ID, "textures/backitem/diamond_sword.png");
+        Identifier layer = new Identifier(client.MOD_ID,
+            "textures/backitem/" + Configs.BackTools.backToolType.getStringValue() + ".png");
 
         matrices.push();
         matrices.translate(0.0D, 0.0D, 0.125D);

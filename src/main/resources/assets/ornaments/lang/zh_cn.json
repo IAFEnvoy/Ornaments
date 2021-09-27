@@ -47,6 +47,7 @@
     "config.ornaments.show_wing": "显示翅膀",
     "config.ornaments.show_back_tool": "显示背置工具",
     "config.ornaments.rotateangle": "旋转角度",
+    "config.ornaments.backtooltype": "显示的背置工具",
 
     "config.ornaments.title.help": "饰品mod设置",
     "config.ornaments.general.help": "通用",
@@ -59,5 +60,10 @@
     "config.ornaments.lwingcolorl1.help": "分别为#A0RRGGBB,十六进制",
     "config.ornaments.lwingcolorl2.help": "分别为#A0RRGGBB,十六进制",
     "config.ornaments.rwingcolorl1.help": "分别为#A0RRGGBB,十六进制",
-    "config.ornaments.rwingcolorl2.help": "分别为#A0RRGGBB,十六进制"
+    "config.ornaments.rwingcolorl2.help": "分别为#A0RRGGBB,十六进制",
+    "config.ornaments.show_cape.help": "是否显示披风",
+    "config.ornaments.show_wing.help": "是否显示翅膀",
+    "config.ornaments.show_back_tool.help": "是否显示背置工具",
+    "config.ornaments.rotateangle.help": "工具图案的角度（顺时针）",
+    "config.ornaments.backtooltype.help": "目前支持：镐，剑，铲，斧，弓，弩，三叉戟"
 }
