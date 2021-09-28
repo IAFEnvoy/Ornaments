@@ -22,7 +22,7 @@ public class BackItemModel<T extends LivingEntity> extends AnimalModel<T> {
     item = new ModelPart(this);
     item.setPivot(0.0F, 0.0F, 0.0F);
     setRotationAngle(item, 0.0F, 0.0F, 0.0F);
-    item.setTextureOffset(0, 0).addCuboid(0.0F, 0.0F, 0.0F, 1F, 16.0F, 16.0F);
+    item.setTextureOffset(0, 0).addCuboid(0.0F, 0.0F, 0.0F, 1F, 16.0F, 16.0F).setTextureSize(16, 16);
   }
 
   public void setRotationAngle(ModelPart bone, float x, float y, float z) {
@@ -56,13 +56,14 @@ public class BackItemModel<T extends LivingEntity> extends AnimalModel<T> {
     this.item.pivotX = offsetx + r * MathHelper.sin(angle);
     this.item.pivotY = offsety + r * MathHelper.cos(angle);
 
-    if(entity.isSneaking()){
-      this.item.pivotX = Commands.x;
-      this.item.pivotY = Commands.y;
-      this.item.pivotZ = Commands.z;
-      this.item.pitch = Commands.xr;
-      this.item.roll = Commands.yr;
-      this.item.yaw = Commands.zr;
+    if (entity.isSneaking()) {
+      this.item.pivotZ = 7.5F;
+
+      setRotationAngle(item, (float) (Configs.BackTools.rotateAngle.getDoubleValue() + 90) / 180.0F * 3.1415926F, 1.1F,
+          1.57F);
+      // this.item.pitch = Commands.xr;
+      // this.item.roll = Commands.yr;
+      // this.item.yaw = Commands.zr;
     }
   }
 }

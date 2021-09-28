@@ -28,6 +28,7 @@ public class BackItemFeatureRenderer<T extends LivingEntity, M extends EntityMod
     if (entity instanceof PlayerEntity) {
       if (Configs.BackTools.show_back_tool.getBooleanValue()
           && ((PlayerEntity) entity).getName().asString().equals(Configs.General.User.getStringValue())) {
+        if(!BackItems.InsideIt(Configs.BackTools.backToolType.getStringValue())) return;
         Identifier layer = new Identifier(client.MOD_ID,
             "textures/backitem/" + Configs.BackTools.backToolType.getStringValue() + ".png");
 
