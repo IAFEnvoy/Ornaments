@@ -55,9 +55,6 @@ public class Configs implements IConfigHandler {
     public static final ConfigBoolean SHOW_WING = new ConfigBoolean(
         new TranslatableText("config.ornaments.show_wing").getString(), false,
         new TranslatableText("config.ornaments.show_wing.help").getString());
-    public static final ConfigBoolean SHOW_WITH_ELYTRA = new ConfigBoolean(
-        new TranslatableText("config.ornaments.show_with_elytra").getString(), false,
-        new TranslatableText("config.ornaments.show_with_elytra.help").getString());
     public static final ConfigBoolean Overwrite_Elytra = new ConfigBoolean(
         new TranslatableText("config.ornaments.overwrite_elytra").getString(), false,
         new TranslatableText("config.ornaments.overwrite_elytra.help").getString());
@@ -79,7 +76,7 @@ public class Configs implements IConfigHandler {
 
     public static void Init() {
       Category.Wings.add(SHOW_WING);
-      Category.Wings.add(SHOW_WITH_ELYTRA);
+      Category.Wings.add(Overwrite_Elytra);
       Category.Wings.add(wingType);
       Category.Wings.add(lwingcolorl1);
       Category.Wings.add(lwingcolorl2);

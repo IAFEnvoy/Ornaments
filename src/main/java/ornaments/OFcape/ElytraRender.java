@@ -18,6 +18,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
+import ornaments.Config.Configs;
 import ornaments.Data.RenderInfo;
 import ornaments.Data.RenderInfo.RenderThings;
 
@@ -53,16 +54,19 @@ public class ElytraRender<T extends LivingEntity, M extends EntityModel<T>> exte
   }
 
   public void renderSplitFallback(MatrixStack matrixStackIn, VertexConsumerProvider vertexConsumerProvider, int i,
-      T livingEntity, float f, float g, float h, float j, float k, float l, ItemStack elytra, ElytraWingModel<T> wingIn) {
+      T livingEntity, float f, float g, float h, float j, float k, float l, ItemStack elytra,
+      ElytraWingModel<T> wingIn) {
     Identifier elytraTexture;
     if (livingEntity instanceof AbstractClientPlayerEntity) {
       AbstractClientPlayerEntity abscp = (AbstractClientPlayerEntity) livingEntity;
-      if (abscp.canRenderElytraTexture() && abscp.getElytraTexture() != null)
+      if (abscp.canRenderElytraTexture() && abscp.getElytraTexture() != null
+          && Configs.Cape.SHOW_CAPE.getBooleanValue())
         elytraTexture = abscp.getElytraTexture();
       else if (abscp.canRenderCapeTexture() && abscp.getCapeTexture() != null
-          && abscp.isPartVisible(PlayerModelPart.CAPE))
+          && abscp.isPartVisible(PlayerModelPart.CAPE) && Configs.Cape.SHOW_CAPE.getBooleanValue())
         elytraTexture = abscp.getCapeTexture();
-      else if (PlayerHandler.fromPlayer(abscp) != null && abscp.isPartVisible(PlayerModelPart.CAPE))
+      else if (PlayerHandler.fromPlayer(abscp) != null && abscp.isPartVisible(PlayerModelPart.CAPE)
+          && Configs.Cape.SHOW_CAPE.getBooleanValue())
         elytraTexture = PlayerHandler.fromPlayer(abscp);
       else {
         elytraTexture = new Identifier("minecraft", "textures/entity/elytra.png");

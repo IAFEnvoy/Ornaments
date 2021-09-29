@@ -18,13 +18,10 @@ public class RenderInfo {
       case ELYTRA: {
         return !Configs.Wings.Overwrite_Elytra.getBooleanValue();
       }
-      case ELYTRAOVERWRITE: {
-        return false;
-      }
       case WINGS: {
-        if (elytra)
-          return Configs.Wings.SHOW_WITH_ELYTRA.getBooleanValue();
-        return Configs.Wings.SHOW_WING.getBooleanValue();
+        if(!Configs.Wings.SHOW_WING.getBooleanValue()) return false;
+        if(Configs.Wings.Overwrite_Elytra.getBooleanValue()) return true;
+        return !elytra;
       }
       default: {
         return false;
@@ -33,6 +30,6 @@ public class RenderInfo {
   }
 
   public enum RenderThings {
-    CAPE, ELYTRA, BACKITEM, WINGS, ELYTRAOVERWRITE;
+    CAPE, ELYTRA, BACKITEM, WINGS;
   }
 }
