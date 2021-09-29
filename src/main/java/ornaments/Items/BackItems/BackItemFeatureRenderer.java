@@ -14,6 +14,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import ornaments.Client.client;
 import ornaments.Config.Configs;
+import ornaments.Data.RenderInfo;
+import ornaments.Data.RenderInfo.RenderThings;
 
 public class BackItemFeatureRenderer<T extends LivingEntity, M extends EntityModel<T>> extends FeatureRenderer<T, M> {
   private BackItemModel<T> backItemModel = new BackItemModel<>();
@@ -26,7 +28,7 @@ public class BackItemFeatureRenderer<T extends LivingEntity, M extends EntityMod
   public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle,
       float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
     if (entity instanceof PlayerEntity) {
-      if (Configs.BackTools.show_back_tool.getBooleanValue()
+      if (RenderInfo.ifRender(RenderThings.BACKITEM)
           && ((PlayerEntity) entity).getName().asString().equals(Configs.General.User.getStringValue())) {
         if(!BackItems.InsideIt(Configs.BackTools.backToolType.getStringValue())) return;
         Identifier layer = new Identifier(client.MOD_ID,

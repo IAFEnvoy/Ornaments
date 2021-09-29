@@ -15,13 +15,14 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import ornaments.Client.client;
 import ornaments.Config.Configs;
+import ornaments.Data.RenderInfo;
+import ornaments.Data.RenderInfo.RenderThings;
 import ornaments.Items.wings.models.FeatheredWingModel;
 import ornaments.Items.wings.models.LeatherWingModel;
 import ornaments.Items.wings.models.LightWingsModel;
 import ornaments.Items.wings.models.TechWingsModel;
 import ornaments.Items.wings.models.WingEntityModel;
 import ornaments.Items.wings.models.ZanzasWingsModel;
-import ornaments.OFcape.CapeRender;
 
 public class WingsFeatureRenderer<T extends LivingEntity, M extends EntityModel<T>> extends FeatureRenderer<T, M> {
   private WingEntityModel<T> lwingModel = new WingEntityModel<>();
@@ -36,8 +37,7 @@ public class WingsFeatureRenderer<T extends LivingEntity, M extends EntityModel<
       float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
     if (entity instanceof PlayerEntity) {
       if (((PlayerEntity) entity).getName().asString().equals(Configs.General.User.getStringValue())) {
-        if(!Configs.Wings.SHOW_WING.getBooleanValue()) return;
-        if (!Configs.Wings.SHOW_WITH_ELYTRA.getBooleanValue() && !CapeRender.showcape)
+        if (!RenderInfo.ifRender(RenderThings.WINGS))
           return;
         String wingType = Configs.Wings.wingType.getStringValue();
         if (wingType.equals("feathered")) {

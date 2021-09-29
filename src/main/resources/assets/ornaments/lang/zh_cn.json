@@ -48,6 +48,8 @@
     "config.ornaments.show_back_tool": "显示背置工具",
     "config.ornaments.rotateangle": "旋转角度",
     "config.ornaments.backtooltype": "显示的背置工具",
+    "config.ornaments.render_with_elytra": "和鞘翅一起显示",
+    "config.ornaments.overwrite_elytra": "覆写鞘翅",
 
     "config.ornaments.title.help": "饰品mod设置",
     "config.ornaments.general.help": "通用",

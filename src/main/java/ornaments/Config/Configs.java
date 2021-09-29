@@ -37,12 +37,16 @@ public class Configs implements IConfigHandler {
     public static final ConfigBoolean SHOW_CAPE = new ConfigBoolean(
         new TranslatableText("config.ornaments.show_cape").getString(), false,
         new TranslatableText("config.ornaments.show_cape.help").getString());
+    public static final ConfigBoolean Render_With_Elytra = new ConfigBoolean(
+        new TranslatableText("config.ornaments.render_with_elytra").getString(), false,
+        new TranslatableText("config.ornaments.show_cape.help").getString());
     public static final ConfigString CapeUser = new ConfigString(
         new TranslatableText("config.ornaments.capeuser").getString(), "",
         new TranslatableText("config.ornaments.capeuser.help").getString());
 
     public static void Init() {
       Category.Cape.add(SHOW_CAPE);
+      Category.Cape.add(Render_With_Elytra);
       Category.Cape.add(CapeUser);
     }
   }
@@ -51,9 +55,12 @@ public class Configs implements IConfigHandler {
     public static final ConfigBoolean SHOW_WING = new ConfigBoolean(
         new TranslatableText("config.ornaments.show_wing").getString(), false,
         new TranslatableText("config.ornaments.show_wing.help").getString());
-        public static final ConfigBoolean SHOW_WITH_ELYTRA = new ConfigBoolean(
-            new TranslatableText("config.ornaments.show_with_elytra").getString(), false,
-            new TranslatableText("config.ornaments.show_with_elytra.help").getString());
+    public static final ConfigBoolean SHOW_WITH_ELYTRA = new ConfigBoolean(
+        new TranslatableText("config.ornaments.show_with_elytra").getString(), false,
+        new TranslatableText("config.ornaments.show_with_elytra.help").getString());
+    public static final ConfigBoolean Overwrite_Elytra = new ConfigBoolean(
+        new TranslatableText("config.ornaments.overwrite_elytra").getString(), false,
+        new TranslatableText("config.ornaments.overwrite_elytra.help").getString());
     public static final ConfigString wingType = new ConfigString(
         new TranslatableText("config.ornaments.wingtype").getString(), "",
         new TranslatableText("config.ornaments.wingtype.help").getString());

@@ -16,6 +16,8 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3f;
 import ornaments.Config.Configs;
+import ornaments.Data.RenderInfo;
+import ornaments.Data.RenderInfo.RenderThings;
 
 @Environment(EnvType.CLIENT)
 public class CapeRender
@@ -25,8 +27,6 @@ public class CapeRender
       final FeatureRendererContext<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> featureRendererContext) {
     super(featureRendererContext);
   }
-
-  public static boolean showcape = true;
   public static String capethisplayer = "";
 
   public void render(final MatrixStack matrixStack, final VertexConsumerProvider vertexConsumerProvider, final int i,
@@ -42,7 +42,7 @@ public class CapeRender
       if(abstractClientPlayerEntity.getName().equals(MinecraftClient.getInstance().player.getName())){
         if(!Configs.Cape.SHOW_CAPE.getBooleanValue()) return;
       }
-      if (showcape) {
+      if (RenderInfo.ifRender(RenderThings.CAPE)) {
         matrixStack.push();
         matrixStack.translate(0.0D, 0.0D, 0.125D);
         final double d = MathHelper.lerp(h, abstractClientPlayerEntity.prevCapeX, abstractClientPlayerEntity.capeX)
