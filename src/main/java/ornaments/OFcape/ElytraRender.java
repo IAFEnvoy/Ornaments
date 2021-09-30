@@ -15,6 +15,7 @@ import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
@@ -34,17 +35,17 @@ public class ElytraRender<T extends LivingEntity, M extends EntityModel<T>> exte
   @Override
   public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T livingEntity,
       float f, float g, float h, float j, float k, float l) {
-    if (livingEntity.getEquippedStack(EquipmentSlot.CHEST).getItem() == Items.ELYTRA) {
-      if (!RenderInfo.ifRender(RenderThings.ELYTRA))
+    RenderInfo.elytra = livingEntity.getEquippedStack(EquipmentSlot.CHEST).getItem() == Items.ELYTRA;
+    if (RenderInfo.elytra) {
+      if (!RenderInfo.ifRender(RenderThings.ELYTRA, (PlayerEntity)livingEntity)
+          && ((PlayerEntity) livingEntity).getName().asString().equals(Configs.General.User.getStringValue()))
         return;
-      RenderInfo.elytra = true;
       matrixStack.push();
       matrixStack.translate(0.0D, 0.0D, 0.125D);
       renderSplit(matrixStack, vertexConsumerProvider, i, livingEntity, f, g, h, j, k, l,
           livingEntity.getEquippedStack(EquipmentSlot.CHEST));
       matrixStack.pop();
-    } else
-      RenderInfo.elytra = false;
+    }
   }
 
   public void renderSplit(MatrixStack matrixStackIn, VertexConsumerProvider vertexConsumerProvider, int i,

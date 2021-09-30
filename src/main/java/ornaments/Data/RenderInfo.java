@@ -1,13 +1,16 @@
 package ornaments.Data;
 
+import net.minecraft.entity.player.PlayerEntity;
 import ornaments.Config.Configs;
 
 public class RenderInfo {
   public static boolean elytra = false;
 
-  public static boolean ifRender(RenderThings thing) {
+  public static boolean ifRender(RenderThings thing,PlayerEntity player) {
+    if(player.isSpectator()||player.isInvisible()||!player.isAlive()) return false;
     switch (thing) {
       case BACKITEM: {
+        if(player.isFallFlying()||player.isSneaking()||player.isSleeping()) return false;
         return Configs.BackTools.show_back_tool.getBooleanValue() && !elytra;
       }
       case CAPE: {
@@ -23,6 +26,16 @@ public class RenderInfo {
         if(Configs.Wings.Overwrite_Elytra.getBooleanValue()) return true;
         return !elytra;
       }
+      case MAGIC: {
+        if(player.isFallFlying()||player.isSneaking()||player.isSleeping()) return false;
+        return Configs.Magic.show_magic.getBooleanValue();
+      }
+      case HAT: {
+        return true;
+      }
+      case MASK: {
+        return true;
+      }
       default: {
         return false;
       }
@@ -30,6 +43,6 @@ public class RenderInfo {
   }
 
   public enum RenderThings {
-    CAPE, ELYTRA, BACKITEM, WINGS;
+    CAPE, ELYTRA, BACKITEM, WINGS,MAGIC,HAT,MASK;
   }
 }

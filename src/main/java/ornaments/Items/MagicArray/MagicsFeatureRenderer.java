@@ -1,5 +1,6 @@
 package ornaments.Items.MagicArray;
 
+import fi.dy.masa.malilib.util.Color4f;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
@@ -13,6 +14,9 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import ornaments.Client.client;
+import ornaments.Config.Configs;
+import ornaments.Data.RenderInfo;
+import ornaments.Data.RenderInfo.RenderThings;
 
 public class MagicsFeatureRenderer<T extends LivingEntity, M extends EntityModel<T>> extends FeatureRenderer<T, M> {
   private MagicArrayModel<T> magicModel = new MagicArrayModel<>();
@@ -25,21 +29,38 @@ public class MagicsFeatureRenderer<T extends LivingEntity, M extends EntityModel
   public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle,
       float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
     if (entity instanceof PlayerEntity) {
-      Identifier layer = new Identifier(client.MOD_ID, "textures/entity/magic.png");
-
-      matrices.push();
-      matrices.translate(0.0D, 0.0D, 0.125D);
-      this.getContextModel().copyStateTo(this.magicModel);
-      this.magicModel.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
-      this.renderWings(matrices, vertexConsumers, layer, light, 1F, 0F, 1F);
-      matrices.pop();
+      if (RenderInfo.ifRender(RenderThings.MAGIC, (PlayerEntity) entity)
+          && ((PlayerEntity) entity).getName().asString().equals(Configs.General.User.getStringValue())) {
+        matrices.push();
+        matrices.translate(0.0D, 0.0D, 0.125D);
+        this.getContextModel().copyStateTo(this.magicModel);
+        this.magicModel.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
+        if (!Configs.Magic.type4.getStringValue().isEmpty())
+          this.renderMagic(matrices, vertexConsumers,
+              new Identifier(client.MOD_ID, "textures/magic/" + Configs.Magic.type4.getStringValue() + ".png"), light,
+              Configs.Magic.color4.getColor());
+        if (!Configs.Magic.type3.getStringValue().isEmpty())
+          this.renderMagic(matrices, vertexConsumers,
+              new Identifier(client.MOD_ID, "textures/magic/" + Configs.Magic.type3.getStringValue() + ".png"), light,
+              Configs.Magic.color3.getColor());
+        if (!Configs.Magic.type2.getStringValue().isEmpty())
+          this.renderMagic(matrices, vertexConsumers,
+              new Identifier(client.MOD_ID, "textures/magic/" + Configs.Magic.type2.getStringValue() + ".png"), light,
+              Configs.Magic.color2.getColor());
+        if (!Configs.Magic.type1.getStringValue().isEmpty())
+          this.renderMagic(matrices, vertexConsumers,
+              new Identifier(client.MOD_ID, "textures/magic/" + Configs.Magic.type1.getStringValue() + ".png"), light,
+              Configs.Magic.color1.getColor());
+        matrices.pop();
+      }
     }
   }
 
-  public void renderWings(MatrixStack matrices, VertexConsumerProvider vertexConsumers, Identifier layerName, int light,
-      float r, float g, float b) {
+  public void renderMagic(MatrixStack matrices, VertexConsumerProvider vertexConsumers, Identifier layerName, int light,
+      Color4f color) {
     VertexConsumer vertexConsumer = ItemRenderer.getArmorGlintConsumer(vertexConsumers,
         RenderLayer.getEntityTranslucent(layerName), false, false);
-    this.magicModel.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, r, g, b, 1.0F);
+    this.magicModel.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, color.r, color.g, color.b,
+        color.a);
   }
 }

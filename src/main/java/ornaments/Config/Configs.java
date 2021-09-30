@@ -102,12 +102,54 @@ public class Configs implements IConfigHandler {
       Category.BackTools.add(rotateAngle);
     }
   }
+  public static class Magic {
+    public static final ConfigBoolean show_magic = new ConfigBoolean(
+        new TranslatableText("config.ornaments.show_magic").getString(), false,
+        new TranslatableText("config.ornaments.show_magic.help").getString());
+    public static final ConfigString type1 = new ConfigString(
+        new TranslatableText("config.ornaments.type1").getString(), "",
+        new TranslatableText("config.ornaments.type1.help").getString());
+    public static final ConfigColor color1 = new ConfigColor(
+        new TranslatableText("config.ornaments.color1").getString(), "0xF0FFFFFF",
+        new TranslatableText("config.ornaments.color1.help").getString());
+    public static final ConfigString type2 = new ConfigString(
+        new TranslatableText("config.ornaments.type2").getString(), "",
+        new TranslatableText("config.ornaments.type2.help").getString());
+    public static final ConfigColor color2 = new ConfigColor(
+        new TranslatableText("config.ornaments.color2").getString(), "0xF0FFFFFF",
+        new TranslatableText("config.ornaments.color2.help").getString());
+    public static final ConfigString type3 = new ConfigString(
+        new TranslatableText("config.ornaments.type3").getString(), "",
+        new TranslatableText("config.ornaments.type3.help").getString());
+    public static final ConfigColor color3 = new ConfigColor(
+        new TranslatableText("config.ornaments.color3").getString(), "0xF0FFFFFF",
+        new TranslatableText("config.ornaments.color3.help").getString());
+    public static final ConfigString type4 = new ConfigString(
+        new TranslatableText("config.ornaments.type4").getString(), "",
+        new TranslatableText("config.ornaments.type4.help").getString());
+    public static final ConfigColor color4 = new ConfigColor(
+        new TranslatableText("config.ornaments.color4").getString(), "0xF0FFFFFF",
+        new TranslatableText("config.ornaments.color4.help").getString());
+
+    public static void Init() {
+      Category.Magic.add(show_magic);
+      Category.Magic.add(type1);
+      Category.Magic.add(color1);
+      Category.Magic.add(type2);
+      Category.Magic.add(color2);
+      Category.Magic.add(type3);
+      Category.Magic.add(color3);
+      Category.Magic.add(type4);
+      Category.Magic.add(color4);
+    }
+  }
 
   public static void Init() {
     General.Init();
     Cape.Init();
     Wings.Init();
     BackTools.Init();
+    Magic.Init();
   }
 
   @Override

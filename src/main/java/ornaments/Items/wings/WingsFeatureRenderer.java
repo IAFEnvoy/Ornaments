@@ -37,7 +37,7 @@ public class WingsFeatureRenderer<T extends LivingEntity, M extends EntityModel<
       float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
     if (entity instanceof PlayerEntity) {
       if (((PlayerEntity) entity).getName().asString().equals(Configs.General.User.getStringValue())) {
-        if (!RenderInfo.ifRender(RenderThings.WINGS))
+        if (!RenderInfo.ifRender(RenderThings.WINGS, (PlayerEntity)entity))
           return;
         String wingType = Configs.Wings.wingType.getStringValue();
         if (wingType.equals("feathered")) {
@@ -58,8 +58,8 @@ public class WingsFeatureRenderer<T extends LivingEntity, M extends EntityModel<
         } else
           return;
 
-        Identifier layer1 = new Identifier(client.MOD_ID, "textures/entity/" + wingType + "_wings.png");
-        Identifier layer2 = new Identifier(client.MOD_ID, "textures/entity/" + wingType + "_wings_2.png");
+        Identifier layer1 = new Identifier(client.MOD_ID, "textures/wing/" + wingType + "_wings.png");
+        Identifier layer2 = new Identifier(client.MOD_ID, "textures/wing/" + wingType + "_wings_2.png");
 
         matrices.push();
         matrices.translate(0.0D, 0.0D, 0.125D);

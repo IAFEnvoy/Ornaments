@@ -42,7 +42,7 @@ public class CapeRender
       if(abstractClientPlayerEntity.getName().equals(MinecraftClient.getInstance().player.getName())){
         if(!Configs.Cape.SHOW_CAPE.getBooleanValue()) return;
       }
-      if (RenderInfo.ifRender(RenderThings.CAPE)) {
+      if (RenderInfo.ifRender(RenderThings.CAPE,abstractClientPlayerEntity)) {
         matrixStack.push();
         matrixStack.translate(0.0D, 0.0D, 0.125D);
         final double d = MathHelper.lerp(h, abstractClientPlayerEntity.prevCapeX, abstractClientPlayerEntity.capeX)

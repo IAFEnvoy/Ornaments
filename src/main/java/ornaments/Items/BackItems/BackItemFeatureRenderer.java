@@ -28,9 +28,10 @@ public class BackItemFeatureRenderer<T extends LivingEntity, M extends EntityMod
   public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle,
       float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
     if (entity instanceof PlayerEntity) {
-      if (RenderInfo.ifRender(RenderThings.BACKITEM)
+      if (RenderInfo.ifRender(RenderThings.BACKITEM, (PlayerEntity)entity)
           && ((PlayerEntity) entity).getName().asString().equals(Configs.General.User.getStringValue())) {
-        if(!BackItems.InsideIt(Configs.BackTools.backToolType.getStringValue())) return;
+        if (!BackItems.InsideIt(Configs.BackTools.backToolType.getStringValue()))
+          return;
         Identifier layer = new Identifier(client.MOD_ID,
             "textures/backitem/" + Configs.BackTools.backToolType.getStringValue() + ".png");
 

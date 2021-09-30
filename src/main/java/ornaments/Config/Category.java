@@ -10,7 +10,8 @@ public enum Category {
     GENERAL("config.ornaments.general"),
     Cape("config.ornaments.cape"),
     Wings("config.ornaments.wings"),
-    BackTools("config.ornaments.backtools");
+    BackTools("config.ornaments.backtools"),
+    Magic("config.ornaments.magic");
 
     private final String key;
     private final List<IConfigBase> configs;
