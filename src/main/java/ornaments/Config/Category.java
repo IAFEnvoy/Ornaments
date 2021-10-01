@@ -12,9 +12,7 @@ public enum Category {
     Wings("config.ornaments.wings"),
     BackTools("config.ornaments.backtools"),
     BeltSlot("config.ornaments.sideitem"),
-    Magic("config.ornaments.magic"),
-    Hat("config.ornaments.hat"),
-    Mask("config.ornaments.mask");
+    Magic("config.ornaments.magic");
 
     private final String key;
     private final List<IConfigBase> configs;

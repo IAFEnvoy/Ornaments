@@ -13,7 +13,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import ornaments.Items.BackItems.BackToolFeatureRenderer1;
 import ornaments.Items.BackItems.BackToolFeatureRenderer2;
-import ornaments.Items.BeltSlot.BeltSlotFeatureRenderer;
+import ornaments.Items.BeltSlot.BeltSlotFeatureRenderer1;
+import ornaments.Items.BeltSlot.BeltSlotFeatureRenderer2;
 import ornaments.Items.MagicArray.MagicsFeatureRenderer;
 import ornaments.Items.wings.WingsFeatureRenderer;
 import ornaments.OFcape.CapeRender;
@@ -34,7 +35,8 @@ public abstract class PlayerEntityRendererMixin
     this.addFeature(new WingsFeatureRenderer<>(this));
     this.addFeature(new BackToolFeatureRenderer1(this));
     this.addFeature(new BackToolFeatureRenderer2(this));
-    this.addFeature(new BeltSlotFeatureRenderer(this));
+    this.addFeature(new BeltSlotFeatureRenderer1(this));
+    this.addFeature(new BeltSlotFeatureRenderer2(this));
     this.addFeature(new MagicsFeatureRenderer<>(this));
     this.features.removeIf(renderer -> renderer instanceof ElytraFeatureRenderer);
   }

@@ -128,20 +128,20 @@ public class Configs implements IConfigHandler {
   }
 
   public static class BeltSlot {
-    public static final ConfigBoolean show_left = new ConfigBoolean(
-        new TranslatableText("config.ornaments.show_left").getString(), false,
-        new TranslatableText("config.ornaments.show_left.help").getString());
-    public static final ConfigBoolean show_right = new ConfigBoolean(
-        new TranslatableText("config.ornaments.show_right").getString(), false,
-        new TranslatableText("config.ornaments.show_right.help").getString());
+    public static final ConfigBoolean show_belt = new ConfigBoolean(
+        new TranslatableText("config.ornaments.show_belt").getString(), false,
+        new TranslatableText("config.ornaments.show_belt.help").getString());
     public static final ConfigString beltslotType1 = new ConfigString(
         new TranslatableText("config.ornaments.beltslottype1").getString(), "",
         new TranslatableText("config.ornaments.beltslottype1.help").getString());
+    public static final ConfigString beltslotType2 = new ConfigString(
+        new TranslatableText("config.ornaments.beltslottype2").getString(), "",
+        new TranslatableText("config.ornaments.beltslottype2.help").getString());
 
     public static void Init() {
-      Category.BeltSlot.add(show_left);
-      Category.BeltSlot.add(show_right);
+      Category.BeltSlot.add(show_belt);
       Category.BeltSlot.add(beltslotType1);
+      Category.BeltSlot.add(beltslotType2);
     }
   }
 
