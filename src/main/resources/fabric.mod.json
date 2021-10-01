@@ -4,7 +4,7 @@
     "version": "1.0.0",
 
     "name": "Ornaments",
-    "description": "Add ornaments on player in client side.\nUse /Ornaments Help to show helps.",
+    "description": "Add ornaments on player in client side.\nPress F7 to open menu",
     "authors": [
         "IAFEnvoy"
     ],

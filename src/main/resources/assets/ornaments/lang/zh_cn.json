@@ -35,6 +35,7 @@
     "config.ornaments.wings": "翅膀设置",
     "config.ornaments.backtools": "背置工具设置",
     "config.ornaments.magic": "魔法阵设置",
+    "config.ornaments.sideitem": "侧挂物品设置",
 
     "config.ornaments.open_menu_key": "打开菜单",
     "config.ornaments.user": "渲染的玩家名",
