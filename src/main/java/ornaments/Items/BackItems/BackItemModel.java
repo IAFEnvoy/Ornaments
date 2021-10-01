@@ -21,7 +21,7 @@ public class BackItemModel<T extends LivingEntity> extends AnimalModel<T> {
     item = new ModelPart(this);
     item.setPivot(0.0F, 0.0F, 0.0F);
     setRotationAngle(item, 0.0F, 0.0F, 0.0F);
-    item.setTextureOffset(0, 0).addCuboid(0.0F, 0.0F, 0.0F, 1F, 16.0F, 16.0F).setTextureSize(16, 16);
+    item.setTextureOffset(0, 0).addCuboid(0.0F, 0.0F, 0.0F, 0.1F, 16.0F, 16.0F);
   }
 
   public void setRotationAngle(ModelPart bone, float x, float y, float z) {

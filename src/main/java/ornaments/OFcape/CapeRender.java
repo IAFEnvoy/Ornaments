@@ -27,6 +27,7 @@ public class CapeRender
       final FeatureRendererContext<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> featureRendererContext) {
     super(featureRendererContext);
   }
+
   public static String capethisplayer = "";
 
   public void render(final MatrixStack matrixStack, final VertexConsumerProvider vertexConsumerProvider, final int i,
@@ -39,10 +40,11 @@ public class CapeRender
     if (abstractClientPlayerEntity.canRenderCapeTexture() && !abstractClientPlayerEntity.isInvisible()
         && abstractClientPlayerEntity.isPartVisible(PlayerModelPart.CAPE)
         && Get.fromPlayer(abstractClientPlayerEntity) != null) {
-      if(abstractClientPlayerEntity.getName().equals(MinecraftClient.getInstance().player.getName())){
-        if(!Configs.Cape.SHOW_CAPE.getBooleanValue()) return;
+      if (abstractClientPlayerEntity.getName().equals(MinecraftClient.getInstance().player.getName())) {
+        if (!Configs.Cape.SHOW_CAPE.getBooleanValue())
+          return;
       }
-      if (RenderInfo.ifRender(RenderThings.CAPE,abstractClientPlayerEntity)) {
+      if (RenderInfo.ifRender(RenderThings.CAPE, abstractClientPlayerEntity)) {
         matrixStack.push();
         matrixStack.translate(0.0D, 0.0D, 0.125D);
         final double d = MathHelper.lerp(h, abstractClientPlayerEntity.prevCapeX, abstractClientPlayerEntity.capeX)

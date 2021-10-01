@@ -6,11 +6,13 @@ import ornaments.Config.Configs;
 public class RenderInfo {
   public static boolean elytra = false;
 
-  public static boolean ifRender(RenderThings thing,PlayerEntity player) {
-    if(player.isSpectator()||player.isInvisible()||!player.isAlive()) return false;
+  public static boolean ifRender(RenderThings thing, PlayerEntity player) {
+    if (player.isSpectator() || player.isInvisible() || !player.isAlive())
+      return false;
     switch (thing) {
       case BACKITEM: {
-        if(player.isFallFlying()||player.isSneaking()||player.isSleeping()) return false;
+        if (player.isFallFlying() || player.isSneaking() || player.isSleeping() || player.isInSwimmingPose())
+          return false;
         return Configs.BackTools.show_back_tool.getBooleanValue() && !elytra;
       }
       case CAPE: {
@@ -22,12 +24,15 @@ public class RenderInfo {
         return !Configs.Wings.Overwrite_Elytra.getBooleanValue();
       }
       case WINGS: {
-        if(!Configs.Wings.SHOW_WING.getBooleanValue()) return false;
-        if(Configs.Wings.Overwrite_Elytra.getBooleanValue()) return true;
+        if (!Configs.Wings.SHOW_WING.getBooleanValue())
+          return false;
+        if (Configs.Wings.Overwrite_Elytra.getBooleanValue())
+          return true;
         return !elytra;
       }
       case MAGIC: {
-        if(player.isFallFlying()||player.isSneaking()||player.isSleeping()) return false;
+        if (player.isFallFlying() || player.isSneaking() || player.isSleeping() || player.isInSwimmingPose())
+          return false;
         return Configs.Magic.show_magic.getBooleanValue();
       }
       case HAT: {
@@ -43,6 +48,6 @@ public class RenderInfo {
   }
 
   public enum RenderThings {
-    CAPE, ELYTRA, BACKITEM, WINGS,MAGIC,HAT,MASK;
+    CAPE, ELYTRA, BACKITEM, WINGS, MAGIC, HAT, MASK;
   }
 }

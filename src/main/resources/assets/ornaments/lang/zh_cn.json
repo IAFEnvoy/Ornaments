@@ -35,6 +35,7 @@
     "config.ornaments.wings": "翅膀设置",
     "config.ornaments.backtools": "背置工具设置",
     "config.ornaments.magic": "魔法阵设置",
+
     "config.ornaments.open_menu_key": "打开菜单",
     "config.ornaments.user": "渲染的玩家名",
     "config.ornaments.capeuser": "使用的Optifine披风",
@@ -50,6 +51,15 @@
     "config.ornaments.backtooltype": "显示的背置工具",
     "config.ornaments.render_with_elytra": "和鞘翅一起显示",
     "config.ornaments.overwrite_elytra": "覆写鞘翅",
+    "config.ornaments.show_magic": "显示魔法阵",
+    "config.ornaments.type1": "绘制的第一层",
+    "config.ornaments.color1": "第一层颜色",
+    "config.ornaments.type2": "绘制的第二层",
+    "config.ornaments.color2": "第二层颜色",
+    "config.ornaments.type3": "绘制的第三层",
+    "config.ornaments.color3": "第三层颜色",
+    "config.ornaments.type4": "绘制的第四层",
+    "config.ornaments.color4": "第四层颜色",
 
     "config.ornaments.title.help": "饰品mod设置",
     "config.ornaments.general.help": "通用",
@@ -68,5 +78,14 @@
     "config.ornaments.rotateangle.help": "工具图案的角度（顺时针）",
     "config.ornaments.backtooltype.help": "目前支持：镐，剑，铲，斧，弓，弩，三叉戟",
     "config.ornaments.render_with_elytra.help": "穿模警告",
-    "config.ornaments.overwrite_elytra.help": "是否用翅膀替代鞘翅（不替代会隐藏）"
+    "config.ornaments.overwrite_elytra.help": "是否用翅膀替代鞘翅（不替代会隐藏）",
+    "config.ornaments.show_magic.help": "是否显示魔法阵",
+    "config.ornaments.type1.help": "不填则不会渲染这一层",
+    "config.ornaments.color1.help": "分别为#A0RRGGBB,十六进制",
+    "config.ornaments.type2.help": "不填则不会渲染这一层",
+    "config.ornaments.color2.help": "分别为#A0RRGGBB,十六进制",
+    "config.ornaments.type3.help": "不填则不会渲染这一层",
+    "config.ornaments.color3.help": "分别为#A0RRGGBB,十六进制",
+    "config.ornaments.type4.help": "不填则不会渲染这一层",
+    "config.ornaments.color4.help": "分别为#A0RRGGBB,十六进制"
 }

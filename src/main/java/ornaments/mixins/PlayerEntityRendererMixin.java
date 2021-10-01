@@ -30,8 +30,8 @@ public abstract class PlayerEntityRendererMixin
     this.addFeature(new CapeRender(this));
     this.addFeature(new ElytraRender<>(this));
     this.addFeature(new WingsFeatureRenderer<>(this));
-    // this.addFeature(new MagicsFeatureRenderer<>(this));
     this.addFeature(new BackItemFeatureRenderer<>(this));
+    this.addFeature(new MagicsFeatureRenderer<>(this));
     this.features.removeIf(renderer -> renderer instanceof ElytraFeatureRenderer);
   }
 }
