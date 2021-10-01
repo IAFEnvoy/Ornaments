@@ -11,8 +11,8 @@ public class RenderInfo {
       return false;
     switch (thing) {
       case BACKITEM: {
-        if (player.isFallFlying() || player.isSneaking() || player.isSleeping() || player.isInSwimmingPose())
-          return false;
+        // if (player.isFallFlying() || player.isSneaking() || player.isSleeping() || player.isInSwimmingPose())
+        //   return false;
         return Configs.BackTools.show_back_tool.getBooleanValue() && !elytra;
       }
       case CAPE: {

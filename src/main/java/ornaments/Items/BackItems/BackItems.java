@@ -1,45 +1,44 @@
 package ornaments.Items.BackItems;
 
-import java.util.List;
-import java.util.ArrayList;
+import net.minecraft.item.Item;
+import net.minecraft.item.Items;
+
+import java.util.HashMap;
 
 public class BackItems {
-  private static List<String> items = new ArrayList<>();
+  private static HashMap<String,Item> itemlist=new HashMap<String,Item>();
 
   public static void Init() {
-    items.add("bow");
-    items.add("crossbow");
-    items.add("diamond_axe");
-    items.add("diamond_pickaxe");
-    items.add("diamond_shovel");
-    items.add("diamond_sword");
-    items.add("golden_axe");
-    items.add("golden_pickaxe");
-    items.add("golden_shovel");
-    items.add("golden_sword");
-    items.add("iron_axe");
-    items.add("iron_pickaxe");
-    items.add("iron_shovel");
-    items.add("iron_sword");
-    items.add("netherite_axe");
-    items.add("netherite_pickaxe");
-    items.add("netherite_shovel");
-    items.add("netherite_sword");
-    items.add("stone_axe");
-    items.add("stone_pickaxe");
-    items.add("stone_shovel");
-    items.add("stone_sword");
-    items.add("trident");
-    items.add("wooden_axe");
-    items.add("wooden_pickaxe");
-    items.add("wooden_shovel");
-    items.add("wooden_sword");
+    itemlist.put("bow",Items.BOW);
+    itemlist.put("crossbow",Items.CROSSBOW);
+    itemlist.put("diamond_axe",Items.DIAMOND_AXE);
+    itemlist.put("diamond_pickaxe",Items.DIAMOND_PICKAXE);
+    itemlist.put("diamond_shovel",Items.DIAMOND_SHOVEL);
+    itemlist.put("diamond_sword",Items.DIAMOND_SWORD);
+    itemlist.put("golden_axe",Items.GOLDEN_AXE);
+    itemlist.put("golden_pickaxe",Items.GOLDEN_PICKAXE);
+    itemlist.put("golden_shovel",Items.GOLDEN_SHOVEL);
+    itemlist.put("golden_sword",Items.GOLDEN_SWORD);
+    itemlist.put("iron_axe",Items.IRON_AXE);
+    itemlist.put("iron_pickaxe",Items.IRON_PICKAXE);
+    itemlist.put("iron_shovel",Items.IRON_SHOVEL);
+    itemlist.put("iron_sword",Items.IRON_SWORD);
+    itemlist.put("netherite_axe",Items.NETHERITE_AXE);
+    itemlist.put("netherite_pickaxe",Items.NETHERITE_PICKAXE);
+    itemlist.put("netherite_shovel",Items.NETHERITE_SHOVEL);
+    itemlist.put("netherite_sword",Items.NETHERITE_SWORD);
+    itemlist.put("stone_axe",Items.STONE_AXE);
+    itemlist.put("stone_pickaxe",Items.STONE_PICKAXE);
+    itemlist.put("stone_shovel",Items.STONE_SHOVEL);
+    itemlist.put("stone_sword",Items.STONE_SWORD);
+    itemlist.put("trident",Items.TRIDENT);
+    itemlist.put("wooden_axe",Items.WOODEN_AXE);
+    itemlist.put("wooden_pickaxe",Items.WOODEN_PICKAXE);
+    itemlist.put("wooden_shovel",Items.WOODEN_SHOVEL);
+    itemlist.put("wooden_sword",Items.WOODEN_SWORD);
   }
 
-  public static boolean InsideIt(String in) {
-    for (String s : items)
-      if (s.equals(in))
-        return true;
-    return false;
+  public static Item GetItemFromName(String in) {
+    return itemlist.get(in);
   }
 }

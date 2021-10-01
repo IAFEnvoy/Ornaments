@@ -89,19 +89,62 @@ public class Configs implements IConfigHandler {
     public static final ConfigBoolean show_back_tool = new ConfigBoolean(
         new TranslatableText("config.ornaments.show_back_tool").getString(), false,
         new TranslatableText("config.ornaments.show_back_tool.help").getString());
-        public static final ConfigString backToolType = new ConfigString(
-            new TranslatableText("config.ornaments.backtooltype").getString(), "",
-            new TranslatableText("config.ornaments.backtooltype.help").getString());
-    public static final ConfigDouble rotateAngle = new ConfigDouble(
-        new TranslatableText("config.ornaments.rotateangle").getString(), 0, 0, 360, true,
-        new TranslatableText("config.ornaments.rotateangle.help").getString());
+    public static final ConfigString backToolType1 = new ConfigString(
+        new TranslatableText("config.ornaments.backtooltype1").getString(), "",
+        new TranslatableText("config.ornaments.backtooltype1.help").getString());
+    public static final ConfigDouble rotateAngle1 = new ConfigDouble(
+        new TranslatableText("config.ornaments.rotateangle1").getString(), 0, 0, 360, true,
+        new TranslatableText("config.ornaments.rotateangle1.help").getString());
+    public static final ConfigDouble xoffset1 = new ConfigDouble(
+        new TranslatableText("config.ornaments.xoffset1").getString(), 0, -2, 2, true,
+        new TranslatableText("config.ornaments.xoffset1.help").getString());
+    public static final ConfigDouble yoffset1 = new ConfigDouble(
+        new TranslatableText("config.ornaments.xoffset1").getString(), 0, -2, 2, true,
+        new TranslatableText("config.ornaments.xoffset1.help").getString());
+    public static final ConfigString backToolType2 = new ConfigString(
+        new TranslatableText("config.ornaments.backtooltype2").getString(), "",
+        new TranslatableText("config.ornaments.backtooltype2.help").getString());
+    public static final ConfigDouble rotateAngle2 = new ConfigDouble(
+        new TranslatableText("config.ornaments.rotateangle2").getString(), 0, 0, 360, true,
+        new TranslatableText("config.ornaments.rotateangle2.help").getString());
+    public static final ConfigDouble xoffset2 = new ConfigDouble(
+        new TranslatableText("config.ornaments.xoffset2").getString(), 0, -2, 2, true,
+        new TranslatableText("config.ornaments.xoffset2.help").getString());
+    public static final ConfigDouble yoffset2 = new ConfigDouble(
+        new TranslatableText("config.ornaments.xoffset2").getString(), 0, -2, 2, true,
+        new TranslatableText("config.ornaments.xoffset2.help").getString());
 
     public static void Init() {
       Category.BackTools.add(show_back_tool);
-      Category.BackTools.add(backToolType);
-      Category.BackTools.add(rotateAngle);
+      Category.BackTools.add(backToolType1);
+      Category.BackTools.add(rotateAngle1);
+      Category.BackTools.add(xoffset1);
+      Category.BackTools.add(yoffset1);
+      Category.BackTools.add(backToolType2);
+      Category.BackTools.add(rotateAngle2);
+      Category.BackTools.add(xoffset2);
+      Category.BackTools.add(yoffset2);
     }
   }
+
+  public static class BeltSlot {
+    public static final ConfigBoolean show_left = new ConfigBoolean(
+        new TranslatableText("config.ornaments.show_left").getString(), false,
+        new TranslatableText("config.ornaments.show_left.help").getString());
+    public static final ConfigBoolean show_right = new ConfigBoolean(
+        new TranslatableText("config.ornaments.show_right").getString(), false,
+        new TranslatableText("config.ornaments.show_right.help").getString());
+    public static final ConfigString beltslotType1 = new ConfigString(
+        new TranslatableText("config.ornaments.beltslottype1").getString(), "",
+        new TranslatableText("config.ornaments.beltslottype1.help").getString());
+
+    public static void Init() {
+      Category.BeltSlot.add(show_left);
+      Category.BeltSlot.add(show_right);
+      Category.BeltSlot.add(beltslotType1);
+    }
+  }
+
   public static class Magic {
     public static final ConfigBoolean show_magic = new ConfigBoolean(
         new TranslatableText("config.ornaments.show_magic").getString(), false,
@@ -149,6 +192,7 @@ public class Configs implements IConfigHandler {
     Cape.Init();
     Wings.Init();
     BackTools.Init();
+    BeltSlot.Init();
     Magic.Init();
   }
 

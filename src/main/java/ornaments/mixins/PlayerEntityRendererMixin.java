@@ -11,9 +11,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import ornaments.Items.BackItems.BackItemFeatureRenderer;
+import ornaments.Items.BackItems.BackToolFeatureRenderer1;
+import ornaments.Items.BackItems.BackToolFeatureRenderer2;
+import ornaments.Items.BeltSlot.BeltSlotFeatureRenderer;
 import ornaments.Items.MagicArray.MagicsFeatureRenderer;
-import ornaments.Items.SideItems.SideItemFeatureRenderer;
 import ornaments.Items.wings.WingsFeatureRenderer;
 import ornaments.OFcape.CapeRender;
 import ornaments.OFcape.ElytraRender;
@@ -31,9 +32,10 @@ public abstract class PlayerEntityRendererMixin
     this.addFeature(new CapeRender(this));
     this.addFeature(new ElytraRender<>(this));
     this.addFeature(new WingsFeatureRenderer<>(this));
-    this.addFeature(new BackItemFeatureRenderer<>(this));
+    this.addFeature(new BackToolFeatureRenderer1(this));
+    this.addFeature(new BackToolFeatureRenderer2(this));
+    this.addFeature(new BeltSlotFeatureRenderer(this));
     this.addFeature(new MagicsFeatureRenderer<>(this));
-    // this.addFeature(new SideItemFeatureRenderer<>(this));
     this.features.removeIf(renderer -> renderer instanceof ElytraFeatureRenderer);
   }
 }
