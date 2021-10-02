@@ -145,19 +145,43 @@ public class Configs implements IConfigHandler {
     public static final ConfigBoolean enchanted1_1 = new ConfigBoolean(
         new TranslatableText("config.ornaments.enchanted1_1").getString(), false,
         new TranslatableText("config.ornaments.enchanted1_1.help").getString());
+    public static final ConfigDouble rotateAngle1_1 = new ConfigDouble(
+        new TranslatableText("config.ornaments.rotateangle1_1").getString(), 0, 0, 360, true,
+        new TranslatableText("config.ornaments.rotateangle1_1.help").getString());
+    public static final ConfigDouble xoffset1_1 = new ConfigDouble(
+        new TranslatableText("config.ornaments.xoffset1_1").getString(), 0, -2, 2, true,
+        new TranslatableText("config.ornaments.xoffset1_1.help").getString());
+    public static final ConfigDouble yoffset1_1 = new ConfigDouble(
+        new TranslatableText("config.ornaments.yoffset1_1").getString(), 0, -2, 2, true,
+        new TranslatableText("config.ornaments.yoffset1_1.help").getString());
     public static final ConfigString beltslotType2 = new ConfigString(
         new TranslatableText("config.ornaments.beltslottype2").getString(), "",
         new TranslatableText("config.ornaments.beltslottype2.help").getString());
     public static final ConfigBoolean enchanted2_1 = new ConfigBoolean(
         new TranslatableText("config.ornaments.enchanted2_1").getString(), false,
         new TranslatableText("config.ornaments.enchanted2_1.help").getString());
+    public static final ConfigDouble rotateAngle2_1 = new ConfigDouble(
+        new TranslatableText("config.ornaments.rotateangle2_1").getString(), 0, 0, 360, true,
+        new TranslatableText("config.ornaments.rotateangle2_1.help").getString());
+    public static final ConfigDouble xoffset2_1 = new ConfigDouble(
+        new TranslatableText("config.ornaments.xoffset2_1").getString(), 0, -2, 2, true,
+        new TranslatableText("config.ornaments.xoffset2_1.help").getString());
+    public static final ConfigDouble yoffset2_1 = new ConfigDouble(
+        new TranslatableText("config.ornaments.yoffset2_1").getString(), 0, -2, 2, true,
+        new TranslatableText("config.ornaments.yoffset2_1.help").getString());
 
     public static void Init() {
       Category.BeltSlot.add(show_belt);
       Category.BeltSlot.add(beltslotType1);
       Category.BeltSlot.add(enchanted1_1);
+      Category.BeltSlot.add(rotateAngle1_1);
+      Category.BeltSlot.add(xoffset1_1);
+      Category.BeltSlot.add(yoffset1_1);
       Category.BeltSlot.add(beltslotType2);
       Category.BeltSlot.add(enchanted2_1);
+      Category.BeltSlot.add(rotateAngle2_1);
+      Category.BeltSlot.add(xoffset2_1);
+      Category.BeltSlot.add(yoffset2_1);
     }
   }
 
