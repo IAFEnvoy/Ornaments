@@ -22,9 +22,6 @@ public class client implements ClientModInitializer {
   public void onInitializeClient() {
     log(Level.INFO, "Registering...");
     Commands.init();
-    config.init();
-    config.readConfig();
-    config.saveConfig();
 
     ConfigManager.getInstance().registerConfigHandler(MOD_ID, new Configs());
     Configs.loadFile();
