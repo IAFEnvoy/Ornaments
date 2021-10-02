@@ -1,4 +1,4 @@
-package ornaments.OFcape;
+package ornaments.Items.OFcape;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.AbstractClientPlayerEntity;

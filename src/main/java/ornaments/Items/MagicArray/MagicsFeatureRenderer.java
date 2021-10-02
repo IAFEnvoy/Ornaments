@@ -15,8 +15,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import ornaments.Client.client;
 import ornaments.Config.Configs;
-import ornaments.Data.RenderInfo;
-import ornaments.Data.RenderInfo.RenderThings;
+import ornaments.Util.RenderInfo;
+import ornaments.Util.RenderInfo.RenderThings;
 
 public class MagicsFeatureRenderer<T extends LivingEntity, M extends EntityModel<T>> extends FeatureRenderer<T, M> {
   private MagicArrayModel<T> magicModel = new MagicArrayModel<>();

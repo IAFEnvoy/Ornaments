@@ -1,4 +1,4 @@
-package ornaments.OFcape;
+package ornaments.Items.OFcape;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -16,8 +16,8 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3f;
 import ornaments.Config.Configs;
-import ornaments.Data.RenderInfo;
-import ornaments.Data.RenderInfo.RenderThings;
+import ornaments.Util.RenderInfo;
+import ornaments.Util.RenderInfo.RenderThings;
 
 @Environment(EnvType.CLIENT)
 public class CapeRender

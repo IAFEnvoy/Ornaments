@@ -15,14 +15,14 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import ornaments.Client.client;
 import ornaments.Config.Configs;
-import ornaments.Data.RenderInfo;
-import ornaments.Data.RenderInfo.RenderThings;
 import ornaments.Items.wings.models.FeatheredWingModel;
 import ornaments.Items.wings.models.LeatherWingModel;
 import ornaments.Items.wings.models.LightWingsModel;
 import ornaments.Items.wings.models.TechWingsModel;
 import ornaments.Items.wings.models.WingEntityModel;
 import ornaments.Items.wings.models.ZanzasWingsModel;
+import ornaments.Util.RenderInfo;
+import ornaments.Util.RenderInfo.RenderThings;
 
 public class WingsFeatureRenderer<T extends LivingEntity, M extends EntityModel<T>> extends FeatureRenderer<T, M> {
   private WingEntityModel<T> lwingModel = new WingEntityModel<>();

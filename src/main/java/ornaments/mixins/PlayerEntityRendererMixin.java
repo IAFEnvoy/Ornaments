@@ -16,9 +16,9 @@ import ornaments.Items.BackItems.BackToolFeatureRenderer2;
 import ornaments.Items.BeltSlot.BeltSlotFeatureRenderer1;
 import ornaments.Items.BeltSlot.BeltSlotFeatureRenderer2;
 import ornaments.Items.MagicArray.MagicsFeatureRenderer;
+import ornaments.Items.OFcape.CapeRender;
+import ornaments.Items.OFcape.ElytraRender;
 import ornaments.Items.wings.WingsFeatureRenderer;
-import ornaments.OFcape.CapeRender;
-import ornaments.OFcape.ElytraRender;
 
 @Mixin(PlayerEntityRenderer.class)
 public abstract class PlayerEntityRendererMixin

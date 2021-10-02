@@ -18,9 +18,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShearsItem;
 import net.minecraft.util.math.Vec3f;
 import ornaments.Config.Configs;
-import ornaments.Data.RenderInfo;
-import ornaments.Data.RenderInfo.RenderThings;
 import ornaments.Util.GetItems;
+import ornaments.Util.RenderInfo;
+import ornaments.Util.RenderInfo.RenderThings;
 
 @Environment(EnvType.CLIENT)
 public class BeltSlotFeatureRenderer1

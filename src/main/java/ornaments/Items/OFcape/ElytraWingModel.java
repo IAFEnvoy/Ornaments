@@ -1,4 +1,4 @@
-package ornaments.OFcape;
+package ornaments.Items.OFcape;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.model.ModelPart;

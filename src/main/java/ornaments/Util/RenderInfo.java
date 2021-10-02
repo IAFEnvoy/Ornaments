@@ -1,4 +1,4 @@
-package ornaments.Data;
+package ornaments.Util;
 
 import net.minecraft.entity.player.PlayerEntity;
 import ornaments.Config.Configs;

@@ -1,4 +1,4 @@
-package ornaments.Commands;
+package ornaments.Client;
 
 // import java.io.File;
 // import java.io.IOException;

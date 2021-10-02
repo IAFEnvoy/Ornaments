@@ -1,4 +1,4 @@
-package ornaments.OFcape;
+package ornaments.Items.OFcape;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -20,8 +20,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 import ornaments.Config.Configs;
-import ornaments.Data.RenderInfo;
-import ornaments.Data.RenderInfo.RenderThings;
+import ornaments.Util.RenderInfo;
+import ornaments.Util.RenderInfo.RenderThings;
 
 @Environment(EnvType.CLIENT)
 public class ElytraRender<T extends LivingEntity, M extends EntityModel<T>> extends FeatureRenderer<T, M> {

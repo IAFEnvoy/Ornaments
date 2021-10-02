@@ -3,13 +3,13 @@ package ornaments.Client;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import ornaments.Config.Configs;
+
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import fi.dy.masa.malilib.config.ConfigManager;
 import fi.dy.masa.malilib.event.InputEventHandler;
-import ornaments.Config.Configs;
-import ornaments.Commands.Commands;
 
 @Environment(EnvType.CLIENT)
 public class client implements ClientModInitializer {
