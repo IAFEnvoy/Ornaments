@@ -70,6 +70,10 @@
     "config.ornaments.show_belt": "显示侧挂工具",
     "config.ornaments.beltslottype1": "左边的工具",
     "config.ornaments.beltslottype2": "右边的工具",
+    "config.ornaments.enchanted1": "是否附魔",
+    "config.ornaments.enchanted2": "是否附魔",
+    "config.ornaments.enchanted1_1": "是否附魔",
+    "config.ornaments.enchanted2_1": "是否附魔",
 
     "config.ornaments.open_menu_key.help": "打开菜单快捷键",
     "config.ornaments.user.help": "通常填自己的",
@@ -103,5 +107,9 @@
     "config.ornaments.yoffset2.help": "第二个工具的Y轴偏移量",
     "config.ornaments.show_belt.help": "是否显示侧挂工具",
     "config.ornaments.beltslottype1.help": "左边的工具",
-    "config.ornaments.beltslottype2.help": "右边的工具"
+    "config.ornaments.beltslottype2.help": "右边的工具",
+    "config.ornaments.enchanted1.help": "是否附魔",
+    "config.ornaments.enchanted2.help": "是否附魔",
+    "config.ornaments.enchanted1_1.help": "是否附魔",
+    "config.ornaments.enchanted2_1.help": "是否附魔"
 }

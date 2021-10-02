@@ -8,8 +8,11 @@
     "authors": [
         "IAFEnvoy"
     ],
+    "contact": {
+        "sources": "https://github.com/IAFEnvoy/Ornaments"
+    },
 
-    "license": "Mozilla",
+    "license": "GPL 3.0",
     "icon": "assets/ornaments/icon.png",
 
     "environment": "client",

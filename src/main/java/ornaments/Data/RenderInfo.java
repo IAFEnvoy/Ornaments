@@ -11,8 +11,6 @@ public class RenderInfo {
       return false;
     switch (thing) {
       case BACKITEM: {
-        // if (player.isFallFlying() || player.isSneaking() || player.isSleeping() || player.isInSwimmingPose())
-        //   return false;
         return Configs.BackTools.show_back_tool.getBooleanValue() && !elytra;
       }
       case CAPE: {
@@ -35,11 +33,8 @@ public class RenderInfo {
           return false;
         return Configs.Magic.show_magic.getBooleanValue();
       }
-      case HAT: {
-        return true;
-      }
-      case MASK: {
-        return true;
+      case BELTSLOT: {
+        return Configs.BeltSlot.show_belt.getBooleanValue();
       }
       default: {
         return false;
@@ -48,6 +43,6 @@ public class RenderInfo {
   }
 
   public enum RenderThings {
-    CAPE, ELYTRA, BACKITEM, WINGS, MAGIC, HAT, MASK;
+    CAPE, ELYTRA, BACKITEM, WINGS, MAGIC, BELTSLOT;
   }
 }

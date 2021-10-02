@@ -12,12 +12,12 @@ import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.Vec3f;
 import ornaments.Config.Configs;
 import ornaments.Data.RenderInfo;
 import ornaments.Data.RenderInfo.RenderThings;
+import ornaments.Util.GetItems;
 
 @Environment(EnvType.CLIENT)
 public class BackToolFeatureRenderer1
@@ -38,13 +38,14 @@ public class BackToolFeatureRenderer1
         matrixStack.push();
         ModelPart modelPart = this.getContextModel().body;
         modelPart.rotate(matrixStack);
-        Item backSloItem = BackItems.GetItemFromName(Configs.BackTools.backToolType1.getStringValue());
+        ItemStack backSloItem = GetItems.GetItemFromName(Configs.BackTools.backToolType1.getStringValue(),
+            Configs.BackTools.enchanted1.getBooleanValue());
         matrixStack.translate(Configs.BackTools.xoffset1.getDoubleValue(), Configs.BackTools.yoffset1.getDoubleValue(),
             0.22D);
         matrixStack.scale(2.0F, 2.0F, 2.0F);
         matrixStack
             .multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion((float) Configs.BackTools.rotateAngle1.getDoubleValue()));
-        MinecraftClient.getInstance().getHeldItemRenderer().renderItem(livingEntity, new ItemStack(backSloItem),
+        MinecraftClient.getInstance().getHeldItemRenderer().renderItem(livingEntity, backSloItem,
             ModelTransformation.Mode.GROUND, false, matrixStack, vertexConsumerProvider, i);
 
         matrixStack.pop();

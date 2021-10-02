@@ -92,6 +92,9 @@ public class Configs implements IConfigHandler {
     public static final ConfigString backToolType1 = new ConfigString(
         new TranslatableText("config.ornaments.backtooltype1").getString(), "",
         new TranslatableText("config.ornaments.backtooltype1.help").getString());
+    public static final ConfigBoolean enchanted1 = new ConfigBoolean(
+        new TranslatableText("config.ornaments.enchanted1").getString(), false,
+        new TranslatableText("config.ornaments.enchanted1.help").getString());
     public static final ConfigDouble rotateAngle1 = new ConfigDouble(
         new TranslatableText("config.ornaments.rotateangle1").getString(), 0, 0, 360, true,
         new TranslatableText("config.ornaments.rotateangle1.help").getString());
@@ -99,11 +102,14 @@ public class Configs implements IConfigHandler {
         new TranslatableText("config.ornaments.xoffset1").getString(), 0, -2, 2, true,
         new TranslatableText("config.ornaments.xoffset1.help").getString());
     public static final ConfigDouble yoffset1 = new ConfigDouble(
-        new TranslatableText("config.ornaments.xoffset1").getString(), 0, -2, 2, true,
-        new TranslatableText("config.ornaments.xoffset1.help").getString());
+        new TranslatableText("config.ornaments.yoffset1").getString(), 0, -2, 2, true,
+        new TranslatableText("config.ornaments.yoffset1.help").getString());
     public static final ConfigString backToolType2 = new ConfigString(
         new TranslatableText("config.ornaments.backtooltype2").getString(), "",
         new TranslatableText("config.ornaments.backtooltype2.help").getString());
+    public static final ConfigBoolean enchanted2 = new ConfigBoolean(
+        new TranslatableText("config.ornaments.enchanted2").getString(), false,
+        new TranslatableText("config.ornaments.enchanted2.help").getString());
     public static final ConfigDouble rotateAngle2 = new ConfigDouble(
         new TranslatableText("config.ornaments.rotateangle2").getString(), 0, 0, 360, true,
         new TranslatableText("config.ornaments.rotateangle2.help").getString());
@@ -111,16 +117,18 @@ public class Configs implements IConfigHandler {
         new TranslatableText("config.ornaments.xoffset2").getString(), 0, -2, 2, true,
         new TranslatableText("config.ornaments.xoffset2.help").getString());
     public static final ConfigDouble yoffset2 = new ConfigDouble(
-        new TranslatableText("config.ornaments.xoffset2").getString(), 0, -2, 2, true,
-        new TranslatableText("config.ornaments.xoffset2.help").getString());
+        new TranslatableText("config.ornaments.yoffset2").getString(), 0, -2, 2, true,
+        new TranslatableText("config.ornaments.yoffset2.help").getString());
 
     public static void Init() {
       Category.BackTools.add(show_back_tool);
       Category.BackTools.add(backToolType1);
+      Category.BackTools.add(enchanted1);
       Category.BackTools.add(rotateAngle1);
       Category.BackTools.add(xoffset1);
       Category.BackTools.add(yoffset1);
       Category.BackTools.add(backToolType2);
+      Category.BackTools.add(enchanted2);
       Category.BackTools.add(rotateAngle2);
       Category.BackTools.add(xoffset2);
       Category.BackTools.add(yoffset2);
@@ -134,14 +142,22 @@ public class Configs implements IConfigHandler {
     public static final ConfigString beltslotType1 = new ConfigString(
         new TranslatableText("config.ornaments.beltslottype1").getString(), "",
         new TranslatableText("config.ornaments.beltslottype1.help").getString());
+    public static final ConfigBoolean enchanted1_1 = new ConfigBoolean(
+        new TranslatableText("config.ornaments.enchanted1_1").getString(), false,
+        new TranslatableText("config.ornaments.enchanted1_1.help").getString());
     public static final ConfigString beltslotType2 = new ConfigString(
         new TranslatableText("config.ornaments.beltslottype2").getString(), "",
         new TranslatableText("config.ornaments.beltslottype2.help").getString());
+    public static final ConfigBoolean enchanted2_1 = new ConfigBoolean(
+        new TranslatableText("config.ornaments.enchanted2_1").getString(), false,
+        new TranslatableText("config.ornaments.enchanted2_1.help").getString());
 
     public static void Init() {
       Category.BeltSlot.add(show_belt);
       Category.BeltSlot.add(beltslotType1);
+      Category.BeltSlot.add(enchanted1_1);
       Category.BeltSlot.add(beltslotType2);
+      Category.BeltSlot.add(enchanted2_1);
     }
   }
 

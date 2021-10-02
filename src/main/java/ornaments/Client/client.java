@@ -9,8 +9,6 @@ import org.apache.logging.log4j.Logger;
 import fi.dy.masa.malilib.config.ConfigManager;
 import fi.dy.masa.malilib.event.InputEventHandler;
 import ornaments.Config.Configs;
-import ornaments.Items.BackItems.BackItems;
-import ornaments.Items.BeltSlot.BeltItems;
 import ornaments.Commands.Commands;
 
 @Environment(EnvType.CLIENT)
@@ -24,8 +22,6 @@ public class client implements ClientModInitializer {
   public void onInitializeClient() {
     log(Level.INFO, "Registering...");
     Commands.init();
-    BackItems.Init();
-    BeltItems.Init();
     config.init();
     config.readConfig();
     config.saveConfig();
