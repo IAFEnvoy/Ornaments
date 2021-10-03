@@ -11,6 +11,7 @@ import fi.dy.masa.malilib.config.options.ConfigBoolean;
 import fi.dy.masa.malilib.config.options.ConfigColor;
 import fi.dy.masa.malilib.config.options.ConfigDouble;
 import fi.dy.masa.malilib.config.options.ConfigHotkey;
+import fi.dy.masa.malilib.config.options.ConfigOptionList;
 import fi.dy.masa.malilib.config.options.ConfigString;
 import fi.dy.masa.malilib.hotkeys.KeybindSettings;
 import fi.dy.masa.malilib.util.JsonUtils;
@@ -39,7 +40,7 @@ public class Configs implements IConfigHandler {
         new TranslatableText("config.ornaments.show_cape.help").getString());
     public static final ConfigBoolean Render_With_Elytra = new ConfigBoolean(
         new TranslatableText("config.ornaments.render_with_elytra").getString(), false,
-        new TranslatableText("config.ornaments.show_cape.help").getString());
+        new TranslatableText("config.ornaments.render_with_elytra.help").getString());
     public static final ConfigString CapeUser = new ConfigString(
         new TranslatableText("config.ornaments.capeuser").getString(), "",
         new TranslatableText("config.ornaments.capeuser.help").getString());
@@ -58,8 +59,8 @@ public class Configs implements IConfigHandler {
     public static final ConfigBoolean Overwrite_Elytra = new ConfigBoolean(
         new TranslatableText("config.ornaments.overwrite_elytra").getString(), false,
         new TranslatableText("config.ornaments.overwrite_elytra.help").getString());
-    public static final ConfigString wingType = new ConfigString(
-        new TranslatableText("config.ornaments.wingtype").getString(), "",
+    public static final ConfigOptionList wingtype = new ConfigOptionList(
+        new TranslatableText("config.ornaments.wingtype").getString(), WingType.None,
         new TranslatableText("config.ornaments.wingtype.help").getString());
     public static final ConfigColor lwingcolorl1 = new ConfigColor(
         new TranslatableText("config.ornaments.lwingcolorl1").getString(), "0xF0FFFFFF",
@@ -77,7 +78,7 @@ public class Configs implements IConfigHandler {
     public static void Init() {
       Category.Wings.add(SHOW_WING);
       Category.Wings.add(Overwrite_Elytra);
-      Category.Wings.add(wingType);
+      Category.Wings.add(wingtype);
       Category.Wings.add(lwingcolorl1);
       Category.Wings.add(lwingcolorl2);
       Category.Wings.add(rwingcolorl1);
@@ -215,15 +216,15 @@ public class Configs implements IConfigHandler {
         new TranslatableText("config.ornaments.color4.help").getString());
 
     public static void Init() {
-      Category.Magic.add(show_magic);
-      Category.Magic.add(type1);
-      Category.Magic.add(color1);
-      Category.Magic.add(type2);
-      Category.Magic.add(color2);
-      Category.Magic.add(type3);
-      Category.Magic.add(color3);
-      Category.Magic.add(type4);
-      Category.Magic.add(color4);
+      // Category.Magic.add(show_magic);
+      // Category.Magic.add(type1);
+      // Category.Magic.add(color1);
+      // Category.Magic.add(type2);
+      // Category.Magic.add(color2);
+      // Category.Magic.add(type3);
+      // Category.Magic.add(color3);
+      // Category.Magic.add(type4);
+      // Category.Magic.add(color4);
     }
   }
 
@@ -233,7 +234,7 @@ public class Configs implements IConfigHandler {
     Wings.Init();
     BackTools.Init();
     BeltSlot.Init();
-    Magic.Init();
+    // Magic.Init();
   }
 
   @Override

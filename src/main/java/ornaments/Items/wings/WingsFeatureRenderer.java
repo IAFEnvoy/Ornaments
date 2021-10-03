@@ -39,7 +39,7 @@ public class WingsFeatureRenderer<T extends LivingEntity, M extends EntityModel<
       if (((PlayerEntity) entity).getName().asString().equals(Configs.General.User.getStringValue())) {
         if (!RenderInfo.ifRender(RenderThings.WINGS, (PlayerEntity)entity))
           return;
-        String wingType = Configs.Wings.wingType.getStringValue();
+        String wingType = Configs.Wings.wingtype.getStringValue();
         if (wingType.equals("feathered")) {
           lwingModel = new FeatheredWingModel<>(true);
           rwingModel = new FeatheredWingModel<>(false);
