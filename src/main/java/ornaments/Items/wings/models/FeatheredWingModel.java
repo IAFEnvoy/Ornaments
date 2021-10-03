@@ -1,7 +1,7 @@
 /*
  * Model by cybercat5555
  */
-package ornaments.Items.wings.models;
+package ornaments.Items.Wings.models;
 
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.entity.LivingEntity;

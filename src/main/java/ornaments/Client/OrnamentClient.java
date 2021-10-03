@@ -12,7 +12,7 @@ import fi.dy.masa.malilib.config.ConfigManager;
 import fi.dy.masa.malilib.event.InputEventHandler;
 
 @Environment(EnvType.CLIENT)
-public class client implements ClientModInitializer {
+public class OrnamentClient implements ClientModInitializer {
   public static Logger LOGGER = LogManager.getLogger();
 
   public static final String MOD_ID = "ornaments";

@@ -1,4 +1,4 @@
-package ornaments.Items.wings;
+package ornaments.Items.Wings;
 
 import fi.dy.masa.malilib.util.Color4f;
 import net.minecraft.client.render.OverlayTexture;
@@ -13,14 +13,14 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
-import ornaments.Client.client;
+import ornaments.Client.OrnamentClient;
 import ornaments.Config.Configs;
-import ornaments.Items.wings.models.FeatheredWingModel;
-import ornaments.Items.wings.models.LeatherWingModel;
-import ornaments.Items.wings.models.LightWingsModel;
-import ornaments.Items.wings.models.TechWingsModel;
-import ornaments.Items.wings.models.WingEntityModel;
-import ornaments.Items.wings.models.ZanzasWingsModel;
+import ornaments.Items.Wings.models.FeatheredWingModel;
+import ornaments.Items.Wings.models.LeatherWingModel;
+import ornaments.Items.Wings.models.LightWingsModel;
+import ornaments.Items.Wings.models.TechWingsModel;
+import ornaments.Items.Wings.models.WingEntityModel;
+import ornaments.Items.Wings.models.ZanzasWingsModel;
 import ornaments.Util.RenderInfo;
 import ornaments.Util.RenderInfo.RenderThings;
 
@@ -58,8 +58,8 @@ public class WingsFeatureRenderer<T extends LivingEntity, M extends EntityModel<
         } else
           return;
 
-        Identifier layer1 = new Identifier(client.MOD_ID, "textures/wing/" + wingType + "_wings.png");
-        Identifier layer2 = new Identifier(client.MOD_ID, "textures/wing/" + wingType + "_wings_2.png");
+        Identifier layer1 = new Identifier(OrnamentClient.MOD_ID, "textures/wing/" + wingType + "_wings.png");
+        Identifier layer2 = new Identifier(OrnamentClient.MOD_ID, "textures/wing/" + wingType + "_wings_2.png");
 
         matrices.push();
         matrices.translate(0.0D, 0.0D, 0.125D);

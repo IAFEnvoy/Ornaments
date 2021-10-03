@@ -1,4 +1,4 @@
-package ornaments.Items.wings;
+package ornaments.Items.Wings;
 
 import fi.dy.masa.malilib.config.IConfigOptionListEntry;
 import fi.dy.masa.malilib.util.StringUtils;

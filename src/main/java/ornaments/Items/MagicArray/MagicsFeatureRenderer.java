@@ -13,7 +13,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
-import ornaments.Client.client;
+import ornaments.Client.OrnamentClient;
 import ornaments.Config.Configs;
 import ornaments.Util.RenderInfo;
 import ornaments.Util.RenderInfo.RenderThings;
@@ -37,19 +37,19 @@ public class MagicsFeatureRenderer<T extends LivingEntity, M extends EntityModel
         this.magicModel.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
         if (!Configs.Magic.type4.getStringValue().isEmpty())
           this.renderMagic(matrices, vertexConsumers,
-              new Identifier(client.MOD_ID, "textures/magic/" + Configs.Magic.type4.getStringValue() + ".png"), light,
+              new Identifier(OrnamentClient.MOD_ID, "textures/magic/" + Configs.Magic.type4.getStringValue() + ".png"), light,
               Configs.Magic.color4.getColor());
         if (!Configs.Magic.type3.getStringValue().isEmpty())
           this.renderMagic(matrices, vertexConsumers,
-              new Identifier(client.MOD_ID, "textures/magic/" + Configs.Magic.type3.getStringValue() + ".png"), light,
+              new Identifier(OrnamentClient.MOD_ID, "textures/magic/" + Configs.Magic.type3.getStringValue() + ".png"), light,
               Configs.Magic.color3.getColor());
         if (!Configs.Magic.type2.getStringValue().isEmpty())
           this.renderMagic(matrices, vertexConsumers,
-              new Identifier(client.MOD_ID, "textures/magic/" + Configs.Magic.type2.getStringValue() + ".png"), light,
+              new Identifier(OrnamentClient.MOD_ID, "textures/magic/" + Configs.Magic.type2.getStringValue() + ".png"), light,
               Configs.Magic.color2.getColor());
         if (!Configs.Magic.type1.getStringValue().isEmpty())
           this.renderMagic(matrices, vertexConsumers,
-              new Identifier(client.MOD_ID, "textures/magic/" + Configs.Magic.type1.getStringValue() + ".png"), light,
+              new Identifier(OrnamentClient.MOD_ID, "textures/magic/" + Configs.Magic.type1.getStringValue() + ".png"), light,
               Configs.Magic.color1.getColor());
         matrices.pop();
       }
