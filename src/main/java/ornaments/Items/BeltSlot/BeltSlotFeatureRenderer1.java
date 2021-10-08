@@ -40,23 +40,28 @@ public class BeltSlotFeatureRenderer1
           return;
         float offsetx = (float) Configs.BeltSlot.xoffset1_1.getDoubleValue();
         float offsety = (float) Configs.BeltSlot.yoffset1_1.getDoubleValue();
+        float offsetz = (float) Configs.BeltSlot.zoffset1_1.getDoubleValue();
         matrixStack.push();
         ModelPart modelPart = this.getContextModel().body;
         modelPart.rotate(matrixStack);
         double switchBeltSide = 0.29D;
         ItemStack item = GetItems.GetItemFromName(Configs.BeltSlot.beltslotType1.getStringValue(),
             Configs.BeltSlot.enchanted1_1.getBooleanValue());
-        matrixStack.translate(switchBeltSide, offsety + 0.5D, offsetx + 0.05D);
+        matrixStack.translate(offsetz + switchBeltSide, offsety + 0.5D, offsetx + 0.05D);
         if (item.getItem() instanceof FlintAndSteelItem)
-          matrixStack.translate(0.01F, offsety, offsetx - 0.1F);
-        matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(-90.0F));
+          matrixStack.translate(offsetz + 0.01F, offsety, offsetx - 0.1F);
+        matrixStack
+            .multiply(Vec3f.POSITIVE_X.getDegreesQuaternion((float) Configs.BeltSlot.rotateAnglex1_1.getDoubleValue()));
+        matrixStack.multiply(
+            Vec3f.POSITIVE_Y.getDegreesQuaternion((float) Configs.BeltSlot.rotateAngley1_1.getDoubleValue() - 90.0F));
         matrixStack.multiply(
             Vec3f.POSITIVE_Z.getDegreesQuaternion((float) (Configs.BeltSlot.rotateAngle1_1.getDoubleValue())));
-        matrixStack.scale(2.0F, 2.0F, 2.0F);
+        matrixStack.scale((float) Configs.BeltSlot.size1_1.getDoubleValue(),
+            (float) Configs.BeltSlot.size1_1.getDoubleValue(), (float) Configs.BeltSlot.size1_1.getDoubleValue());
         if (item.getItem() instanceof ShearsItem || item.getItem() instanceof FlintAndSteelItem) {
           matrixStack.scale(0.65F, 0.65F, 0.65F);
           if (!livingEntity.hasStackEquipped(EquipmentSlot.CHEST))
-            matrixStack.translate(0.0F, offsety, offsetx + 0.015F);
+            matrixStack.translate(offsetz, offsety, offsetx + 0.015F);
         }
         MinecraftClient.getInstance().getHeldItemRenderer().renderItem(livingEntity, item,
             ModelTransformation.Mode.GROUND, false, matrixStack, vertexConsumerProvider, i);

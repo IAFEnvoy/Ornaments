@@ -41,10 +41,15 @@ public class BackToolFeatureRenderer1
         ItemStack backSloItem = GetItems.GetItemFromName(Configs.BackTools.backToolType1.getStringValue(),
             Configs.BackTools.enchanted1.getBooleanValue());
         matrixStack.translate(Configs.BackTools.xoffset1.getDoubleValue(), Configs.BackTools.yoffset1.getDoubleValue(),
-            0.22D);
-        matrixStack.scale(2.0F, 2.0F, 2.0F);
+            Configs.BackTools.zoffset1.getDoubleValue() + 0.22D);
+        matrixStack.scale((float) Configs.BackTools.size1.getDoubleValue(),
+            (float) Configs.BackTools.size1.getDoubleValue(), (float) Configs.BackTools.size1.getDoubleValue());
         matrixStack
             .multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion((float) Configs.BackTools.rotateAngle1.getDoubleValue()));
+        matrixStack
+            .multiply(Vec3f.POSITIVE_X.getDegreesQuaternion((float) Configs.BackTools.rotateAnglex1.getDoubleValue()));
+        matrixStack
+            .multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion((float) Configs.BackTools.rotateAngley1.getDoubleValue()));
         MinecraftClient.getInstance().getHeldItemRenderer().renderItem(livingEntity, backSloItem,
             ModelTransformation.Mode.GROUND, false, matrixStack, vertexConsumerProvider, i);
 

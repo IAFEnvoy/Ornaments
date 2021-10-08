@@ -99,12 +99,21 @@ public class Configs implements IConfigHandler {
     public static final ConfigDouble rotateAngle1 = new ConfigDouble(
         new TranslatableText("config.ornaments.rotateangle1").getString(), 0, 0, 360, true,
         new TranslatableText("config.ornaments.rotateangle1.help").getString());
+    public static final ConfigDouble rotateAnglex1 = new ConfigDouble(
+        new TranslatableText("config.ornaments.rotateanglex1").getString(), 0, 0, 360, true,
+        new TranslatableText("config.ornaments.rotateanglex1.help").getString());
+    public static final ConfigDouble rotateAngley1 = new ConfigDouble(
+        new TranslatableText("config.ornaments.rotateangley1").getString(), 0, 0, 360, true,
+        new TranslatableText("config.ornaments.rotateangley1.help").getString());
     public static final ConfigDouble xoffset1 = new ConfigDouble(
         new TranslatableText("config.ornaments.xoffset1").getString(), 0, -2, 2, true,
         new TranslatableText("config.ornaments.xoffset1.help").getString());
     public static final ConfigDouble yoffset1 = new ConfigDouble(
         new TranslatableText("config.ornaments.yoffset1").getString(), 0, -2, 2, true,
         new TranslatableText("config.ornaments.yoffset1.help").getString());
+    public static final ConfigDouble zoffset1 = new ConfigDouble(
+        new TranslatableText("config.ornaments.zoffset1").getString(), 0, -2, 2, true,
+        new TranslatableText("config.ornaments.zoffset1.help").getString());
     public static final ConfigString backToolType2 = new ConfigString(
         new TranslatableText("config.ornaments.backtooltype2").getString(), "",
         new TranslatableText("config.ornaments.backtooltype2.help").getString());
@@ -120,6 +129,21 @@ public class Configs implements IConfigHandler {
     public static final ConfigDouble yoffset2 = new ConfigDouble(
         new TranslatableText("config.ornaments.yoffset2").getString(), 0, -2, 2, true,
         new TranslatableText("config.ornaments.yoffset2.help").getString());
+    public static final ConfigDouble zoffset2 = new ConfigDouble(
+        new TranslatableText("config.ornaments.zoffset2").getString(), 0, -2, 2, true,
+        new TranslatableText("config.ornaments.zoffset2.help").getString());
+    public static final ConfigDouble rotateAnglex2 = new ConfigDouble(
+        new TranslatableText("config.ornaments.rotateanglex2").getString(), 0, 0, 360, true,
+        new TranslatableText("config.ornaments.rotateanglex2.help").getString());
+    public static final ConfigDouble rotateAngley2 = new ConfigDouble(
+        new TranslatableText("config.ornaments.rotateangley2").getString(), 0, 0, 360, true,
+        new TranslatableText("config.ornaments.rotateangley2.help").getString());
+    public static final ConfigDouble size1 = new ConfigDouble(
+        new TranslatableText("config.ornaments.size1").getString(), 2, 0, 5, true,
+        new TranslatableText("config.ornaments.size1.help").getString());
+    public static final ConfigDouble size2 = new ConfigDouble(
+        new TranslatableText("config.ornaments.size2").getString(), 2, 0, 5, true,
+        new TranslatableText("config.ornaments.size2.help").getString());
 
     public static void Init() {
       Category.BackTools.add(show_back_tool);
@@ -133,6 +157,15 @@ public class Configs implements IConfigHandler {
       Category.BackTools.add(rotateAngle2);
       Category.BackTools.add(xoffset2);
       Category.BackTools.add(yoffset2);
+
+      Category.BugFix.add(rotateAnglex1);
+      Category.BugFix.add(rotateAngley1);
+      Category.BugFix.add(zoffset1);
+      Category.BugFix.add(size1);
+      Category.BugFix.add(rotateAnglex2);
+      Category.BugFix.add(rotateAngley2);
+      Category.BugFix.add(zoffset2);
+      Category.BugFix.add(size2);
     }
   }
 
@@ -171,6 +204,31 @@ public class Configs implements IConfigHandler {
         new TranslatableText("config.ornaments.yoffset2_1").getString(), 0, -2, 2, true,
         new TranslatableText("config.ornaments.yoffset2_1.help").getString());
 
+    public static final ConfigDouble rotateAnglex1_1 = new ConfigDouble(
+        new TranslatableText("config.ornaments.rotateanglex1_1").getString(), 0, 0, 360, true,
+        new TranslatableText("config.ornaments.rotateanglex1_1.help").getString());
+    public static final ConfigDouble rotateAngley1_1 = new ConfigDouble(
+        new TranslatableText("config.ornaments.rotateangley1_1").getString(), 0, 0, 360, true,
+        new TranslatableText("config.ornaments.rotateangley1_1.help").getString());
+    public static final ConfigDouble zoffset1_1 = new ConfigDouble(
+        new TranslatableText("config.ornaments.zoffset1_1").getString(), 0, -2, 2, true,
+        new TranslatableText("config.ornaments.zoffset1_1.help").getString());
+    public static final ConfigDouble rotateAnglex2_1 = new ConfigDouble(
+        new TranslatableText("config.ornaments.rotateanglex2_1").getString(), 0, 0, 360, true,
+        new TranslatableText("config.ornaments.rotateanglex2_1.help").getString());
+    public static final ConfigDouble rotateAngley2_1 = new ConfigDouble(
+        new TranslatableText("config.ornaments.rotateangley2_1").getString(), 0, 0, 360, true,
+        new TranslatableText("config.ornaments.rotateangley2_1.help").getString());
+    public static final ConfigDouble zoffset2_1 = new ConfigDouble(
+        new TranslatableText("config.ornaments.zoffset2_1").getString(), 0, -2, 2, true,
+        new TranslatableText("config.ornaments.zoffset2_1.help").getString());
+    public static final ConfigDouble size1_1 = new ConfigDouble(
+        new TranslatableText("config.ornaments.size1_1").getString(), 2, 0, 5, true,
+        new TranslatableText("config.ornaments.size1_1.help").getString());
+    public static final ConfigDouble size2_1 = new ConfigDouble(
+        new TranslatableText("config.ornaments.size2_1").getString(), 2, 0, 5, true,
+        new TranslatableText("config.ornaments.size2_1.help").getString());
+
     public static void Init() {
       Category.BeltSlot.add(show_belt);
       Category.BeltSlot.add(beltslotType1);
@@ -183,6 +241,15 @@ public class Configs implements IConfigHandler {
       Category.BeltSlot.add(rotateAngle2_1);
       Category.BeltSlot.add(xoffset2_1);
       Category.BeltSlot.add(yoffset2_1);
+      
+      Category.BugFix.add(rotateAnglex1_1);
+      Category.BugFix.add(rotateAngley1_1);
+      Category.BugFix.add(zoffset1_1);
+      Category.BugFix.add(size1_1);
+      Category.BugFix.add(rotateAnglex2_1);
+      Category.BugFix.add(rotateAngley2_1);
+      Category.BugFix.add(zoffset2_1);
+      Category.BugFix.add(size2_1);
     }
   }
 
