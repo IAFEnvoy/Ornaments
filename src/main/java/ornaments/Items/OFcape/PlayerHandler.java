@@ -10,11 +10,14 @@ import net.minecraft.util.Identifier;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.HashMap;
 
 public class PlayerHandler {
 
+  public static HashMap<String, Identifier> capes = new HashMap<String, Identifier>();
+
   public static Identifier fromPlayer(PlayerEntity player) {
-    return Get.capes.get(player.getUuidAsString());
+    return capes.get(player.getUuidAsString());
   }
 
   public static void onPlayerJoin(PlayerEntity player) {
@@ -35,7 +38,7 @@ public class PlayerHandler {
       setCape(uuid, capeURL.openStream());
       return true;
     } catch (IOException e) {
-      Get.capes.put(uuid, null);
+      capes.put(uuid, null);
       return false;
     }
   }
@@ -51,7 +54,7 @@ public class PlayerHandler {
       NativeImageBackedTexture nIBT = new NativeImageBackedTexture(parseCape(cape));
       Identifier capeTexture = MinecraftClient.getInstance().getTextureManager()
           .registerDynamicTexture(uuid.replace("-", ""), nIBT);
-      Get.capes.put(uuid, capeTexture);
+      capes.put(uuid, capeTexture);
     }
   }
 

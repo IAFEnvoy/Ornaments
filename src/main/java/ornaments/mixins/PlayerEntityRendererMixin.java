@@ -15,9 +15,9 @@ import ornaments.Items.BackItems.BackToolFeatureRenderer1;
 import ornaments.Items.BackItems.BackToolFeatureRenderer2;
 import ornaments.Items.BeltSlot.BeltSlotFeatureRenderer1;
 import ornaments.Items.BeltSlot.BeltSlotFeatureRenderer2;
+import ornaments.Items.Cape.ElytraRender;
 import ornaments.Items.MagicArray.MagicsFeatureRenderer;
-import ornaments.Items.OFcape.CapeRender;
-import ornaments.Items.OFcape.ElytraRender;
+import ornaments.Items.Cape.CapeRender;
 import ornaments.Items.Wings.WingsFeatureRenderer;
 
 @Mixin(PlayerEntityRenderer.class)
@@ -31,13 +31,14 @@ public abstract class PlayerEntityRendererMixin
   @Inject(method = "<init>(Lnet/minecraft/client/render/entity/EntityRenderDispatcher;Z)V", at = @At(value = "INVOKE", shift = At.Shift.AFTER, target = "net/minecraft/client/render/entity/PlayerEntityRenderer.addFeature(Lnet/minecraft/client/render/entity/feature/FeatureRenderer;)Z", ordinal = 6))
   public void postConstructor(CallbackInfo callbackInfo) {
     this.addFeature(new CapeRender(this));
-    this.addFeature(new ElytraRender<>(this));
+    // this.addFeature(new ElytraRender<>(this));
     this.addFeature(new WingsFeatureRenderer<>(this));
     this.addFeature(new BackToolFeatureRenderer1(this));
     this.addFeature(new BackToolFeatureRenderer2(this));
     this.addFeature(new BeltSlotFeatureRenderer1(this));
     this.addFeature(new BeltSlotFeatureRenderer2(this));
     this.addFeature(new MagicsFeatureRenderer<>(this));
+    this.addFeature(new ElytraRender<>(this));
     this.features.removeIf(renderer -> renderer instanceof ElytraFeatureRenderer);
   }
 }

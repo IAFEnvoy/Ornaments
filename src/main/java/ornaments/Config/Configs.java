@@ -44,11 +44,79 @@ public class Configs implements IConfigHandler {
     public static final ConfigString CapeUser = new ConfigString(
         new TranslatableText("config.ornaments.capeuser").getString(), "",
         new TranslatableText("config.ornaments.capeuser.help").getString());
+    public static final ConfigColor colorbase = new ConfigColor(
+        new TranslatableText("config.ornaments.colorbase").getString(), "0xF0FFFFFF",
+        new TranslatableText("config.ornaments.colorbase.help").getString());
+    public static final ConfigString name1 = new ConfigString(
+        new TranslatableText("config.ornaments.name1").getString(), "",
+        new TranslatableText("config.ornaments.name1.help").getString());
+    public static final ConfigColor color1 = new ConfigColor(
+        new TranslatableText("config.ornaments.color1").getString(), "0xF0FFFFFF",
+        new TranslatableText("config.ornaments.color1.help").getString());
+    public static final ConfigString name2 = new ConfigString(
+        new TranslatableText("config.ornaments.name2").getString(), "",
+        new TranslatableText("config.ornaments.name2.help").getString());
+    public static final ConfigColor color2 = new ConfigColor(
+        new TranslatableText("config.ornaments.color2").getString(), "0xF0FFFFFF",
+        new TranslatableText("config.ornaments.color2.help").getString());
+    public static final ConfigString name3 = new ConfigString(
+        new TranslatableText("config.ornaments.name3").getString(), "",
+        new TranslatableText("config.ornaments.name3.help").getString());
+    public static final ConfigColor color3 = new ConfigColor(
+        new TranslatableText("config.ornaments.color3").getString(), "0xF0FFFFFF",
+        new TranslatableText("config.ornaments.color3.help").getString());
+    public static final ConfigString name4 = new ConfigString(
+        new TranslatableText("config.ornaments.name4").getString(), "",
+        new TranslatableText("config.ornaments.name4.help").getString());
+    public static final ConfigColor color4 = new ConfigColor(
+        new TranslatableText("config.ornaments.color4").getString(), "0xF0FFFFFF",
+        new TranslatableText("config.ornaments.color4.help").getString());
+    public static final ConfigString name5 = new ConfigString(
+        new TranslatableText("config.ornaments.name5").getString(), "",
+        new TranslatableText("config.ornaments.name5.help").getString());
+    public static final ConfigColor color5 = new ConfigColor(
+        new TranslatableText("config.ornaments.color5").getString(), "0xF0FFFFFF",
+        new TranslatableText("config.ornaments.color5.help").getString());
+    public static final ConfigString name6 = new ConfigString(
+        new TranslatableText("config.ornaments.name6").getString(), "",
+        new TranslatableText("config.ornaments.name6.help").getString());
+    public static final ConfigColor color6 = new ConfigColor(
+        new TranslatableText("config.ornaments.color6").getString(), "0xF0FFFFFF",
+        new TranslatableText("config.ornaments.color6.help").getString());
+    public static final ConfigString name7 = new ConfigString(
+        new TranslatableText("config.ornaments.name7").getString(), "",
+        new TranslatableText("config.ornaments.name7.help").getString());
+    public static final ConfigColor color7 = new ConfigColor(
+        new TranslatableText("config.ornaments.color7").getString(), "0xF0FFFFFF",
+        new TranslatableText("config.ornaments.color7.help").getString());
+    public static final ConfigString name8 = new ConfigString(
+        new TranslatableText("config.ornaments.name8").getString(), "",
+        new TranslatableText("config.ornaments.name8.help").getString());
+    public static final ConfigColor color8 = new ConfigColor(
+        new TranslatableText("config.ornaments.color8").getString(), "0xF0FFFFFF",
+        new TranslatableText("config.ornaments.color8.help").getString());
 
     public static void Init() {
       Category.Cape.add(SHOW_CAPE);
-      Category.Cape.add(Render_With_Elytra);
-      Category.Cape.add(CapeUser);
+      // Category.Cape.add(Render_With_Elytra);
+      // Category.Cape.add(CapeUser);
+      Category.Cape.add(colorbase);
+      Category.Cape.add(name1);
+      Category.Cape.add(color1);
+      Category.Cape.add(name2);
+      Category.Cape.add(color2);
+      Category.Cape.add(name3);
+      Category.Cape.add(color3);
+      Category.Cape.add(name4);
+      Category.Cape.add(color4);
+      Category.Cape.add(name5);
+      Category.Cape.add(color5);
+      Category.Cape.add(name6);
+      Category.Cape.add(color6);
+      Category.Cape.add(name7);
+      Category.Cape.add(color7);
+      Category.Cape.add(name8);
+      Category.Cape.add(color8);
     }
   }
 

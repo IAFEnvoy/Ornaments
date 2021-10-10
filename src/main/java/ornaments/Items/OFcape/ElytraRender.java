@@ -20,8 +20,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 import ornaments.Config.Configs;
-import ornaments.Util.RenderInfo;
-import ornaments.Util.RenderInfo.RenderThings;
 
 @Environment(EnvType.CLIENT)
 public class ElytraRender<T extends LivingEntity, M extends EntityModel<T>> extends FeatureRenderer<T, M> {
@@ -35,10 +33,10 @@ public class ElytraRender<T extends LivingEntity, M extends EntityModel<T>> exte
   @Override
   public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T livingEntity,
       float f, float g, float h, float j, float k, float l) {
-    RenderInfo.elytra = livingEntity.getEquippedStack(EquipmentSlot.CHEST).getItem() == Items.ELYTRA;
-    if (RenderInfo.elytra) {
-      if (!RenderInfo.ifRender(RenderThings.ELYTRA, (PlayerEntity)livingEntity)
-          && ((PlayerEntity) livingEntity).getName().asString().equals(Configs.General.User.getStringValue()))
+    if (livingEntity instanceof PlayerEntity) {
+      if (livingEntity.getEquippedStack(EquipmentSlot.CHEST).getItem() != Items.ELYTRA)
+        return;
+      if (livingEntity.getName().getString().equals(Configs.General.User.getStringValue()))
         return;
       matrixStack.push();
       matrixStack.translate(0.0D, 0.0D, 0.125D);
@@ -60,6 +58,8 @@ public class ElytraRender<T extends LivingEntity, M extends EntityModel<T>> exte
     Identifier elytraTexture;
     if (livingEntity instanceof AbstractClientPlayerEntity) {
       AbstractClientPlayerEntity abscp = (AbstractClientPlayerEntity) livingEntity;
+      if (abscp.getName().getString().equals(Configs.General.User.getStringValue()))
+        return;
       if (abscp.canRenderElytraTexture() && abscp.getElytraTexture() != null
           && Configs.Cape.SHOW_CAPE.getBooleanValue())
         elytraTexture = abscp.getElytraTexture();

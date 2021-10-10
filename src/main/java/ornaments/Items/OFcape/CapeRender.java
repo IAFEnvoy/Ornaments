@@ -2,7 +2,6 @@ package ornaments.Items.OFcape;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
@@ -13,6 +12,7 @@ import net.minecraft.client.render.entity.feature.FeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3f;
 import ornaments.Config.Configs;
@@ -28,22 +28,16 @@ public class CapeRender
     super(featureRendererContext);
   }
 
-  public static String capethisplayer = "";
-
   public void render(final MatrixStack matrixStack, final VertexConsumerProvider vertexConsumerProvider, final int i,
       final AbstractClientPlayerEntity abstractClientPlayerEntity, final float f, final float g, final float h,
       final float j, final float k, final float l) {
-    if (!capethisplayer.equals(Configs.Cape.CapeUser.getStringValue())) {
-      capethisplayer = Configs.Cape.CapeUser.getStringValue();
-      Get.GetCape(MinecraftClient.getInstance().player, capethisplayer);
-    }
     if (abstractClientPlayerEntity.canRenderCapeTexture() && !abstractClientPlayerEntity.isInvisible()
         && abstractClientPlayerEntity.isPartVisible(PlayerModelPart.CAPE)
-        && Get.fromPlayer(abstractClientPlayerEntity) != null) {
-      if (abstractClientPlayerEntity.getName().equals(MinecraftClient.getInstance().player.getName())) {
-        if (!Configs.Cape.SHOW_CAPE.getBooleanValue())
-          return;
-      }
+        && PlayerHandler.fromPlayer(abstractClientPlayerEntity) != null) {
+      if (abstractClientPlayerEntity.getName().getString().equals(Configs.General.User.getStringValue()))
+        return;
+
+      Identifier texture = PlayerHandler.fromPlayer(abstractClientPlayerEntity);
       if (RenderInfo.ifRender(RenderThings.CAPE, abstractClientPlayerEntity)) {
         matrixStack.push();
         matrixStack.translate(0.0D, 0.0D, 0.125D);
@@ -78,8 +72,7 @@ public class CapeRender
         matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(6.0F + r / 2.0F + q));
         matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(s / 2.0F));
         matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180.0F - s / 2.0F));
-        final VertexConsumer vertexConsumer = vertexConsumerProvider
-            .getBuffer(RenderLayer.getEntitySolid(Get.fromPlayer(abstractClientPlayerEntity)));
+        final VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(RenderLayer.getEntitySolid(texture));
         (this.getContextModel()).renderCape(matrixStack, vertexConsumer, i, OverlayTexture.DEFAULT_UV);
         matrixStack.pop();
       }

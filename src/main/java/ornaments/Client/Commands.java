@@ -36,7 +36,7 @@ public class Commands {
       e.printStackTrace();
       return 1;
     }
-    System.out.println(StringArgumentType.getString(context, "R1"));
+    // System.out.println(StringArgumentType.getString(context, "R1"));
     return 0;
   }
 
