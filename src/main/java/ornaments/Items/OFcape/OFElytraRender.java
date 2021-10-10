@@ -22,11 +22,11 @@ import net.minecraft.util.Identifier;
 import ornaments.Config.Configs;
 
 @Environment(EnvType.CLIENT)
-public class ElytraRender<T extends LivingEntity, M extends EntityModel<T>> extends FeatureRenderer<T, M> {
+public class OFElytraRender<T extends LivingEntity, M extends EntityModel<T>> extends FeatureRenderer<T, M> {
   private final ElytraWingModel<T> leftWing = new ElytraWingModel<>(false);
   private final ElytraWingModel<T> rightWing = new ElytraWingModel<>(true);
 
-  public ElytraRender(FeatureRendererContext<T, M> context) {
+  public OFElytraRender(FeatureRendererContext<T, M> context) {
     super(context);
   }
 

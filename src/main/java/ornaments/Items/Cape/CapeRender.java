@@ -39,7 +39,7 @@ public class CapeRender<T extends LivingEntity, M extends EntityModel<T>> extend
     if (livingEntity instanceof PlayerEntity) {
       if (!livingEntity.getName().getString().equals(Configs.General.User.getStringValue()))
         return;
-      if (livingEntity.getEquippedStack(EquipmentSlot.CHEST).getItem() != Items.ELYTRA)
+      if (livingEntity.getEquippedStack(EquipmentSlot.CHEST).getItem() == Items.ELYTRA)
         return;
       if (!Configs.Cape.SHOW_CAPE.getBooleanValue())
         return;

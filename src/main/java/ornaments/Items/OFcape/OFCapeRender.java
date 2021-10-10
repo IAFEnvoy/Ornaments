@@ -20,10 +20,10 @@ import ornaments.Util.RenderInfo;
 import ornaments.Util.RenderInfo.RenderThings;
 
 @Environment(EnvType.CLIENT)
-public class CapeRender
+public class OFCapeRender
     extends FeatureRenderer<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> {
 
-  public CapeRender(
+  public OFCapeRender(
       final FeatureRendererContext<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> featureRendererContext) {
     super(featureRendererContext);
   }
