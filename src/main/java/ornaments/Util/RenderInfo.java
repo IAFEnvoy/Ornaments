@@ -14,8 +14,8 @@ public class RenderInfo {
         return Configs.BackTools.show_back_tool.getBooleanValue() && !elytra;
       }
       case CAPE: {
-        if (elytra)
-          return Configs.Cape.Render_With_Elytra.getBooleanValue();
+        // if (elytra)
+        //   return Configs.Cape.Render_With_Elytra.getBooleanValue();
         return Configs.Cape.SHOW_CAPE.getBooleanValue();
       }
       case ELYTRA: {

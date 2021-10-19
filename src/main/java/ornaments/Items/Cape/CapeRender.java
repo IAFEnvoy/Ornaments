@@ -23,6 +23,8 @@ import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3f;
+import ornaments.Client.Commands;
+import ornaments.Client.OrnamentClient;
 import ornaments.Config.Configs;
 
 @Environment(EnvType.CLIENT)
@@ -44,6 +46,7 @@ public class CapeRender<T extends LivingEntity, M extends EntityModel<T>> extend
       if (!Configs.Cape.SHOW_CAPE.getBooleanValue())
         return;
       PlayerEntity player = (PlayerEntity) livingEntity;
+      model = new CapeModel<T>();
       matrixStack.push();
       if (livingEntity.getEquippedStack(EquipmentSlot.CHEST).isEmpty()) {
         if (livingEntity.isInSneakingPose()) {
@@ -85,17 +88,25 @@ public class CapeRender<T extends LivingEntity, M extends EntityModel<T>> extend
       matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(s / 2.0F));
       matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180.0F - s / 2.0F));
 
-      setPattern();
-      List<Pair<String, Color4f>> list = info.getPatterns();
-      for (int count = 0; count < list.size(); count++) {
-        Pair<String, Color4f> pair = list.get(count);
-        if (pair.getFirst().equals(""))
-          break;
-        Identifier texture = new Identifier("minecraft", "textures/entity/banner/" + pair.getFirst() + ".png");
+      if (Configs.Cape.UseImage.getBooleanValue()) {
+        Identifier texture = new Identifier(OrnamentClient.MOD_ID,
+            "textures/addons/" + Configs.Cape.ImageName.getStringValue() + ".png");
         VertexConsumer consumer = ItemRenderer.getArmorGlintConsumer(vertexConsumerProvider,
             RenderLayer.getArmorCutoutNoCull(texture), false, false);
-        model.render(matrixStack, consumer, i, OverlayTexture.DEFAULT_UV, pair.getSecond().r, pair.getSecond().g,
-            pair.getSecond().b, pair.getSecond().a);
+        model.render(matrixStack, consumer, i, OverlayTexture.DEFAULT_UV, 1.0F, 1.0F, 1.0F, 1.0F);
+      } else {
+        setPattern();
+        List<Pair<String, Color4f>> list = info.getPatterns();
+        for (int count = 0; count < list.size(); count++) {
+          Pair<String, Color4f> pair = list.get(count);
+          if (pair.getFirst().equals(""))
+            break;
+          Identifier texture = new Identifier("minecraft", "textures/entity/banner/" + pair.getFirst() + ".png");
+          VertexConsumer consumer = ItemRenderer.getArmorGlintConsumer(vertexConsumerProvider,
+              RenderLayer.getArmorCutoutNoCull(texture), false, false);
+          model.render(matrixStack, consumer, i, OverlayTexture.DEFAULT_UV, pair.getSecond().r, pair.getSecond().g,
+              pair.getSecond().b, pair.getSecond().a);
+        }
       }
       matrixStack.pop();
     }

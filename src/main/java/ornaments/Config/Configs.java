@@ -16,6 +16,7 @@ import fi.dy.masa.malilib.config.options.ConfigString;
 import fi.dy.masa.malilib.hotkeys.KeybindSettings;
 import fi.dy.masa.malilib.util.JsonUtils;
 import net.minecraft.text.TranslatableText;
+import ornaments.Items.Cape.ImageSize;
 
 public class Configs implements IConfigHandler {
   private static final String FILE_PATH = "./config/ornaments.json";
@@ -38,12 +39,23 @@ public class Configs implements IConfigHandler {
     public static final ConfigBoolean SHOW_CAPE = new ConfigBoolean(
         new TranslatableText("config.ornaments.show_cape").getString(), false,
         new TranslatableText("config.ornaments.show_cape.help").getString());
-    public static final ConfigBoolean Render_With_Elytra = new ConfigBoolean(
-        new TranslatableText("config.ornaments.render_with_elytra").getString(), false,
-        new TranslatableText("config.ornaments.render_with_elytra.help").getString());
-    public static final ConfigString CapeUser = new ConfigString(
-        new TranslatableText("config.ornaments.capeuser").getString(), "",
-        new TranslatableText("config.ornaments.capeuser.help").getString());
+    // public static final ConfigBoolean Render_With_Elytra = new ConfigBoolean(
+    // new TranslatableText("config.ornaments.render_with_elytra").getString(),
+    // false,
+    // new
+    // TranslatableText("config.ornaments.render_with_elytra.help").getString());
+    public static final ConfigBoolean UseImage = new ConfigBoolean(
+        new TranslatableText("config.ornaments.useimage").getString(), false,
+        new TranslatableText("config.ornaments.useimage.help").getString());
+    public static final ConfigString ImageName = new ConfigString(
+        new TranslatableText("config.ornaments.imagename").getString(), "",
+        new TranslatableText("config.ornaments.imagename.help").getString());
+    public static final ConfigOptionList showoption = new ConfigOptionList(
+        new TranslatableText("config.ornaments.showoption").getString(), ImageSize.S8_7,
+        new TranslatableText("config.ornaments.showoption.help").getString());
+    // public static final ConfigString CapeUser = new ConfigString(
+    // new TranslatableText("config.ornaments.capeuser").getString(), "",
+    // new TranslatableText("config.ornaments.capeuser.help").getString());
     public static final ConfigColor colorbase = new ConfigColor(
         new TranslatableText("config.ornaments.colorbase").getString(), "0xF0FFFFFF",
         new TranslatableText("config.ornaments.colorbase.help").getString());
@@ -100,6 +112,9 @@ public class Configs implements IConfigHandler {
       Category.Cape.add(SHOW_CAPE);
       // Category.Cape.add(Render_With_Elytra);
       // Category.Cape.add(CapeUser);
+      Category.Cape.add(showoption);
+      Category.Cape.add(UseImage);
+      Category.Cape.add(ImageName);
       Category.Cape.add(colorbase);
       Category.Cape.add(name1);
       Category.Cape.add(color1);
@@ -309,7 +324,7 @@ public class Configs implements IConfigHandler {
       Category.BeltSlot.add(rotateAngle2_1);
       Category.BeltSlot.add(xoffset2_1);
       Category.BeltSlot.add(yoffset2_1);
-      
+
       Category.BugFix.add(rotateAnglex1_1);
       Category.BugFix.add(rotateAngley1_1);
       Category.BugFix.add(zoffset1_1);
