@@ -6,4 +6,4 @@
 
 其中使用了部分Icarus mod中的模型
 
-视频：[正在制作]
+视频：https://www.bilibili.com/video/BV1Zh411J7QQ/
