@@ -153,5 +153,13 @@
     "config.ornaments.name7.help": "为旗帜图案类型，不填则不渲染",
     "config.ornaments.color7.help": "分别为#A0RRGGBB,十六进制",
     "config.ornaments.name8.help": "为旗帜图案类型，不填则不渲染",
-    "config.ornaments.color8.help": "分别为#A0RRGGBB,十六进制"
+    "config.ornaments.color8.help": "分别为#A0RRGGBB,十六进制",
+    "config.ornaments.showoption": "显示选项（全局）",
+    "config.ornaments.useimage": "使用图片",
+    "config.ornaments.imagename": "图像名",
+    "config.ornaments.showoption.help": "bug变成了特性",
+    "config.ornaments.useimage.help": "是否使用图片作为图案",
+    "config.ornaments.imagename.help": "将图片以材质包形式载入assets/ornaments/textures/addons文件夹\n然后输入图片名称（不需要输入.png）\n要求为旗帜图案base的形式",
+    "ornaments.capesize.s8_7": "64 : 56",
+    "ornaments.capesize.s8_8": "64 : 64"
 }

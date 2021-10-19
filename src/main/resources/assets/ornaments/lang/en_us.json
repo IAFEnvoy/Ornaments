@@ -143,5 +143,13 @@
     "config.ornaments.name7.help": "Banner Type,can be load by resourcepacks",
     "config.ornaments.color7.help": "Format:#A0RRGGBB,Hex",
     "config.ornaments.name8.help": "Banner Type,can be load by resourcepacks",
-    "config.ornaments.color8.help": "Format:#A0RRGGBB,Hex"
+    "config.ornaments.color8.help": "Format:#A0RRGGBB,Hex",
+    "config.ornaments.showoption": "Show Option",
+    "config.ornaments.useimage": "Use Image",
+    "config.ornaments.imagename": "Image Name",
+    "config.ornaments.showoption.help": "bug to feature~",
+    "config.ornaments.useimage.help": "",
+    "config.ornaments.imagename.help": "Load image by using resourcepacks to assets/ornaments/textures/addons folder\n Then enter picture name (delete .png)",
+    "ornaments.capesize.s8_7": "64 : 56",
+    "ornaments.capesize.s8_8": "64 : 64"
 }

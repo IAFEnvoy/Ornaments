@@ -23,7 +23,6 @@ import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3f;
-import ornaments.Client.Commands;
 import ornaments.Client.OrnamentClient;
 import ornaments.Config.Configs;
 
