@@ -45,6 +45,8 @@ public class CapeRender<T extends LivingEntity, M extends EntityModel<T>> extend
       if (!Configs.Cape.SHOW_CAPE.getBooleanValue())
         return;
       PlayerEntity player = (PlayerEntity) livingEntity;
+      if (player.isSpectator() || player.isInvisible() || !player.isAlive())
+        return;
       model = new CapeModel<T>();
       matrixStack.push();
       if (livingEntity.getEquippedStack(EquipmentSlot.CHEST).isEmpty()) {
