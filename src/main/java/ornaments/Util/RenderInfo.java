@@ -2,7 +2,6 @@ package ornaments.Util;
 
 import net.minecraft.entity.player.PlayerEntity;
 import ornaments.Config.Configs;
-import ornaments.multiplayer.PlayerHandler;
 
 public class RenderInfo {
   public static boolean elytra = false;
@@ -22,8 +21,6 @@ public class RenderInfo {
     case ELYTRA: {
       if (player.getEntityName().equals(Configs.General.User.getStringValue()))
         return !Configs.Wings.Overwrite_Elytra.getBooleanValue();
-      else if (PlayerHandler.hasInfo(player.getEntityName()))
-        return !PlayerHandler.getInfo(player.getEntityName()).overwriteElytra;
       else
         return true;
     }

@@ -1,6 +1,9 @@
 package ornaments.multiplayer;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -13,7 +16,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.hud.InGameHud;
 import ornaments.Config.Configs;
 
 public class OrnamentsNetwork {
@@ -35,7 +37,7 @@ public class OrnamentsNetwork {
     Timer timer = new Timer("OrnamentsNetwork");
     TimerTask task = new TimerTask() {
       public void run() {
-        if(MinecraftClient.getInstance().getServer() == null) {
+        if (MinecraftClient.getInstance().getServer() == null) {
           Thread.currentThread().interrupt();
           return;
         }
@@ -43,10 +45,16 @@ public class OrnamentsNetwork {
         for (String name : playernames) {
           if (!map.containsKey(name))
             try {
-              URL url = new URL(
-                  String.format(Configs.General.CDN.getOptionListValue().getStringValue(), "Data", name + ".json"));
-              JsonParser parser = new JsonParser();
-              JsonObject jsons = parser.parse(new String(url.openStream().readAllBytes())).getAsJsonObject();
+              StringBuilder data = new StringBuilder();
+              URLConnection uc = new URL(
+                  String.format(Configs.General.CDN.getOptionListValue().getStringValue(), "Data", name + ".json"))
+                      .openConnection();
+              BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()));
+              String inputLine = null;
+              while ((inputLine = in.readLine()) != null) 
+                data.append(inputLine);
+              in.close();
+              JsonObject jsons = new JsonParser().parse(data.toString()).getAsJsonObject();
               map.put(name, new PlayerInfo(jsons));
               log(Level.INFO, "Succeed to download " + name + "'s ornaments profile.");
             } catch (Exception e) {

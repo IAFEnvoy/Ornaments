@@ -6,9 +6,6 @@ import net.fabricmc.api.Environment;
 import ornaments.Config.Configs;
 import ornaments.multiplayer.OrnamentsNetwork;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
