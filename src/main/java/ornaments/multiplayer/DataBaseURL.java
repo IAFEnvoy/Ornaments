@@ -4,7 +4,7 @@ import fi.dy.masa.malilib.config.IConfigOptionListEntry;
 import fi.dy.masa.malilib.util.StringUtils;
 
 public enum DataBaseURL implements IConfigOptionListEntry {
-    Default( "https://iafenvoy.github.io/DataBase/OrnamentsStorage/%s/%s", "config.url.default"),
+    Default( "https://raw.githubusercontent.com/IAFEnvoy/OrnamentsStorage/main/%s/%s", "config.url.default"),
     CDN("https://cdn.jsdelivr.net/gh/IAFEnvoy/OrnamentsStorage@latest/%s/%s", "config.url.cdn");
 
     private final String configString;
