@@ -25,15 +25,13 @@ import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 import ornaments.Client.OrnamentClient;
 import ornaments.Config.Configs;
-import ornaments.Items.OFcape.ElytraWingModel;
-import ornaments.Util.RenderInfo;
-import ornaments.Util.RenderInfo.RenderThings;
+import ornaments.multiplayer.PlayerInfo;
+import ornaments.multiplayer.OrnamentsNetwork;
 
 @Environment(EnvType.CLIENT)
 public class ElytraRender<T extends LivingEntity, M extends EntityModel<T>> extends FeatureRenderer<T, M> {
   private final ElytraWingModel<T> leftWing = new ElytraWingModel<>(false);
   private final ElytraWingModel<T> rightWing = new ElytraWingModel<>(true);
-  private BannerInfo info = new BannerInfo();
 
   public ElytraRender(FeatureRendererContext<T, M> context) {
     super(context);
@@ -42,31 +40,39 @@ public class ElytraRender<T extends LivingEntity, M extends EntityModel<T>> exte
   @Override
   public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T livingEntity,
       float f, float g, float h, float j, float k, float l) {
-    RenderInfo.elytra = livingEntity.getEquippedStack(EquipmentSlot.CHEST).getItem() == Items.ELYTRA;
-    if (RenderInfo.elytra) {
-      if (!RenderInfo.ifRender(RenderThings.ELYTRA, (PlayerEntity) livingEntity)
-          && ((PlayerEntity) livingEntity).getName().asString().equals(Configs.General.User.getStringValue()))
-        return;
-      matrixStack.push();
-      matrixStack.translate(0.0D, 0.0D, 0.125D);
-      renderSplit(matrixStack, vertexConsumerProvider, i, livingEntity, f, g, h, j, k, l,
-          livingEntity.getEquippedStack(EquipmentSlot.CHEST));
-      matrixStack.pop();
-    }
+    if (livingEntity.isSpectator() || !livingEntity.isAlive())
+      return;
+    if (livingEntity instanceof PlayerEntity)
+      if (livingEntity.getEquippedStack(EquipmentSlot.CHEST).getItem() == Items.ELYTRA) {
+        if (((PlayerEntity) livingEntity).getName().asString().equals(Configs.General.User.getStringValue())) {
+          if (!Configs.Wings.Overwrite_Elytra.getBooleanValue())
+            renderSplit(setPattern(), Configs.Cape.SHOW_CAPE.getBooleanValue(), matrixStack, vertexConsumerProvider, i,
+                livingEntity, f, g, h, j, k, l, livingEntity.getEquippedStack(EquipmentSlot.CHEST));
+        } else if (OrnamentsNetwork.hasInfo(((PlayerEntity) livingEntity).getName().asString())) {
+          PlayerInfo info = OrnamentsNetwork.getInfo(((PlayerEntity) livingEntity).getName().asString());
+          if (!info.overwriteElytra)
+            renderSplit(info.banner, info.showCape, matrixStack, vertexConsumerProvider, i, livingEntity, f, g, h, j, k,
+                l, livingEntity.getEquippedStack(EquipmentSlot.CHEST));
+        }
+      }
   }
 
-  public void renderSplit(MatrixStack matrixStackIn, VertexConsumerProvider vertexConsumerProvider, int i,
-      T livingEntity, float f, float g, float h, float j, float k, float l, ItemStack elytra) {
-    renderSplitFallback(matrixStackIn, vertexConsumerProvider, i, livingEntity, f, g, h, j, k, l, elytra, leftWing);
-    renderSplitFallback(matrixStackIn, vertexConsumerProvider, i, livingEntity, f, g, h, j, k, l, elytra, rightWing);
+  public void renderSplit(BannerInfo pattern, boolean showCape, MatrixStack matrixStackIn,
+      VertexConsumerProvider vertexConsumerProvider, int i, T livingEntity, float f, float g, float h, float j, float k,
+      float l, ItemStack elytra) {
+    matrixStackIn.push();
+    matrixStackIn.translate(0.0D, 0.0D, 0.125D);
+    renderSplitFallback(pattern, showCape, matrixStackIn, vertexConsumerProvider, i, livingEntity, f, g, h, j, k, l,
+        elytra, leftWing);
+    renderSplitFallback(pattern, showCape, matrixStackIn, vertexConsumerProvider, i, livingEntity, f, g, h, j, k, l,
+        elytra, rightWing);
+    matrixStackIn.pop();
   }
 
-  public void renderSplitFallback(MatrixStack matrixStackIn, VertexConsumerProvider vertexConsumerProvider, int i,
-      T livingEntity, float f, float g, float h, float j, float k, float l, ItemStack elytra,
-      ElytraWingModel<T> wingIn) {
+  public void renderSplitFallback(BannerInfo pattern, boolean showCape, MatrixStack matrixStackIn,
+      VertexConsumerProvider vertexConsumerProvider, int i, T livingEntity, float f, float g, float h, float j, float k,
+      float l, ItemStack elytra, ElytraWingModel<T> wingIn) {
     if (livingEntity instanceof AbstractClientPlayerEntity) {
-      if (!livingEntity.getName().getString().equals(Configs.General.User.getStringValue()))
-        return;
       Identifier elytraTexture = new Identifier(OrnamentClient.MOD_ID, "textures/entity/elytra.png");
       this.getContextModel().copyStateTo(wingIn);
       wingIn.setAngles(livingEntity, f, g, j, k, l);
@@ -74,11 +80,10 @@ public class ElytraRender<T extends LivingEntity, M extends EntityModel<T>> exte
           RenderLayer.getEntityNoOutline(elytraTexture), false, elytra.hasGlint());
       wingIn.render(matrixStackIn, glintConsumer, i, OverlayTexture.DEFAULT_UV, 1.0F, 1.0F, 1.0F, 1.0F);
 
-      if (!Configs.Cape.SHOW_CAPE.getBooleanValue())
+      if (!showCape)
         return;
 
-      setPattern();
-      List<Pair<String, Color4f>> list = info.getPatterns();
+      List<Pair<String, Color4f>> list = pattern.getPatterns();
       for (int count = 0; count < list.size(); count++) {
         Pair<String, Color4f> pair = list.get(count);
         if (pair.getFirst().equals(""))
@@ -93,8 +98,8 @@ public class ElytraRender<T extends LivingEntity, M extends EntityModel<T>> exte
     }
   }
 
-  private void setPattern() {
-    info = new BannerInfo(Configs.Cape.colorbase.getColor(),
+  private BannerInfo setPattern() {
+    return new BannerInfo(Configs.Cape.colorbase.getColor(),
         new Pattern(Configs.Cape.name1.getStringValue(), Configs.Cape.color1.getColor()),
         new Pattern(Configs.Cape.name2.getStringValue(), Configs.Cape.color2.getColor()),
         new Pattern(Configs.Cape.name3.getStringValue(), Configs.Cape.color3.getColor()),

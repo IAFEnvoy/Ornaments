@@ -39,7 +39,6 @@ public enum WingType implements IConfigOptionListEntry {
         id = values().length - 1;
       }
     }
-
     return values()[id % values().length];
   }
 
@@ -49,12 +48,9 @@ public enum WingType implements IConfigOptionListEntry {
   }
 
   public static WingType fromStringStatic(String name) {
-    for (WingType val : WingType.values()) {
-      if (val.configString.equalsIgnoreCase(name)) {
+    for (WingType val : WingType.values())
+      if (val.configString.equalsIgnoreCase(name))
         return val;
-      }
-    }
-
     return WingType.None;
   }
 }

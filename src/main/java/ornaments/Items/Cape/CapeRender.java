@@ -25,10 +25,11 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3f;
 import ornaments.Client.OrnamentClient;
 import ornaments.Config.Configs;
+import ornaments.multiplayer.PlayerInfo;
+import ornaments.multiplayer.OrnamentsNetwork;
 
 @Environment(EnvType.CLIENT)
 public class CapeRender<T extends LivingEntity, M extends EntityModel<T>> extends FeatureRenderer<T, M> {
-  private BannerInfo info = new BannerInfo();
   private CapeModel<T> model = new CapeModel<T>();
 
   public CapeRender(FeatureRendererContext<T, M> context) {
@@ -37,16 +38,12 @@ public class CapeRender<T extends LivingEntity, M extends EntityModel<T>> extend
 
   public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T livingEntity,
       float f, float g, float h, float j, float k, float l) {
+    if (livingEntity.isSpectator() || livingEntity.isInvisible() || !livingEntity.isAlive())
+      return;
     if (livingEntity instanceof PlayerEntity) {
-      if (!livingEntity.getName().getString().equals(Configs.General.User.getStringValue()))
-        return;
       if (livingEntity.getEquippedStack(EquipmentSlot.CHEST).getItem() == Items.ELYTRA)
         return;
-      if (!Configs.Cape.SHOW_CAPE.getBooleanValue())
-        return;
       PlayerEntity player = (PlayerEntity) livingEntity;
-      if (player.isSpectator() || player.isInvisible() || !player.isAlive())
-        return;
       model = new CapeModel<T>();
       matrixStack.push();
       if (livingEntity.getEquippedStack(EquipmentSlot.CHEST).isEmpty()) {
@@ -75,46 +72,63 @@ public class CapeRender<T extends LivingEntity, M extends EntityModel<T>> extend
       r = MathHelper.clamp(r, 0.0F, 150.0F);
       float s = (float) (d * p - m * o) * 100.0F;
       s = MathHelper.clamp(s, -20.0F, 20.0F);
-      if (r < 0.0F) {
+      if (r < 0.0F)
         r = 0.0F;
-      }
 
       final float t = MathHelper.lerp(h, player.prevStrideDistance, player.strideDistance);
       q += MathHelper.sin(MathHelper.lerp(h, player.prevHorizontalSpeed, player.horizontalSpeed) * 6.0F) * 32.0F * t;
-      if (player.isInSneakingPose()) {
+      if (player.isInSneakingPose())
         q += 25.0F;
-      }
 
       matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(6.0F + r / 2.0F + q));
       matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(s / 2.0F));
       matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180.0F - s / 2.0F));
 
-      if (Configs.Cape.UseImage.getBooleanValue()) {
-        Identifier texture = new Identifier(OrnamentClient.MOD_ID,
-            "textures/addons/" + Configs.Cape.ImageName.getStringValue() + ".png");
-        VertexConsumer consumer = ItemRenderer.getArmorGlintConsumer(vertexConsumerProvider,
-            RenderLayer.getArmorCutoutNoCull(texture), false, false);
-        model.render(matrixStack, consumer, i, OverlayTexture.DEFAULT_UV, 1.0F, 1.0F, 1.0F, 1.0F);
-      } else {
-        setPattern();
-        List<Pair<String, Color4f>> list = info.getPatterns();
-        for (int count = 0; count < list.size(); count++) {
-          Pair<String, Color4f> pair = list.get(count);
-          if (pair.getFirst().equals(""))
-            break;
-          Identifier texture = new Identifier("minecraft", "textures/entity/banner/" + pair.getFirst() + ".png");
-          VertexConsumer consumer = ItemRenderer.getArmorGlintConsumer(vertexConsumerProvider,
-              RenderLayer.getArmorCutoutNoCull(texture), false, false);
-          model.render(matrixStack, consumer, i, OverlayTexture.DEFAULT_UV, pair.getSecond().r, pair.getSecond().g,
-              pair.getSecond().b, pair.getSecond().a);
-        }
+      if (livingEntity.getName().getString().equals(Configs.General.User.getStringValue())) {
+        if (Configs.Cape.SHOW_CAPE.getBooleanValue())
+          if (Configs.Cape.UseImage.getBooleanValue())
+            renderImage(
+                new Identifier(OrnamentClient.MOD_ID,
+                    "textures/addons/" + Configs.Cape.ImageName.getStringValue() + ".png"),
+                matrixStack, vertexConsumerProvider, i);
+          else
+            renderBanner(setPattern(), matrixStack, vertexConsumerProvider, i);
+      } else if (OrnamentsNetwork.hasInfo(((PlayerEntity) livingEntity).getName().asString())) {
+        PlayerInfo info = OrnamentsNetwork.getInfo(((PlayerEntity) livingEntity).getName().asString());
+        if (info.showCape)
+          if (info.useImage)
+            renderImage(info.imagePath, matrixStack, vertexConsumerProvider, i);
+          else
+            renderBanner(info.banner, matrixStack, vertexConsumerProvider, i);
       }
       matrixStack.pop();
     }
   }
 
-  private void setPattern() {
-    info = new BannerInfo(Configs.Cape.colorbase.getColor(),
+  private void renderImage(Identifier texture, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider,
+      int i) {
+    VertexConsumer consumer = ItemRenderer.getArmorGlintConsumer(vertexConsumerProvider,
+        RenderLayer.getArmorCutoutNoCull(texture), false, false);
+    model.render(matrixStack, consumer, i, OverlayTexture.DEFAULT_UV, 1.0F, 1.0F, 1.0F, 1.0F);
+  }
+
+  private void renderBanner(BannerInfo info, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider,
+      int i) {
+    List<Pair<String, Color4f>> list = info.getPatterns();
+    for (int count = 0; count < list.size(); count++) {
+      Pair<String, Color4f> pair = list.get(count);
+      if (pair.getFirst().equals(""))
+        break;
+      Identifier texture = new Identifier("minecraft", "textures/entity/banner/" + pair.getFirst() + ".png");
+      VertexConsumer consumer = ItemRenderer.getArmorGlintConsumer(vertexConsumerProvider,
+          RenderLayer.getArmorCutoutNoCull(texture), false, false);
+      model.render(matrixStack, consumer, i, OverlayTexture.DEFAULT_UV, pair.getSecond().r, pair.getSecond().g,
+          pair.getSecond().b, pair.getSecond().a);
+    }
+  }
+
+  private BannerInfo setPattern() {
+    return new BannerInfo(Configs.Cape.colorbase.getColor(),
         new Pattern(Configs.Cape.name1.getStringValue(), Configs.Cape.color1.getColor()),
         new Pattern(Configs.Cape.name2.getStringValue(), Configs.Cape.color2.getColor()),
         new Pattern(Configs.Cape.name3.getStringValue(), Configs.Cape.color3.getColor()),

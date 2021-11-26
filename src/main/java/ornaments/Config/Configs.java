@@ -17,33 +17,35 @@ import fi.dy.masa.malilib.hotkeys.KeybindSettings;
 import fi.dy.masa.malilib.util.JsonUtils;
 import net.minecraft.text.TranslatableText;
 import ornaments.Items.Cape.ImageSize;
+import ornaments.Items.Wings.WingType;
+import ornaments.multiplayer.DataBaseURL;
 
 public class Configs implements IConfigHandler {
   private static final String FILE_PATH = "./config/ornaments.json";
   private static final File CONFIG_DIR = new File("./config");
 
   public static class General {
-    public static final ConfigHotkey MENU_OPEN_KEY = new ConfigHotkey(
-        new TranslatableText("config.ornaments.open_menu_key").getString(), "F7", KeybindSettings.DEFAULT,
-        new TranslatableText("config.ornaments.open_menu_key.help").getString());
-    public static final ConfigString User = new ConfigString(new TranslatableText("config.ornaments.user").getString(),
-        "", new TranslatableText("config.ornaments.user.help").getString());
+      public static final ConfigHotkey MENU_OPEN_KEY = new ConfigHotkey(
+              new TranslatableText("config.ornaments.open_menu_key").getString(), "F7", KeybindSettings.DEFAULT,
+              new TranslatableText("config.ornaments.open_menu_key.help").getString());
+      public static final ConfigString User = new ConfigString(
+              new TranslatableText("config.ornaments.user").getString(), "",
+              new TranslatableText("config.ornaments.user.help").getString());
+      public static final ConfigOptionList CDN = new ConfigOptionList(
+              new TranslatableText("config.ornaments.cdn").getString(), DataBaseURL.Default,
+              new TranslatableText("config.ornaments.cdn.help").getString());
 
-    public static void Init() {
-      Category.GENERAL.add(MENU_OPEN_KEY);
-      Category.GENERAL.add(User);
-    }
+      public static void Init() {
+          Category.GENERAL.add(MENU_OPEN_KEY);
+          Category.GENERAL.add(User);
+          Category.GENERAL.add(CDN);
+      }
   }
 
   public static class Cape {
     public static final ConfigBoolean SHOW_CAPE = new ConfigBoolean(
         new TranslatableText("config.ornaments.show_cape").getString(), false,
         new TranslatableText("config.ornaments.show_cape.help").getString());
-    // public static final ConfigBoolean Render_With_Elytra = new ConfigBoolean(
-    // new TranslatableText("config.ornaments.render_with_elytra").getString(),
-    // false,
-    // new
-    // TranslatableText("config.ornaments.render_with_elytra.help").getString());
     public static final ConfigBoolean UseImage = new ConfigBoolean(
         new TranslatableText("config.ornaments.useimage").getString(), false,
         new TranslatableText("config.ornaments.useimage.help").getString());
@@ -53,9 +55,6 @@ public class Configs implements IConfigHandler {
     public static final ConfigOptionList showoption = new ConfigOptionList(
         new TranslatableText("config.ornaments.showoption").getString(), ImageSize.S8_7,
         new TranslatableText("config.ornaments.showoption.help").getString());
-    // public static final ConfigString CapeUser = new ConfigString(
-    // new TranslatableText("config.ornaments.capeuser").getString(), "",
-    // new TranslatableText("config.ornaments.capeuser.help").getString());
     public static final ConfigColor colorbase = new ConfigColor(
         new TranslatableText("config.ornaments.colorbase").getString(), "0xF0FFFFFF",
         new TranslatableText("config.ornaments.colorbase.help").getString());
@@ -110,8 +109,6 @@ public class Configs implements IConfigHandler {
 
     public static void Init() {
       Category.Cape.add(SHOW_CAPE);
-      // Category.Cape.add(Render_With_Elytra);
-      // Category.Cape.add(CapeUser);
       Category.Cape.add(showoption);
       Category.Cape.add(UseImage);
       Category.Cape.add(ImageName);

@@ -18,10 +18,7 @@ import ornaments.Items.BeltSlot.BeltSlotFeatureRenderer2;
 import ornaments.Items.Cape.CapeRender;
 import ornaments.Items.Cape.ElytraRender;
 import ornaments.Items.MagicArray.MagicsFeatureRenderer;
-import ornaments.Items.OFcape.OFCapeRender;
-import ornaments.Items.OFcape.OFElytraRender;
 import ornaments.Items.Wings.WingsFeatureRenderer;
-
 @Mixin(PlayerEntityRenderer.class)
 public abstract class PlayerEntityRendererMixin
     extends LivingEntityRenderer<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> {
@@ -32,9 +29,6 @@ public abstract class PlayerEntityRendererMixin
 
   @Inject(method = "<init>(Lnet/minecraft/client/render/entity/EntityRenderDispatcher;Z)V", at = @At(value = "INVOKE", shift = At.Shift.AFTER, target = "net/minecraft/client/render/entity/PlayerEntityRenderer.addFeature(Lnet/minecraft/client/render/entity/feature/FeatureRenderer;)Z", ordinal = 6))
   public void postConstructor(CallbackInfo callbackInfo) {
-    this.addFeature(new OFCapeRender(this));
-    this.addFeature(new OFElytraRender<>(this));
-    //Mine
     this.addFeature(new CapeRender<>(this));
     this.addFeature(new ElytraRender<>(this));
     this.addFeature(new WingsFeatureRenderer<>(this));

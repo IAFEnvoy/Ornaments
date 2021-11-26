@@ -4,6 +4,10 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import ornaments.Config.Configs;
+import ornaments.multiplayer.OrnamentsNetwork;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -28,6 +32,8 @@ public class OrnamentClient implements ClientModInitializer {
     InputEventHandler.getKeybindManager().registerKeybindProvider(new KeybindProvider());
     Configs.General.MENU_OPEN_KEY.getKeybind().setCallback(new KeyBindHandler());
     Configs.Init();
+
+    OrnamentsNetwork.start();
   }
 
   public static void log(Level level, String message) {

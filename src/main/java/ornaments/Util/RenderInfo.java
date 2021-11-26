@@ -2,6 +2,7 @@ package ornaments.Util;
 
 import net.minecraft.entity.player.PlayerEntity;
 import ornaments.Config.Configs;
+import ornaments.multiplayer.PlayerHandler;
 
 public class RenderInfo {
   public static boolean elytra = false;
@@ -10,39 +11,37 @@ public class RenderInfo {
     if (player.isSpectator() || player.isInvisible() || !player.isAlive())
       return false;
     switch (thing) {
-      case BACKITEM: {
-        return Configs.BackTools.show_back_tool.getBooleanValue() && !elytra;
-      }
-      case CAPE: {
-        // if (elytra)
-        //   return Configs.Cape.Render_With_Elytra.getBooleanValue();
-        return Configs.Cape.SHOW_CAPE.getBooleanValue();
-      }
-      case ELYTRA: {
+    case BACKITEM: {
+      return Configs.BackTools.show_back_tool.getBooleanValue() && !elytra;
+    }
+    case CAPE: {
+      // if (elytra)
+      // return Configs.Cape.Render_With_Elytra.getBooleanValue();
+      return Configs.Cape.SHOW_CAPE.getBooleanValue();
+    }
+    case ELYTRA: {
+      if (player.getEntityName().equals(Configs.General.User.getStringValue()))
         return !Configs.Wings.Overwrite_Elytra.getBooleanValue();
-      }
-      case WINGS: {
-        if (!Configs.Wings.SHOW_WING.getBooleanValue())
-          return false;
-        if (Configs.Wings.Overwrite_Elytra.getBooleanValue())
-          return true;
-        return !elytra;
-      }
-      case MAGIC: {
-        if (player.isFallFlying() || player.isSneaking() || player.isSleeping() || player.isInSwimmingPose())
-          return false;
-        return Configs.Magic.show_magic.getBooleanValue();
-      }
-      case BELTSLOT: {
-        return Configs.BeltSlot.show_belt.getBooleanValue();
-      }
-      default: {
+      else if (PlayerHandler.hasInfo(player.getEntityName()))
+        return !PlayerHandler.getInfo(player.getEntityName()).overwriteElytra;
+      else
+        return true;
+    }
+    case MAGIC: {
+      if (player.isFallFlying() || player.isSneaking() || player.isSleeping() || player.isInSwimmingPose())
         return false;
-      }
+      return Configs.Magic.show_magic.getBooleanValue();
+    }
+    case BELTSLOT: {
+      return Configs.BeltSlot.show_belt.getBooleanValue();
+    }
+    default: {
+      return false;
+    }
     }
   }
 
   public enum RenderThings {
-    CAPE, ELYTRA, BACKITEM, WINGS, MAGIC, BELTSLOT;
+    CAPE, ELYTRA, BACKITEM, MAGIC, BELTSLOT;
   }
 }
