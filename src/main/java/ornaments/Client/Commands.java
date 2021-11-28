@@ -10,11 +10,14 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.command.v1.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource;
+import ornaments.multiplayer.OrnamentsNetwork;
 
 @Environment(EnvType.CLIENT)
 public class Commands {
 
   public static void init() {
+    ClientCommandManager.DISPATCHER.register(ClientCommandManager.literal("Ornaments")
+        .then(ClientCommandManager.literal("Refresh").executes(Commands::refresh)));
     ClientCommandManager.DISPATCHER.register(ClientCommandManager.literal("DebugSystem").then(ClientCommandManager
         .argument("R1", StringArgumentType.word())
         .then(ClientCommandManager.argument("G1", StringArgumentType.word())
@@ -41,4 +44,9 @@ public class Commands {
   }
 
   public static float x = 0.0F, y = 0.0F, z = 0.0F, xr = 0.0F, yr = 0.0F, zr = 0.0F;
+
+  private static int refresh(CommandContext<FabricClientCommandSource> context) {
+    OrnamentsNetwork.clear();
+    return 0;
+  }
 }
