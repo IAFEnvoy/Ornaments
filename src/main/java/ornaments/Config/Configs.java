@@ -18,28 +18,28 @@ import fi.dy.masa.malilib.util.JsonUtils;
 import net.minecraft.text.TranslatableText;
 import ornaments.Items.Cape.ImageSize;
 import ornaments.Items.Wings.WingType;
-import ornaments.multiplayer.DataBaseURL;
 
 public class Configs implements IConfigHandler {
   private static final String FILE_PATH = "./config/ornaments.json";
   private static final File CONFIG_DIR = new File("./config");
 
   public static class General {
-      public static final ConfigHotkey MENU_OPEN_KEY = new ConfigHotkey(
-              new TranslatableText("config.ornaments.open_menu_key").getString(), "F7", KeybindSettings.DEFAULT,
-              new TranslatableText("config.ornaments.open_menu_key.help").getString());
-      public static final ConfigString User = new ConfigString(
-              new TranslatableText("config.ornaments.user").getString(), "",
-              new TranslatableText("config.ornaments.user.help").getString());
-      public static final ConfigOptionList CDN = new ConfigOptionList(
-              new TranslatableText("config.ornaments.cdn").getString(), DataBaseURL.Default,
-              new TranslatableText("config.ornaments.cdn.help").getString());
+    public static final ConfigHotkey MENU_OPEN_KEY = new ConfigHotkey(
+        new TranslatableText("config.ornaments.open_menu_key").getString(), "F7", KeybindSettings.DEFAULT,
+        new TranslatableText("config.ornaments.open_menu_key.help").getString());
+    public static final ConfigString User = new ConfigString(
+        new TranslatableText("config.ornaments.user").getString(), "",
+        new TranslatableText("config.ornaments.user.help").getString());
+    public static final ConfigString CDN = new ConfigString(
+        new TranslatableText("config.ornaments.cdn").getString(),
+        "https://cdn.jsdelivr.net/gh/IAFEnvoy/OrnamentsStorage@latest/%s/%s",
+        new TranslatableText("config.ornaments.cdn.help").getString());
 
-      public static void Init() {
-          Category.GENERAL.add(MENU_OPEN_KEY);
-          Category.GENERAL.add(User);
-          Category.GENERAL.add(CDN);
-      }
+    public static void Init() {
+      Category.GENERAL.add(MENU_OPEN_KEY);
+      Category.GENERAL.add(User);
+      Category.GENERAL.add(CDN);
+    }
   }
 
   public static class Cape {

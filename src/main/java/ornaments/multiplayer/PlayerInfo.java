@@ -40,7 +40,7 @@ public class PlayerInfo {
         if (useImage) {
             try {
                 URL url = new URL(
-                        String.format(Configs.General.CDN.getOptionListValue().getStringValue(), "Image", imageName+".png"));
+                        String.format(Configs.General.CDN.getStringValue(), "Image", imageName+".png"));
                 NativeImage image = NativeImage.read(url.openStream());
                 if (image != null) {
                     NativeImageBackedTexture nIBT = new NativeImageBackedTexture(image);

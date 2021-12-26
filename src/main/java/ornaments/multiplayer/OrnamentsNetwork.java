@@ -24,33 +24,6 @@ public class OrnamentsNetwork {
 
   private static HashMap<String, PlayerInfo> map = new HashMap<String, PlayerInfo>();
   private static List<String> queue = new ArrayList<>();
-  private static Timer timer = new Timer("OrnamentsNetwork");
-  private static TimerTask task = new TimerTask() {
-    public void run() {
-      while (!queue.isEmpty()) {
-        String name = queue.get(0);
-        log(Level.INFO, "Start to download " + name + "'s ornaments profile......");
-        try {
-          StringBuilder data = new StringBuilder();
-          URLConnection uc = new URL(
-              String.format(Configs.General.CDN.getOptionListValue().getStringValue(), "Data", name + ".json"))
-                  .openConnection();
-          BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()));
-          String inputLine = null;
-          while ((inputLine = in.readLine()) != null)
-            data.append(inputLine);
-          in.close();
-          JsonObject jsons = new JsonParser().parse(data.toString()).getAsJsonObject();
-          map.put(name, new PlayerInfo(jsons));
-          log(Level.INFO, "Succeed to download " + name + "'s ornaments profile.");
-        } catch (Exception e) {
-          map.put(name, null);
-          log(Level.INFO, "Fail to download " + name + "'s ornaments profile.");
-        }
-        queue.remove(0);
-      }
-    }
-  };
 
   public static PlayerInfo getInfo(String playername) {
     return map.get(playername);
@@ -63,6 +36,33 @@ public class OrnamentsNetwork {
   }
 
   public static void start() {
+    Timer timer = new Timer("OrnamentsNetwork");
+    TimerTask task = new TimerTask() {
+      public void run() {
+        while (!queue.isEmpty()) {
+          String name = queue.get(0);
+          log(Level.INFO, "Start to download " + name + "'s ornaments profile......");
+          try {
+            StringBuilder data = new StringBuilder();
+            URLConnection uc = new URL(
+                String.format(Configs.General.CDN.getStringValue(), "Data", name + ".json"))
+                    .openConnection();
+            BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()));
+            String inputLine = null;
+            while ((inputLine = in.readLine()) != null)
+              data.append(inputLine);
+            in.close();
+            JsonObject jsons = new JsonParser().parse(data.toString()).getAsJsonObject();
+            map.put(name, new PlayerInfo(jsons));
+            log(Level.INFO, "Succeed to download " + name + "'s ornaments profile.");
+          } catch (Exception e) {
+            map.put(name, null);
+            log(Level.INFO, "Fail to download " + name + "'s ornaments profile.");
+          }
+          queue.remove(0);
+        }
+      }
+    };
     timer.schedule(task, 0, 1000);// 1s载入一次
   }
 
@@ -76,7 +76,7 @@ public class OrnamentsNetwork {
       public void run() {
         try {
           URL url = new URL(
-              String.format(Configs.General.CDN.getOptionListValue().getStringValue(), "Data", name + ".json"));
+              String.format(Configs.General.CDN.getStringValue(), "Data", name + ".json"));
           url.openConnection().getInputStream();
           queue.add(name);
         } catch (Exception e) {
