@@ -18,7 +18,7 @@
     "environment": "client",
     "entrypoints": {
         "client": [
-            "ornaments.Client.OrnamentClient"
+            "net.iafenvoy.ornaments.Client.OrnamentClient"
         ]
     },
     "mixins": [
