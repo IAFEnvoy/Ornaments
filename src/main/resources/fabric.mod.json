@@ -16,6 +16,9 @@
   "entrypoints": {
     "client": [
       "iafenvoy.ornaments.Client.OrnamentClient"
+    ],
+    "modmenu":[
+      "iafenvoy.ornaments.Compat.ModMenu"
     ]
   },
   "mixins": [
