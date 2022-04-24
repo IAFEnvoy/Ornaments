@@ -1,6 +1,6 @@
 package iafenvoy.ornaments.Items.BeltSlot;
 
-import iafenvoy.ornaments.Config.Configs;
+import iafenvoy.ornaments.Client.Config.Configs;
 import iafenvoy.ornaments.Util.GetItems;
 import iafenvoy.ornaments.Util.RenderInfo;
 import iafenvoy.ornaments.Util.RenderInfo.RenderThings;

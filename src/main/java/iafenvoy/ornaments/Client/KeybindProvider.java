@@ -2,7 +2,7 @@ package iafenvoy.ornaments.Client;
 
 import fi.dy.masa.malilib.hotkeys.IKeybindManager;
 import fi.dy.masa.malilib.hotkeys.IKeybindProvider;
-import iafenvoy.ornaments.Config.Configs;
+import iafenvoy.ornaments.Client.Config.Configs;
 
 public class KeybindProvider implements IKeybindProvider {
     @Override

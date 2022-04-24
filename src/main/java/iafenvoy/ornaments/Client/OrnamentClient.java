@@ -9,7 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import fi.dy.masa.malilib.config.ConfigManager;
 import fi.dy.masa.malilib.event.InputEventHandler;
-import iafenvoy.ornaments.Config.Configs;
+import iafenvoy.ornaments.Client.Config.Configs;
 import iafenvoy.ornaments.multiplayer.OrnamentsNetwork;
 
 @Environment(EnvType.CLIENT)

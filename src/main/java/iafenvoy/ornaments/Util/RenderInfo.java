@@ -1,6 +1,6 @@
 package iafenvoy.ornaments.Util;
 
-import iafenvoy.ornaments.Config.Configs;
+import iafenvoy.ornaments.Client.Config.Configs;
 import net.minecraft.entity.player.PlayerEntity;
 
 public class RenderInfo {

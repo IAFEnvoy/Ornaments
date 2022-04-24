@@ -17,7 +17,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import iafenvoy.ornaments.Config.Configs;
+import iafenvoy.ornaments.Client.Config.Configs;
 
 public class OrnamentsNetwork {
   private static Logger LOGGER = LogManager.getLogger();

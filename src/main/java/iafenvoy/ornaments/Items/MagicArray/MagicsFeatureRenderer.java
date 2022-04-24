@@ -2,7 +2,7 @@ package iafenvoy.ornaments.Items.MagicArray;
 
 import fi.dy.masa.malilib.util.Color4f;
 import iafenvoy.ornaments.Client.OrnamentClient;
-import iafenvoy.ornaments.Config.Configs;
+import iafenvoy.ornaments.Client.Config.Configs;
 import iafenvoy.ornaments.Util.RenderInfo;
 import iafenvoy.ornaments.Util.RenderInfo.RenderThings;
 import net.minecraft.client.render.OverlayTexture;

@@ -1,4 +1,4 @@
-package iafenvoy.ornaments.Config;
+package iafenvoy.ornaments.Client.Config;
 
 import java.io.File;
 

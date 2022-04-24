@@ -6,7 +6,7 @@ import com.mojang.datafixers.util.Pair;
 
 import fi.dy.masa.malilib.util.Color4f;
 import iafenvoy.ornaments.Client.OrnamentClient;
-import iafenvoy.ornaments.Config.Configs;
+import iafenvoy.ornaments.Client.Config.Configs;
 import iafenvoy.ornaments.multiplayer.OrnamentsNetwork;
 import iafenvoy.ornaments.multiplayer.PlayerInfo;
 import net.fabricmc.api.EnvType;

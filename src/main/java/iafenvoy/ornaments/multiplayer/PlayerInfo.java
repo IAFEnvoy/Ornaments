@@ -5,7 +5,7 @@ import java.net.URL;
 import com.google.gson.JsonObject;
 
 import fi.dy.masa.malilib.util.Color4f;
-import iafenvoy.ornaments.Config.Configs;
+import iafenvoy.ornaments.Client.Config.Configs;
 import iafenvoy.ornaments.Items.Cape.BannerInfo;
 import iafenvoy.ornaments.Items.Cape.ImageSize;
 import iafenvoy.ornaments.Items.Cape.Pattern;

@@ -7,7 +7,6 @@ import net.fabricmc.fabric.api.client.command.v1.ClientCommandManager;
 
 @Environment(EnvType.CLIENT)
 public class Commands {
-
   public static void registry() {
     ClientCommandManager.DISPATCHER.register(ClientCommandManager.literal("Ornaments")
         .then(ClientCommandManager.literal("Refresh").executes((context) -> {

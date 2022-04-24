@@ -1,4 +1,4 @@
-package iafenvoy.ornaments.Config;
+package iafenvoy.ornaments.Client.Config;
 
 import com.google.common.collect.ImmutableList;
 import fi.dy.masa.malilib.config.IConfigBase;

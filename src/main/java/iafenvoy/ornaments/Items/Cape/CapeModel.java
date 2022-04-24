@@ -2,7 +2,7 @@ package iafenvoy.ornaments.Items.Cape;
 
 import com.google.common.collect.ImmutableList;
 
-import iafenvoy.ornaments.Config.Configs;
+import iafenvoy.ornaments.Client.Config.Configs;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.entity.model.AnimalModel;
 import net.minecraft.entity.LivingEntity;
