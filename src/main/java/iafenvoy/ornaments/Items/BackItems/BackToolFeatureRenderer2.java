@@ -1,7 +1,8 @@
 package iafenvoy.ornaments.Items.BackItems;
 
-import iafenvoy.ornaments.Client.Config.Configs;
+import iafenvoy.ornaments.Config.Configs;
 import iafenvoy.ornaments.Util.GetItems;
+import iafenvoy.ornaments.Util.PlayerUtil;
 import iafenvoy.ornaments.Util.RenderInfo;
 import iafenvoy.ornaments.Util.RenderInfo.RenderThings;
 import net.fabricmc.api.EnvType;
@@ -32,27 +33,26 @@ public class BackToolFeatureRenderer2
   public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i,
       AbstractClientPlayerEntity livingEntity, float f, float g, float h, float j, float k, float l) {
     if (livingEntity instanceof AbstractClientPlayerEntity) {
-      if (((PlayerEntity) livingEntity).getName().asString().equals(Configs.General.User.getStringValue())) {
+      if (((PlayerEntity) livingEntity).getName().asString().equals(PlayerUtil.getRenderPlayer())) {
         if (!RenderInfo.ifRender(RenderThings.BACKITEM, (PlayerEntity) livingEntity))
           return;
         matrixStack.push();
         ModelPart modelPart = this.getContextModel().body;
         modelPart.rotate(matrixStack);
-        ItemStack backSloItem = GetItems.GetItemFromName(Configs.BackTools.backToolType2.getStringValue(),
-            Configs.BackTools.enchanted2.getBooleanValue());
-        matrixStack.translate(Configs.BackTools.xoffset2.getDoubleValue(), Configs.BackTools.yoffset2.getDoubleValue(),
-            Configs.BackTools.zoffset2.getDoubleValue() + 0.23D);
-        matrixStack.scale((float) Configs.BackTools.size2.getDoubleValue(),
-            (float) Configs.BackTools.size2.getDoubleValue(), (float) Configs.BackTools.size2.getDoubleValue());
+        ItemStack backSloItem = GetItems.GetItemFromName(Configs.INSTANCE.backToolType2.getStringValue(),
+            Configs.INSTANCE.enchanted2.getBooleanValue());
+        matrixStack.translate(Configs.INSTANCE.xoffset2.getDoubleValue(), Configs.INSTANCE.yoffset2.getDoubleValue(),
+            Configs.INSTANCE.zoffset2.getDoubleValue() + 0.23D);
+        matrixStack.scale((float) Configs.INSTANCE.size2.getDoubleValue(),
+            (float) Configs.INSTANCE.size2.getDoubleValue(), (float) Configs.INSTANCE.size2.getDoubleValue());
         matrixStack
-            .multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion((float) Configs.BackTools.rotateAngle2.getDoubleValue()));
+            .multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion((float) Configs.INSTANCE.rotateAngle2.getDoubleValue()));
         matrixStack
-            .multiply(Vec3f.POSITIVE_X.getDegreesQuaternion((float) Configs.BackTools.rotateAnglex2.getDoubleValue()));
+            .multiply(Vec3f.POSITIVE_X.getDegreesQuaternion((float) Configs.INSTANCE.rotateAnglex2.getDoubleValue()));
         matrixStack
-            .multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion((float) Configs.BackTools.rotateAngley2.getDoubleValue()));
+            .multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion((float) Configs.INSTANCE.rotateAngley2.getDoubleValue()));
         MinecraftClient.getInstance().getHeldItemRenderer().renderItem(livingEntity, backSloItem,
             ModelTransformation.Mode.GROUND, false, matrixStack, vertexConsumerProvider, i);
-
         matrixStack.pop();
       }
     }

@@ -1,4 +1,4 @@
-package iafenvoy.ornaments.Items.Cape;
+package iafenvoy.ornaments.Items.Cape.Enum;
 
 import fi.dy.masa.malilib.config.IConfigOptionListEntry;
 import fi.dy.masa.malilib.util.StringUtils;

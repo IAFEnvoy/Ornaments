@@ -15,7 +15,7 @@
   "environment": "client",
   "entrypoints": {
     "client": [
-      "iafenvoy.ornaments.Client.OrnamentClient"
+      "iafenvoy.ornaments.OrnamentClient"
     ],
     "modmenu":[
       "iafenvoy.ornaments.Compat.ModMenu"

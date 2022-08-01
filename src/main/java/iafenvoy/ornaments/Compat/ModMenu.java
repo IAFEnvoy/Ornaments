@@ -2,7 +2,8 @@ package iafenvoy.ornaments.Compat;
 
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
-import iafenvoy.ornaments.Client.ConfigGUI;
+
+import iafenvoy.ornaments.Config.ConfigGUI;
 
 public class ModMenu implements ModMenuApi {
   @Override

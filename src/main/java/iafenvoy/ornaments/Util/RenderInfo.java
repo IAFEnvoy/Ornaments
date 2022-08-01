@@ -1,6 +1,6 @@
 package iafenvoy.ornaments.Util;
 
-import iafenvoy.ornaments.Client.Config.Configs;
+import iafenvoy.ornaments.Config.Configs;
 import net.minecraft.entity.player.PlayerEntity;
 
 public class RenderInfo {
@@ -11,26 +11,21 @@ public class RenderInfo {
       return false;
     switch (thing) {
     case BACKITEM: {
-      return Configs.BackTools.show_back_tool.getBooleanValue() && !elytra;
+      return Configs.INSTANCE.show_back_tool.getBooleanValue() && !elytra;
     }
     case CAPE: {
       // if (elytra)
       // return Configs.Cape.Render_With_Elytra.getBooleanValue();
-      return Configs.Cape.SHOW_CAPE.getBooleanValue();
+      return Configs.INSTANCE.SHOW_CAPE.getBooleanValue();
     }
     case ELYTRA: {
-      if (player.getEntityName().equals(Configs.General.User.getStringValue()))
-        return !Configs.Wings.Overwrite_Elytra.getBooleanValue();
+      if (player.getEntityName().equals(Configs.INSTANCE.User.getStringValue()))
+        return !Configs.INSTANCE.Overwrite_Elytra.getBooleanValue();
       else
         return true;
     }
-    case MAGIC: {
-      if (player.isFallFlying() || player.isSneaking() || player.isSleeping() || player.isInSwimmingPose())
-        return false;
-      return Configs.Magic.show_magic.getBooleanValue();
-    }
     case BELTSLOT: {
-      return Configs.BeltSlot.show_belt.getBooleanValue();
+      return Configs.INSTANCE.show_belt.getBooleanValue();
     }
     default: {
       return false;

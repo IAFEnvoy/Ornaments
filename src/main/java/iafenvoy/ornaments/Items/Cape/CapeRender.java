@@ -1,24 +1,23 @@
 package iafenvoy.ornaments.Items.Cape;
 
-import java.util.List;
-
-import com.mojang.datafixers.util.Pair;
-
-import fi.dy.masa.malilib.util.Color4f;
-import iafenvoy.ornaments.Client.OrnamentClient;
-import iafenvoy.ornaments.Client.Config.Configs;
-import iafenvoy.ornaments.multiplayer.OrnamentsNetwork;
-import iafenvoy.ornaments.multiplayer.PlayerInfo;
+import iafenvoy.ornaments.OrnamentClient;
+import iafenvoy.ornaments.Config.Configs;
+import iafenvoy.ornaments.Items.Cape.Enum.ColorEnum;
+import iafenvoy.ornaments.Items.Cape.Enum.Pattern;
+import iafenvoy.ornaments.Util.PlayerUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.feature.FeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.item.ItemRenderer;
+import net.minecraft.client.render.model.ModelLoader;
+import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -84,22 +83,15 @@ public class CapeRender<T extends LivingEntity, M extends EntityModel<T>> extend
       matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(s / 2.0F));
       matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180.0F - s / 2.0F));
 
-      if (livingEntity.getName().getString().equals(Configs.General.User.getStringValue())) {
-        if (Configs.Cape.SHOW_CAPE.getBooleanValue())
-          if (Configs.Cape.UseImage.getBooleanValue())
+      if (livingEntity.getName().getString().equals(PlayerUtil.getRenderPlayer())) {
+        if (Configs.INSTANCE.SHOW_CAPE.getBooleanValue())
+          if (Configs.INSTANCE.UseImage.getBooleanValue())
             renderImage(
                 new Identifier(OrnamentClient.MOD_ID,
-                    "textures/addons/" + Configs.Cape.ImageName.getStringValue() + ".png"),
+                    "textures/addons/" + Configs.INSTANCE.ImageName.getStringValue() + ".png"),
                 matrixStack, vertexConsumerProvider, i);
           else
-            renderBanner(setPattern(), matrixStack, vertexConsumerProvider, i);
-      } else if (OrnamentsNetwork.hasInfo(((PlayerEntity) livingEntity).getName().asString())) {
-        PlayerInfo info = OrnamentsNetwork.getInfo(((PlayerEntity) livingEntity).getName().asString());
-        if (info.showCape)
-          if (info.useImage)
-            renderImage(info.imagePath, matrixStack, vertexConsumerProvider, i);
-          else
-            renderBanner(info.banner, matrixStack, vertexConsumerProvider, i);
+            renderBanner(matrixStack, vertexConsumerProvider, i);
       }
       matrixStack.pop();
     }
@@ -112,30 +104,23 @@ public class CapeRender<T extends LivingEntity, M extends EntityModel<T>> extend
     model.render(matrixStack, consumer, i, OverlayTexture.DEFAULT_UV, 1.0F, 1.0F, 1.0F, 1.0F);
   }
 
-  private void renderBanner(BannerInfo info, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider,
+  private void renderBanner(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider,
       int i) {
-    List<Pair<String, Color4f>> list = info.getPatterns();
-    for (int count = 0; count < list.size(); count++) {
-      Pair<String, Color4f> pair = list.get(count);
-      if (pair.getFirst().equals(""))
+        float[] f=((ColorEnum)Configs.INSTANCE.colorbase.getOptionListValue()).getDyeColor().getColorComponents();
+    model.render(matrixStack,
+        ModelLoader.BANNER_BASE.method_30001(vertexConsumerProvider, RenderLayer::getEntitySolid, false), i,
+        OverlayTexture.DEFAULT_UV,f[0],f[1],f[2],1.0F);
+    for (int count = 0; count < 8; count++) {
+      if (Configs.INSTANCE.nameList[count].getOptionListValue() == Pattern.none)
         break;
-      Identifier texture = new Identifier("minecraft", "textures/entity/banner/" + pair.getFirst() + ".png");
-      VertexConsumer consumer = ItemRenderer.getArmorGlintConsumer(vertexConsumerProvider,
-          RenderLayer.getArmorCutoutNoCull(texture), false, false);
-      model.render(matrixStack, consumer, i, OverlayTexture.DEFAULT_UV, pair.getSecond().r, pair.getSecond().g,
-          pair.getSecond().b, pair.getSecond().a);
+      Identifier texture = new Identifier("minecraft",
+          "entity/banner/" + Configs.INSTANCE.nameList[count].getOptionListValue().getStringValue());
+      SpriteIdentifier spriteIdentifier = new SpriteIdentifier(TexturedRenderLayers.BANNER_PATTERNS_ATLAS_TEXTURE,
+          texture);
+      float[] f1 = ((ColorEnum) Configs.INSTANCE.colorList[count].getOptionListValue()).getDyeColor().getColorComponents();
+      model.render(matrixStack,
+          spriteIdentifier.getVertexConsumer(vertexConsumerProvider, RenderLayer::getEntityNoOutline), i,
+          OverlayTexture.DEFAULT_UV, f1[0], f1[1], f1[2], 1.0F);
     }
-  }
-
-  private BannerInfo setPattern() {
-    return new BannerInfo(Configs.Cape.colorbase.getColor(),
-        new Pattern(Configs.Cape.name1.getStringValue(), Configs.Cape.color1.getColor()),
-        new Pattern(Configs.Cape.name2.getStringValue(), Configs.Cape.color2.getColor()),
-        new Pattern(Configs.Cape.name3.getStringValue(), Configs.Cape.color3.getColor()),
-        new Pattern(Configs.Cape.name4.getStringValue(), Configs.Cape.color4.getColor()),
-        new Pattern(Configs.Cape.name5.getStringValue(), Configs.Cape.color5.getColor()),
-        new Pattern(Configs.Cape.name6.getStringValue(), Configs.Cape.color6.getColor()),
-        new Pattern(Configs.Cape.name7.getStringValue(), Configs.Cape.color7.getColor()),
-        new Pattern(Configs.Cape.name8.getStringValue(), Configs.Cape.color8.getColor()));
   }
 }

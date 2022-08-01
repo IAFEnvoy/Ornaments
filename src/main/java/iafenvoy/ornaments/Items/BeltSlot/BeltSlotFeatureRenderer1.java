@@ -1,7 +1,8 @@
 package iafenvoy.ornaments.Items.BeltSlot;
 
-import iafenvoy.ornaments.Client.Config.Configs;
+import iafenvoy.ornaments.Config.Configs;
 import iafenvoy.ornaments.Util.GetItems;
+import iafenvoy.ornaments.Util.PlayerUtil;
 import iafenvoy.ornaments.Util.RenderInfo;
 import iafenvoy.ornaments.Util.RenderInfo.RenderThings;
 import net.fabricmc.api.EnvType;
@@ -35,29 +36,29 @@ public class BeltSlotFeatureRenderer1
   public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i,
       AbstractClientPlayerEntity livingEntity, float f, float g, float h, float j, float k, float l) {
     if (livingEntity instanceof AbstractClientPlayerEntity) {
-      if (((PlayerEntity) livingEntity).getName().asString().equals(Configs.General.User.getStringValue())) {
+      if (((PlayerEntity) livingEntity).getName().asString().equals(PlayerUtil.getRenderPlayer())) {
         if (!RenderInfo.ifRender(RenderThings.BELTSLOT, (PlayerEntity) livingEntity))
           return;
-        float offsetx = (float) Configs.BeltSlot.xoffset1_1.getDoubleValue();
-        float offsety = (float) Configs.BeltSlot.yoffset1_1.getDoubleValue();
-        float offsetz = (float) Configs.BeltSlot.zoffset1_1.getDoubleValue();
+        float offsetx = (float) Configs.INSTANCE.xoffset1_1.getDoubleValue();
+        float offsety = (float) Configs.INSTANCE.yoffset1_1.getDoubleValue();
+        float offsetz = (float) Configs.INSTANCE.zoffset1_1.getDoubleValue();
         matrixStack.push();
         ModelPart modelPart = this.getContextModel().body;
         modelPart.rotate(matrixStack);
         double switchBeltSide = 0.29D;
-        ItemStack item = GetItems.GetItemFromName(Configs.BeltSlot.beltslotType1.getStringValue(),
-            Configs.BeltSlot.enchanted1_1.getBooleanValue());
+        ItemStack item = GetItems.GetItemFromName(Configs.INSTANCE.beltslotType1.getStringValue(),
+            Configs.INSTANCE.enchanted1_1.getBooleanValue());
         matrixStack.translate(offsetz + switchBeltSide, offsety + 0.5D, offsetx + 0.05D);
         if (item.getItem() instanceof FlintAndSteelItem)
           matrixStack.translate(offsetz + 0.01F, offsety, offsetx - 0.1F);
         matrixStack
-            .multiply(Vec3f.POSITIVE_X.getDegreesQuaternion((float) Configs.BeltSlot.rotateAnglex1_1.getDoubleValue()));
+            .multiply(Vec3f.POSITIVE_X.getDegreesQuaternion((float) Configs.INSTANCE.rotateAnglex1_1.getDoubleValue()));
         matrixStack.multiply(
-            Vec3f.POSITIVE_Y.getDegreesQuaternion((float) Configs.BeltSlot.rotateAngley1_1.getDoubleValue() - 90.0F));
+            Vec3f.POSITIVE_Y.getDegreesQuaternion((float) Configs.INSTANCE.rotateAngley1_1.getDoubleValue() - 90.0F));
         matrixStack.multiply(
-            Vec3f.POSITIVE_Z.getDegreesQuaternion((float) (Configs.BeltSlot.rotateAngle1_1.getDoubleValue())));
-        matrixStack.scale((float) Configs.BeltSlot.size1_1.getDoubleValue(),
-            (float) Configs.BeltSlot.size1_1.getDoubleValue(), (float) Configs.BeltSlot.size1_1.getDoubleValue());
+            Vec3f.POSITIVE_Z.getDegreesQuaternion((float) (Configs.INSTANCE.rotateAngle1_1.getDoubleValue())));
+        matrixStack.scale((float) Configs.INSTANCE.size1_1.getDoubleValue(),
+            (float) Configs.INSTANCE.size1_1.getDoubleValue(), (float) Configs.INSTANCE.size1_1.getDoubleValue());
         if (item.getItem() instanceof ShearsItem || item.getItem() instanceof FlintAndSteelItem) {
           matrixStack.scale(0.65F, 0.65F, 0.65F);
           if (!livingEntity.hasStackEquipped(EquipmentSlot.CHEST))

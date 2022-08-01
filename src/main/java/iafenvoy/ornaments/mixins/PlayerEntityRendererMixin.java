@@ -12,7 +12,6 @@ import iafenvoy.ornaments.Items.BeltSlot.BeltSlotFeatureRenderer2;
 import iafenvoy.ornaments.Items.Cape.CapeRender;
 import iafenvoy.ornaments.Items.Cape.ElytraRender;
 import iafenvoy.ornaments.Items.Wings.WingsFeatureRenderer;
-import iafenvoy.ornaments.multiplayer.NetworkCatcher;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
@@ -28,10 +27,8 @@ public abstract class PlayerEntityRendererMixin
     super(dispatcher, model, shadowRadius);
   }
 
-  @Inject(method = "<init>(Lnet/minecraft/client/render/entity/EntityRenderDispatcher;Z)V", at = @At(value = "INVOKE", shift = At.Shift.AFTER, target = "net/minecraft/client/render/entity/PlayerEntityRenderer.addFeature(Lnet/minecraft/client/render/entity/feature/FeatureRenderer;)Z", ordinal = 6))
+  @Inject(method = "<init>(Lnet/minecraft/client/render/entity/EntityRenderDispatcher;Z)V", at = @At(value = "RETURN"))
   public void postConstructor(CallbackInfo callbackInfo) {
-    this.addFeature(new NetworkCatcher<>(this));
-
     this.addFeature(new CapeRender<>(this));
     this.addFeature(new ElytraRender<>(this));
     this.addFeature(new WingsFeatureRenderer<>(this));
@@ -39,7 +36,6 @@ public abstract class PlayerEntityRendererMixin
     this.addFeature(new BackToolFeatureRenderer2(this));
     this.addFeature(new BeltSlotFeatureRenderer1(this));
     this.addFeature(new BeltSlotFeatureRenderer2(this));
-    this.addFeature(new ElytraRender<>(this));
     this.features.removeIf(renderer -> renderer instanceof ElytraFeatureRenderer);
   }
 }

@@ -1,19 +1,21 @@
-package iafenvoy.ornaments.Client;
+package iafenvoy.ornaments.Config;
 
+import fi.dy.masa.malilib.config.IConfigBase;
 import fi.dy.masa.malilib.gui.GuiConfigsBase;
 import fi.dy.masa.malilib.gui.button.ButtonGeneric;
 import fi.dy.masa.malilib.util.StringUtils;
-import iafenvoy.ornaments.Client.Config.*;
+import iafenvoy.ornaments.OrnamentClient;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ConfigGUI extends GuiConfigsBase {
-  private static Category currentTab = Category.GENERAL;
+import com.google.common.collect.ImmutableList;
 
-  public static final String MOD_ID = "ornaments";
+public class ConfigGUI extends GuiConfigsBase {
+  private static Category currentTab = Category.General;
 
   public ConfigGUI() {
-    super(10, 50, MOD_ID, null, "config.ornaments.title");
+    super(10, 50, OrnamentClient.MOD_ID, null, "config." + OrnamentClient.MOD_ID + ".title");
   }
 
   @Override
@@ -48,6 +50,36 @@ public class ConfigGUI extends GuiConfigsBase {
     public TabButton(Category category, int x, int y, int width, int height, String text, String... hoverStrings) {
       super(x, y, width, height, text, hoverStrings);
       this.category = category;
+    }
+  }
+
+  public enum Category {
+    General("config.ornaments.general"),
+    Cape("config.ornaments.cape"),
+    Wings("config.ornaments.wings"),
+    BackTools("config.ornaments.backtools"),
+    BeltSlot("config.ornaments.sideitem"),
+    BugFix("config.ornaments.bugfix");
+  
+    private final String key;
+    private final List<IConfigBase> configs;
+  
+    Category(String key) {
+      this.key = key;
+      configs = new ArrayList<>();
+    }
+  
+    public <T extends IConfigBase> T add(T config) {
+      this.configs.add(config);
+      return config;
+    }
+  
+    public List<IConfigBase> getConfigs() {
+      return ImmutableList.copyOf(this.configs);
+    }
+  
+    public String getKey() {
+      return this.key;
     }
   }
 }

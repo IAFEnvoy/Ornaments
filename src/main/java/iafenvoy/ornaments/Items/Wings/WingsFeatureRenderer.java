@@ -1,16 +1,15 @@
 package iafenvoy.ornaments.Items.Wings;
 
 import fi.dy.masa.malilib.util.Color4f;
-import iafenvoy.ornaments.Client.OrnamentClient;
-import iafenvoy.ornaments.Client.Config.Configs;
+import iafenvoy.ornaments.OrnamentClient;
+import iafenvoy.ornaments.Config.Configs;
 import iafenvoy.ornaments.Items.Wings.models.FeatheredWingModel;
 import iafenvoy.ornaments.Items.Wings.models.LeatherWingModel;
 import iafenvoy.ornaments.Items.Wings.models.LightWingsModel;
 import iafenvoy.ornaments.Items.Wings.models.TechWingsModel;
 import iafenvoy.ornaments.Items.Wings.models.WingEntityModel;
 import iafenvoy.ornaments.Items.Wings.models.ZanzasWingsModel;
-import iafenvoy.ornaments.multiplayer.OrnamentsNetwork;
-import iafenvoy.ornaments.multiplayer.PlayerInfo;
+import iafenvoy.ornaments.Util.PlayerUtil;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
@@ -40,49 +39,43 @@ public class WingsFeatureRenderer<T extends LivingEntity, M extends EntityModel<
     if (entity.isSpectator() || entity.isInvisible() || !entity.isAlive())
       return;
     if (entity instanceof PlayerEntity) {
-      if (((PlayerEntity) entity).getName().asString().equals(Configs.General.User.getStringValue())) {
-        if (Configs.Wings.SHOW_WING.getBooleanValue())
+      if (((PlayerEntity) entity).getName().asString().equals(PlayerUtil.getRenderPlayer())) {
+        if (Configs.INSTANCE.SHOW_WING.getBooleanValue())
           if (entity.getEquippedStack(EquipmentSlot.CHEST).getItem() != Items.ELYTRA
-              || Configs.Wings.Overwrite_Elytra.getBooleanValue()) {
-            String wingType = Configs.Wings.wingtype.getStringValue();
-            renderTexture(wingType, Configs.Wings.lwingcolorl1.getColor(), Configs.Wings.lwingcolorl2.getColor(),
-                Configs.Wings.rwingcolorl1.getColor(), Configs.Wings.rwingcolorl2.getColor(), matrices, vertexConsumers,
-                light, entity, limbAngle, limbDistance, tickDelta, animationProgress, headYaw, headPitch);
+              || Configs.INSTANCE.Overwrite_Elytra.getBooleanValue()) {
+            renderTexture((WingType) Configs.INSTANCE.wingtype.getOptionListValue(), Configs.INSTANCE.lwingcolorl1.getColor(),
+                Configs.INSTANCE.lwingcolorl2.getColor(), Configs.INSTANCE.rwingcolorl1.getColor(),
+                Configs.INSTANCE.rwingcolorl2.getColor(), matrices, vertexConsumers, light, entity, limbAngle,
+                limbDistance, tickDelta, animationProgress, headYaw, headPitch);
           }
-      } else if (OrnamentsNetwork.hasInfo(((PlayerEntity) entity).getName().asString())) {
-        PlayerInfo info = OrnamentsNetwork.getInfo(((PlayerEntity) entity).getName().asString());
-        if (info.showWings)
-          if (entity.getEquippedStack(EquipmentSlot.CHEST).getItem() != Items.ELYTRA || info.overwriteElytra)
-            renderTexture(info.wingType.getStringValue(), info.lwingcolorl1, info.lwingcolorl2, info.rwingcolorl1,
-                info.rwingcolorl2, matrices, vertexConsumers, light, entity, limbAngle, limbDistance, tickDelta,
-                animationProgress, headYaw, headPitch);
       }
     }
   }
 
-  private void renderTexture(String wingType, Color4f lwingcolorl1, Color4f lwingcolorl2, Color4f rwingcolorl1,
+  private void renderTexture(WingType wingType, Color4f lwingcolorl1, Color4f lwingcolorl2, Color4f rwingcolorl1,
       Color4f rwingcolorl2, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity,
       float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
-    if (wingType.equals("feathered")) {
+    if (wingType == WingType.Feather) {
       lwingModel = new FeatheredWingModel<>(true);
       rwingModel = new FeatheredWingModel<>(false);
-    } else if (wingType.equals("dragon")) {
+    } else if (wingType == WingType.Leather) {
       lwingModel = new LeatherWingModel<>(true);
       rwingModel = new LeatherWingModel<>(false);
-    } else if (wingType.equals("light")) {
+    } else if (wingType == WingType.Light) {
       lwingModel = new LightWingsModel<>(true);
       rwingModel = new LightWingsModel<>(false);
-    } else if (wingType.equals("zanzas")) {
+    } else if (wingType == WingType.Zanzas) {
       lwingModel = new ZanzasWingsModel<>(true);
       rwingModel = new ZanzasWingsModel<>(false);
-    } else if (wingType.equals("tech")) {
+    } else if (wingType == WingType.Tech) {
       lwingModel = new TechWingsModel<>(true);
       rwingModel = new TechWingsModel<>(false);
     } else
       return;
 
-    Identifier layer1 = new Identifier(OrnamentClient.MOD_ID, "textures/wing/" + wingType + "_wings.png");
-    Identifier layer2 = new Identifier(OrnamentClient.MOD_ID, "textures/wing/" + wingType + "_wings_2.png");
+    Identifier layer1 = new Identifier(OrnamentClient.MOD_ID, "textures/wing/" + wingType.getStringValue() + "_wings.png");
+    Identifier layer2 = new Identifier(OrnamentClient.MOD_ID,
+        "textures/wing/" + wingType.getStringValue() + "_wings_2.png");
 
     matrices.push();
     matrices.translate(0.0D, 0.0D, 0.125D);
@@ -106,10 +99,8 @@ public class WingsFeatureRenderer<T extends LivingEntity, M extends EntityModel<
     VertexConsumer vertexConsumer = ItemRenderer.getArmorGlintConsumer(vertexConsumers,
         RenderLayer.getEntityTranslucent(layerName), false, false);
     if (left)
-      this.lwingModel.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, color.r, color.g, color.b,
-          color.a);
+      lwingModel.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, color.r, color.g, color.b, color.a);
     else
-      this.rwingModel.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, color.r, color.g, color.b,
-          color.a);
+      rwingModel.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, color.r, color.g, color.b, color.a);
   }
 }
