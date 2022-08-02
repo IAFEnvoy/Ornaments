@@ -3,17 +3,15 @@ package iafenvoy.ornaments;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.client.texture.SpriteAtlasTexture;
-import net.minecraft.util.Identifier;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import fi.dy.masa.malilib.config.ConfigManager;
 import fi.dy.masa.malilib.event.InputEventHandler;
 import iafenvoy.ornaments.Config.Configs;
-import iafenvoy.ornaments.Items.Cape.Enum.Pattern;
+import iafenvoy.ornaments.Registry.Commands;
+import iafenvoy.ornaments.Registry.Textures;
 import iafenvoy.ornaments.Util.KeyBindHandler;
 import iafenvoy.ornaments.Util.KeybindProvider;
 
@@ -35,12 +33,7 @@ public class OrnamentClient implements ClientModInitializer {
     InputEventHandler.getKeybindManager().registerKeybindProvider(new KeybindProvider());
     Configs.INSTANCE.MENU_OPEN_KEY.getKeybind().setCallback(new KeyBindHandler());
 
-    ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE).register(((atlasTexture, registry) -> {
-      for (Pattern pattern : Pattern.values()) {
-        Identifier textureIdentifier = new Identifier(OrnamentClient.MOD_ID,
-            "entity/elytra_banner/" + pattern.getStringValue());
-        registry.register(textureIdentifier);
-      }
-    }));
+    Textures.register();
+    Commands.register();
   }
 }

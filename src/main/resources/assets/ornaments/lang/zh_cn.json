@@ -166,7 +166,7 @@
   "config.ornaments.cdn.help": "RAW/CDN",
   "config.url.default": "原始(RAW)",
   "config.url.cdn": "镜像(CDN)",
-  "block.minecraft.banner.none.red": "不使用",
+  "block.minecraft.banner.base.red": "不使用",
   "color.black": "黑色",
   "color.red": "红色",
   "color.green": "绿色",

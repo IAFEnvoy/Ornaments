@@ -110,7 +110,7 @@ public class Configs implements IConfigHandler {
 
   public Configs() {
     for (int i = 0; i < 8; i++) {
-      nameList[i] = new NOptionList("config.ornaments.name" + String.valueOf(i + 1), Pattern.none, Category.Cape);
+      nameList[i] = new NOptionList("config.ornaments.name" + String.valueOf(i + 1), Pattern.BASE, Category.Cape);
       colorList[i] = new NOptionList("config.ornaments.color" + String.valueOf(i + 1), ColorEnum.black,
           Category.Cape);
     }

@@ -111,7 +111,7 @@ public class CapeRender<T extends LivingEntity, M extends EntityModel<T>> extend
         ModelLoader.BANNER_BASE.method_30001(vertexConsumerProvider, RenderLayer::getEntitySolid, false), i,
         OverlayTexture.DEFAULT_UV,f[0],f[1],f[2],1.0F);
     for (int count = 0; count < 8; count++) {
-      if (Configs.INSTANCE.nameList[count].getOptionListValue() == Pattern.none)
+      if (Configs.INSTANCE.nameList[count].getOptionListValue() == Pattern.BASE)
         break;
       Identifier texture = new Identifier("minecraft",
           "entity/banner/" + Configs.INSTANCE.nameList[count].getOptionListValue().getStringValue());

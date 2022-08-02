@@ -9,6 +9,6 @@ public class PlayerUtil {
   public static String getRenderPlayer() {
     String s1 = Configs.INSTANCE.User.getStringValue();
     String s2 = client.player.getName().getString();
-    return s1.isBlank() ? s2 : s1;
+    return s1.isEmpty() ? s2 : s1;
   }
 }

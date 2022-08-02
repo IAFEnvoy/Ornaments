@@ -157,7 +157,7 @@
   "config.url.default": "Origin(RAW)",
   "config.url.cdn": "Mirror(CDN)",
   "pattern.none": "None",
-  "block.minecraft.banner.none.red": "None",
+  "block.minecraft.banner.base.red": "None",
   "color.black": "Black",
   "color.red": "Red",
   "color.green": "Green",

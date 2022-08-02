@@ -64,4 +64,11 @@ public enum ColorEnum implements IConfigOptionListEntry {
         return val;
     return ColorEnum.black;
   }
+
+  public static ColorEnum getById(int id) {
+    for (ColorEnum val : ColorEnum.values())
+      if (val.dyeColor.getId() == id)
+        return val;
+    return ColorEnum.black;
+  }
 }
