@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "minVersion": "0.7",
+  "package": "iafenvoy.ornaments.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

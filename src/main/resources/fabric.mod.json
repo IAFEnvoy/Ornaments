@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "ornaments",
+  "version": "1.0.0",
+  "name": "Ornaments",
+  "description": "Add ornaments on player in client side.\nPress F7 to open menu",
+  "authors": [
+    "IAFEnvoy"
+  ],
+  "contact": {
+    "sources": "https://github.com/IAFEnvoy/Ornaments"
+  },
+  "license": "GPL 3.0",
+  "icon": "assets/ornaments/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "iafenvoy.ornaments.OrnamentClient"
+    ],
+    "modmenu":[
+      "iafenvoy.ornaments.compat.ModMenu"
+    ]
+  },
+  "mixins": [
+    "ornaments.mixins.json",
+    "compat.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.16.x",
+    "java": ">=8",
+    "malilib": "*"
+  }
+}
