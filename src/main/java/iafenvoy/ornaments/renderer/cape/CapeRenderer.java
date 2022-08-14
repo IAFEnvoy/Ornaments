@@ -3,7 +3,7 @@ package iafenvoy.ornaments.renderer.cape;
 import iafenvoy.ornaments.config.CapeInfo;
 import iafenvoy.ornaments.renderer.cape.type.Pattern;
 import iafenvoy.ornaments.utils.ClientUtil;
-import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.TexturedRenderLayers;
@@ -15,21 +15,20 @@ import net.minecraft.client.render.model.ModelLoader;
 import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3f;
 
-public class CapeRenderer extends FeatureRenderer<ClientPlayerEntity, PlayerEntityModel<ClientPlayerEntity>> {
-    private final CapeModel<ClientPlayerEntity> model = new CapeModel<>();
+public class CapeRenderer extends FeatureRenderer<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> {
+    private final CapeModel<AbstractClientPlayerEntity> model = new CapeModel<>();
 
-    public CapeRenderer(FeatureRendererContext<ClientPlayerEntity, PlayerEntityModel<ClientPlayerEntity>> context) {
+    public CapeRenderer(FeatureRendererContext<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> context) {
         super(context);
     }
 
     @Override
-    public void render(MatrixStack matrices, VertexConsumerProvider provider, int light, ClientPlayerEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
+    public void render(MatrixStack matrices, VertexConsumerProvider provider, int light, AbstractClientPlayerEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
         final CapeInfo info = CapeInfo.cape;
         if (entity.isSpectator() || entity.isInvisible() || !entity.isAlive())
             return;
@@ -66,7 +65,7 @@ public class CapeRenderer extends FeatureRenderer<ClientPlayerEntity, PlayerEnti
 
         final float t = MathHelper.lerp(tickDelta, entity.prevStrideDistance, entity.strideDistance);
         q += MathHelper.sin(MathHelper.lerp(tickDelta, entity.prevHorizontalSpeed, entity.horizontalSpeed) * 6.0F) * 32.0F * t;
-        if (((PlayerEntity) entity).isInSneakingPose()) q += 25.0F;
+        if (entity.isInSneakingPose()) q += 25.0F;
 
         matrices.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(6.0F + r / 2.0F + q));
         matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(s / 2.0F));
