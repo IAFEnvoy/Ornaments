@@ -5,7 +5,6 @@ import iafenvoy.ornaments.utils.ClientUtil;
 import iafenvoy.ornaments.utils.FakePlayerEntity;
 import iafenvoy.ornaments.utils.LocalSkin;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
@@ -17,13 +16,13 @@ import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.Vec3f;
 
-public class ShoulderPlayerRenderer extends FeatureRenderer<ClientPlayerEntity, PlayerEntityModel<ClientPlayerEntity>> {
-    public ShoulderPlayerRenderer(FeatureRendererContext<ClientPlayerEntity, PlayerEntityModel<ClientPlayerEntity>> context) {
+public class ShoulderPlayerRenderer extends FeatureRenderer<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> {
+    public ShoulderPlayerRenderer(FeatureRendererContext<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> context) {
         super(context);
     }
 
     @Override
-    public void render(MatrixStack matrices, VertexConsumerProvider provider, int light, ClientPlayerEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
+    public void render(MatrixStack matrices, VertexConsumerProvider provider, int light, AbstractClientPlayerEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
         if (entity.getName().getString().equals(ClientUtil.getRenderPlayer())) {
             final ShoulderPlayerInfo left = ShoulderPlayerInfo.leftPlayer, right = ShoulderPlayerInfo.rightPlayer;
             if (left.shouldRender()) {
@@ -31,9 +30,9 @@ public class ShoulderPlayerRenderer extends FeatureRenderer<ClientPlayerEntity, 
                     new LocalSkin(left.getPlayerName()).load();
                 LocalSkin data = LocalSkin.data.get(left.getPlayerName().toLowerCase());
                 if (data.getIdentifier() != null) {
-                    PlayerEntityModel<ClientPlayerEntity> model = new PlayerEntityModel<>(1, left.isThinArm());
+                    PlayerEntityModel<AbstractClientPlayerEntity> model = new PlayerEntityModel<>(1, left.isThinArm());
                     this.setModelPose(model);
-                    ClientPlayerEntity player = new FakePlayerEntity.DummyClientPlayerEntity(data.getIdentifier());
+                    AbstractClientPlayerEntity player = new FakePlayerEntity.DummyClientPlayerEntity(data.getIdentifier());
                     this.renderPlayer(model, player, matrices, provider, light, entity, tickDelta, true);
                 }
             }
@@ -42,16 +41,16 @@ public class ShoulderPlayerRenderer extends FeatureRenderer<ClientPlayerEntity, 
                     new LocalSkin(right.getPlayerName()).load();
                 LocalSkin data = LocalSkin.data.get(right.getPlayerName().toLowerCase());
                 if (data.getIdentifier() != null) {
-                    PlayerEntityModel<ClientPlayerEntity> model = new PlayerEntityModel<>(1, right.isThinArm());
+                    PlayerEntityModel<AbstractClientPlayerEntity> model = new PlayerEntityModel<>(1, right.isThinArm());
                     this.setModelPose(model);
-                    ClientPlayerEntity player = new FakePlayerEntity.DummyClientPlayerEntity(data.getIdentifier());
+                    AbstractClientPlayerEntity player = new FakePlayerEntity.DummyClientPlayerEntity(data.getIdentifier());
                     this.renderPlayer(model, player, matrices, provider, light, entity, tickDelta, false);
                 }
             }
         }
     }
 
-    private void renderPlayer(PlayerEntityModel<ClientPlayerEntity> model, ClientPlayerEntity player, MatrixStack matrices, VertexConsumerProvider provider, int light, AbstractClientPlayerEntity entity, float tickDelta, boolean left) {
+    private void renderPlayer(PlayerEntityModel<AbstractClientPlayerEntity> model, AbstractClientPlayerEntity player, MatrixStack matrices, VertexConsumerProvider provider, int light, AbstractClientPlayerEntity entity, float tickDelta, boolean left) {
         matrices.push();
         matrices.scale(-0.2F, -0.2F, 0.2F);
         matrices.translate(left ? -1.75D : 1.75D, 1D, 0);
@@ -70,7 +69,7 @@ public class ShoulderPlayerRenderer extends FeatureRenderer<ClientPlayerEntity, 
         matrices.pop();
     }
 
-    private void setModelPose(PlayerEntityModel<ClientPlayerEntity> model) {
+    private void setModelPose(PlayerEntityModel<AbstractClientPlayerEntity> model) {
         model.riding = true;
         model.setVisible(true);
         model.hat.visible = model.jacket.visible = true;

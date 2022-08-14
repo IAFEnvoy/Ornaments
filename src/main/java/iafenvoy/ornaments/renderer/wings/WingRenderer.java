@@ -5,7 +5,7 @@ import iafenvoy.ornaments.OrnamentClient;
 import iafenvoy.ornaments.config.WingInfo;
 import iafenvoy.ornaments.renderer.wings.models.*;
 import iafenvoy.ornaments.utils.ClientUtil;
-import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
@@ -19,14 +19,14 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 
-public class WingRenderer extends FeatureRenderer<ClientPlayerEntity, PlayerEntityModel<ClientPlayerEntity>> {
+public class WingRenderer extends FeatureRenderer<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> {
 
-    public WingRenderer(FeatureRendererContext<ClientPlayerEntity, PlayerEntityModel<ClientPlayerEntity>> context) {
+    public WingRenderer(FeatureRendererContext<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> context) {
         super(context);
     }
 
     @Override
-    public void render(MatrixStack matrices, VertexConsumerProvider provider, int light, ClientPlayerEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
+    public void render(MatrixStack matrices, VertexConsumerProvider provider, int light, AbstractClientPlayerEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
         if (entity.isSpectator() || entity.isInvisible() || !entity.isAlive())
             return;
         if (!entity.getName().asString().equals(ClientUtil.getRenderPlayer()))
@@ -36,10 +36,10 @@ public class WingRenderer extends FeatureRenderer<ClientPlayerEntity, PlayerEnti
         renderTexture(WingInfo.wing, matrices, provider, light, entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
     }
 
-    private void renderTexture(WingInfo info, MatrixStack matrices, VertexConsumerProvider provider, int light, ClientPlayerEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+    private void renderTexture(WingInfo info, MatrixStack matrices, VertexConsumerProvider provider, int light, AbstractClientPlayerEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
         WingType type = info.getType();
-        WingEntityModel<ClientPlayerEntity> rightWing;
-        WingEntityModel<ClientPlayerEntity> leftWing;
+        WingEntityModel<AbstractClientPlayerEntity> rightWing;
+        WingEntityModel<AbstractClientPlayerEntity> leftWing;
         if (type == WingType.Feather) {
             leftWing = new FeatheredWingModel<>(true);
             rightWing = new FeatheredWingModel<>(false);
@@ -78,7 +78,7 @@ public class WingRenderer extends FeatureRenderer<ClientPlayerEntity, PlayerEnti
         matrices.pop();
     }
 
-    private void renderWings(WingEntityModel<ClientPlayerEntity> model, MatrixStack matrices, VertexConsumerProvider provider, int light, Identifier texture, Color4f color) {
+    private void renderWings(WingEntityModel<AbstractClientPlayerEntity> model, MatrixStack matrices, VertexConsumerProvider provider, int light, Identifier texture, Color4f color) {
         VertexConsumer vertexConsumer = ItemRenderer.getArmorGlintConsumer(provider, RenderLayer.getEntityTranslucent(texture), false, false);
         model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, color.r, color.g, color.b, color.a);
     }
