@@ -6,6 +6,7 @@ import iafenvoy.ornaments.ConfigManager;
 import iafenvoy.ornaments.config.ShoulderPlayerInfo;
 import iafenvoy.ornaments.gui.buttons.BooleanButton;
 import iafenvoy.ornaments.gui.buttons.TextField;
+import iafenvoy.ornaments.utils.MathUtil;
 
 public class ShoulderPlayerGui extends EntityGuiBase {
     public ShoulderPlayerGui(ShoulderPlayerInfo info, String textKey, GuiBase parent) {

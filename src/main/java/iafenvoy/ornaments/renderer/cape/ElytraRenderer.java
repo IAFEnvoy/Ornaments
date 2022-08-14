@@ -4,7 +4,7 @@ import iafenvoy.ornaments.OrnamentClient;
 import iafenvoy.ornaments.config.CapeInfo;
 import iafenvoy.ornaments.renderer.cape.type.Pattern;
 import iafenvoy.ornaments.utils.ClientUtil;
-import net.minecraft.client.network.AbstractClientPlayerEntity;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.entity.PlayerModelPart;
 import net.minecraft.client.render.entity.feature.FeatureRenderer;
@@ -19,17 +19,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 
-public class ElytraRenderer extends FeatureRenderer<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> {
+public class ElytraRenderer extends FeatureRenderer<ClientPlayerEntity, PlayerEntityModel<ClientPlayerEntity>> {
     private static final Identifier ORIGIN = new Identifier("textures/entity/elytra.png");
-    private final ElytraWingModel<AbstractClientPlayerEntity> leftWing = new ElytraWingModel<>(false);
-    private final ElytraWingModel<AbstractClientPlayerEntity> rightWing = new ElytraWingModel<>(true);
+    private final ElytraWingModel<ClientPlayerEntity> leftWing = new ElytraWingModel<>(false);
+    private final ElytraWingModel<ClientPlayerEntity> rightWing = new ElytraWingModel<>(true);
 
-    public ElytraRenderer(FeatureRendererContext<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> context) {
+    public ElytraRenderer(FeatureRendererContext<ClientPlayerEntity, PlayerEntityModel<ClientPlayerEntity>> context) {
         super(context);
     }
 
     @Override
-    public void render(MatrixStack matrices, VertexConsumerProvider provider, int light, AbstractClientPlayerEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
+    public void render(MatrixStack matrices, VertexConsumerProvider provider, int light, ClientPlayerEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
         if (entity.isSpectator() || !entity.isAlive())
             return;
         if (entity.getEquippedStack(EquipmentSlot.CHEST).getItem() == Items.ELYTRA) {
@@ -50,7 +50,7 @@ public class ElytraRenderer extends FeatureRenderer<AbstractClientPlayerEntity, 
         }
     }
 
-    public void renderOrigin(ElytraWingModel<AbstractClientPlayerEntity> model, MatrixStack matrices, VertexConsumerProvider provider, int light, AbstractClientPlayerEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+    public void renderOrigin(ElytraWingModel<ClientPlayerEntity> model, MatrixStack matrices, VertexConsumerProvider provider, int light, ClientPlayerEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
         ItemStack elytra = entity.getEquippedStack(EquipmentSlot.CHEST);
         if (elytra.getItem() == Items.ELYTRA) {
             Identifier texture = ORIGIN;
@@ -69,7 +69,7 @@ public class ElytraRenderer extends FeatureRenderer<AbstractClientPlayerEntity, 
         }
     }
 
-    public void renderSplitBanner(CapeInfo info, ElytraWingModel<AbstractClientPlayerEntity> wing, MatrixStack matrices, VertexConsumerProvider provider, int light, AbstractClientPlayerEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+    public void renderSplitBanner(CapeInfo info, ElytraWingModel<ClientPlayerEntity> wing, MatrixStack matrices, VertexConsumerProvider provider, int light, ClientPlayerEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
         matrices.push();
         matrices.translate(0.0D, 0.0D, 0.125D);
         ItemStack elytra = entity.getEquippedStack(EquipmentSlot.CHEST);
