@@ -15,7 +15,7 @@ public class KeyBind {
         guiKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("config.ornaments.open_menu_key", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F7, OrnamentClient.MOD_NAME));
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (guiKey.isPressed())
-                client.openScreen(new MainGui());
+                client.openScreen(new MainGui(null));
         });
     }
 }

@@ -1,6 +1,7 @@
 package iafenvoy.ornaments.gui;
 
 import fi.dy.masa.malilib.gui.GuiBase;
+import fi.dy.masa.malilib.gui.button.ButtonGeneric;
 import fi.dy.masa.malilib.util.StringUtils;
 import iafenvoy.ornaments.ConfigManager;
 import iafenvoy.ornaments.config.CapeInfo;
@@ -9,13 +10,16 @@ import iafenvoy.ornaments.config.ToolInfo;
 import iafenvoy.ornaments.config.WingInfo;
 import iafenvoy.ornaments.gui.buttons.OpenGuiButton;
 import iafenvoy.ornaments.gui.settings.*;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
 
 public class MainGui extends GuiBase implements SettingGui {
     private final ButtonGroup group = new ButtonGroup(20, 30, 50);
+    private final Screen parent;
 
-    public MainGui() {
+    public MainGui(Screen parent) {
         this.title = StringUtils.translate("config.ornaments.title");
+        this.parent = parent;
         group.newProperty("config.ornaments.cape");
         group.add(new OpenGuiButton("cape", "config.ornaments.cape", 80, new CapeGui(CapeInfo.cape, "config.ornaments.cape", false, this)));
         group.add(new OpenGuiButton("left_elytra", "config.ornaments.left_elytra", 80, new CapeGui(CapeInfo.leftElytra, "config.ornaments.left_elytra", true, this)));
@@ -35,12 +39,13 @@ public class MainGui extends GuiBase implements SettingGui {
 
     @Override
     protected void drawTitle(MatrixStack matrices, int mouseX, int mouseY, float partialTicks) {
-        this.drawString(matrices, this.getTitleString(), 20, 10, -1);
+        this.drawString(matrices, this.getTitleString(), 90, 15, -1);
     }
 
     @Override
     public void initGui() {
         super.initGui();
+        this.addButton(new ButtonGeneric(20, 10, 50, 20, StringUtils.translate("config.ornaments.back")), (button, mouseButton) -> GuiBase.openGui(parent));
         group.initGui(this);
     }
 

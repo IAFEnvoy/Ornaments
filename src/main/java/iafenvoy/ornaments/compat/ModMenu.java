@@ -7,6 +7,6 @@ import iafenvoy.ornaments.gui.MainGui;
 public class ModMenu implements ModMenuApi {
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return (screen) -> new MainGui();
+        return MainGui::new;
     }
 }
