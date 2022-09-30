@@ -17,9 +17,9 @@
   "config.ornaments.rwingcolor": "右翅膀颜色",
   "config.ornaments.show": "是否显示",
   "config.ornaments.size": "大小",
-  "config.ornaments.shoulder_player":"肩部玩家模型",
-  "config.ornaments.left_shoulder_player":"左肩部玩家模型",
-  "config.ornaments.right_shoulder_player":"右肩部玩家模型",
+  "config.ornaments.shoulder_player": "肩部玩家模型",
+  "config.ornaments.left_shoulder_player": "左肩部玩家模型",
+  "config.ornaments.right_shoulder_player": "右肩部玩家模型",
   "config.ornaments.show_back_tool": "显示背置工具",
   "config.ornaments.left_back_tool": "左背置工具",
   "config.ornaments.right_back_tool": "右背置工具",
@@ -67,5 +67,6 @@
   "color.white": "白色",
   "pattern.none": "None",
   "config.ornaments.player_name": "本地皮肤名",
-  "config.ornaments.is_thin_arm": "使用Alex模型"
+  "config.ornaments.is_thin_arm": "使用Alex模型",
+  "compat.ornaments.bobby": "渲染错误：渲染器与bobby冲突"
 }

@@ -1,5 +1,6 @@
 package iafenvoy.ornaments.utils;
 
+import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -32,7 +33,10 @@ public class FakePlayerEntity {
 
         public void loadSkin(Identifier skin) {
             if (skin == null)
-                client.getSkinProvider().loadSkin(super.getGameProfile(), (type, identifier, texture) -> this.skin = identifier, true);
+                client.getSkinProvider().loadSkin(super.getGameProfile(), (type, identifier, texture) -> {
+                    if (type == MinecraftProfileTexture.Type.SKIN)
+                        this.skin = identifier;
+                }, true);
             else
                 this.skin = skin;
         }

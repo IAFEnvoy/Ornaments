@@ -47,7 +47,7 @@ public class EntityGuiBase extends GuiBase implements SettingGui {
             this.prevMouseX = mouseX;
             this.prevMouseY = mouseY;
         }
-        EntityRenderer.render((float) this.rotateX + 180, (float) this.rotateY, this.shouldRenderElytra, 50);
+        EntityRenderer.render(matrices, (float) this.rotateX + 180, (float) this.rotateY, this.shouldRenderElytra, 50);
     }
 
     @Override

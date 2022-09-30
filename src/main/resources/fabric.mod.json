@@ -17,7 +17,7 @@
     "client": [
       "iafenvoy.ornaments.OrnamentClient"
     ],
-    "modmenu":[
+    "modmenu": [
       "iafenvoy.ornaments.compat.ModMenu"
     ]
   },

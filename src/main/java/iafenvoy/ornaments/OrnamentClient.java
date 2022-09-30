@@ -12,6 +12,8 @@ public class OrnamentClient implements ClientModInitializer {
     public static final String MOD_NAME = "Ornaments";
     public static final Logger logger = LogManager.getLogger();
 
+    public static final boolean hasBobby = FabricLoader.getInstance().isModLoaded("bobby");
+
 
     @Override
     public void onInitializeClient() {

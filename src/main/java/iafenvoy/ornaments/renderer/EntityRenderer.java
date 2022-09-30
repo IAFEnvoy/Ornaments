@@ -1,8 +1,10 @@
 package iafenvoy.ornaments.renderer;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import iafenvoy.ornaments.OrnamentClient;
 import iafenvoy.ornaments.utils.FakePlayerEntity;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
@@ -11,13 +13,18 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.Quaternion;
 import net.minecraft.util.math.Vec3f;
 
 public class EntityRenderer {
     private static final MinecraftClient client = MinecraftClient.getInstance();
 
-    public static void render(float rotateX, float rotateY, boolean shouldRenderElytra, int size) {
+    public static void render(MatrixStack matrices, float rotateX, float rotateY, boolean shouldRenderElytra, int size) {
+        if (OrnamentClient.hasBobby) {
+            DrawableHelper.drawCenteredText(matrices, client.textRenderer, new TranslatableText("compat.ornaments.bobby"), 300, 100, -1);
+            return;
+        }
         int i = 250, j = 100;
         FakePlayerEntity.DummyClientPlayerEntity player = FakePlayerEntity.DummyClientPlayerEntity.INSTANCE;
         player.loadSkin(null);
