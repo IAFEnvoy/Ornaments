@@ -36,6 +36,7 @@ public class CapeRenderer extends FeatureRenderer<AbstractClientPlayerEntity, Pl
             return;
         if (entity.getEquippedStack(EquipmentSlot.CHEST).getItem() == Items.ELYTRA || !info.shouldRender())
             return;
+
         matrices.push();
         if (entity.getEquippedStack(EquipmentSlot.CHEST).isEmpty()) {
             if (entity.isInSneakingPose())

@@ -68,5 +68,6 @@
   "pattern.none": "None",
   "config.ornaments.player_name": "本地皮肤名",
   "config.ornaments.is_thin_arm": "使用Alex模型",
-  "compat.ornaments.bobby": "渲染错误：渲染器与bobby冲突"
+  "compat.ornaments.bobby": "渲染错误：渲染器与bobby冲突",
+  "config.ornaments.physical": "使用物理引擎"
 }

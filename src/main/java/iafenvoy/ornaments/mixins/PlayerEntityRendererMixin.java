@@ -25,7 +25,6 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
 
     @Inject(method = "<init>(Lnet/minecraft/client/render/entity/EntityRenderDispatcher;Z)V", at = @At(value = "RETURN"))
     public void postConstructor(CallbackInfo callbackInfo) {
-
         this.features.add(new CapeRenderer(this));
         this.features.add(new ElytraRenderer(this));
         this.features.add(new WingRenderer(this));

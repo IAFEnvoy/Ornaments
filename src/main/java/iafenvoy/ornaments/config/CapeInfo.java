@@ -13,6 +13,7 @@ public class CapeInfo implements Config {
     private final ColorEnum[] colors = new ColorEnum[10];
     private boolean render = false;
     private ColorEnum baseColor;
+    private boolean physical = false;
 
     public CapeInfo() {
         this.baseColor = ColorEnum.black;
@@ -54,6 +55,14 @@ public class CapeInfo implements Config {
         return this.colors[id];
     }
 
+    public boolean isPhysical() {
+        return physical;
+    }
+
+    public void setPhysical(boolean physical) {
+        this.physical = physical;
+    }
+
     @Override
     public void copy(String value) throws JsonSyntaxException {
         CapeInfo info = new Gson().fromJson(value, CapeInfo.class);
@@ -63,6 +72,7 @@ public class CapeInfo implements Config {
             patterns[i] = info.patterns[i];
             colors[i] = info.colors[i];
         }
+        this.physical = info.physical;
     }
 
     @Override
