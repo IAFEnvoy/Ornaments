@@ -2,7 +2,7 @@ package iafenvoy.ornaments.gui.settings;
 
 import fi.dy.masa.malilib.gui.GuiBase;
 import fi.dy.masa.malilib.util.StringUtils;
-import iafenvoy.ornaments.ConfigManager;
+import iafenvoy.ornaments.config.ConfigManager;
 import iafenvoy.ornaments.config.ShoulderPlayerInfo;
 import iafenvoy.ornaments.gui.buttons.BooleanButton;
 import iafenvoy.ornaments.gui.buttons.TextField;

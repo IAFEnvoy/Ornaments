@@ -1,5 +1,6 @@
 package iafenvoy.ornaments;
 
+import iafenvoy.ornaments.config.ConfigManager;
 import iafenvoy.ornaments.registry.KeyBind;
 import iafenvoy.ornaments.registry.Textures;
 import net.fabricmc.api.ClientModInitializer;
